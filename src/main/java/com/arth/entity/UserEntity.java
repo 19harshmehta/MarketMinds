@@ -1,5 +1,8 @@
 package com.arth.entity;
 
+import java.util.Date;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,20 +13,25 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class UserEntity 
 {
-	Integer serId;
+	Integer userId;
 	String firstName;
 	String lastName;
 	String email;
 	String password;
+	@Column(length = 8)
+	String otp;
+	Date otpCreated;
+	Date otpValidity;
+	Date deletedAt;
 	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer getSerId() {
-		return serId;
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setSerId(Integer serId) {
-		this.serId = serId;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -49,4 +57,30 @@ public class UserEntity
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getOtp() {
+		return otp;
+	}
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
+	public Date getOtpCreated() {
+		return otpCreated;
+	}
+	public void setOtpCreated(Date otpCreated) {
+		this.otpCreated = otpCreated;
+	}
+	public Date getOtpValidity() {
+		return otpValidity;
+	}
+	public void setOtpValidity(Date otpValidity) {
+		this.otpValidity = otpValidity;
+	}
+	public Date getDeletedAt() {
+		return deletedAt;
+	}
+	public void setDeletedAt(Date deletedAt) {
+		this.deletedAt = deletedAt;
+	}
+
+
 }

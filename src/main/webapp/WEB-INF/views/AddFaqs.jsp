@@ -16,29 +16,21 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 			
-		<h2>Change Password</h2>
-				<form action="changepassword" method="post">
-					
-					<div class="form-group">
-						Email: <input type="text" name="email" class="form-control"/>
-					</div>
+		<h2>FAQs</h2>
+				<form action="addfaqs" method="post">
 					
 					
 					<div class="form-group">
-						Password: <input type="password" name="password" class="form-control"/>
+						Question: <input type="text" name="question" class="form-control"/>
 					</div>
 					
 					<div class="form-group">
-						Confirm Password: <input type="password" name="cpassword" class="form-control"/>
+						Answer: <input type="text" name="answer" class="form-control"/>
 					</div>
 					
-					<div class="form-group">
-						Enter OTP : <input type="text" name="otp" class="form-control"/>
-					</div>
-					<span class="error">${otp }</span>
 					<br>
 	 
-	 			<input type="submit" value="Change Password" class="btn btn-success"/>
+	 			<input type="submit" value="Add" class="btn btn-success"/>
 				</form>
 			</div>
 			<div class="col-md-3"></div>
