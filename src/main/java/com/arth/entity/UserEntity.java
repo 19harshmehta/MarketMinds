@@ -2,17 +2,23 @@ package com.arth.entity;
 
 import java.util.Date;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class UserEntity 
 {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer userId;
 	String firstName;
 	String lastName;
@@ -24,9 +30,12 @@ public class UserEntity
 	Date otpValidity;
 	Date deletedAt;
 	
+	@ManyToOne
+	@JoinColumn(name = "roleId",referencedColumnName = "roleId")
+	RoleEntity role;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	
 	public Integer getUserId() {
 		return userId;
 	}
@@ -80,6 +89,12 @@ public class UserEntity
 	}
 	public void setDeletedAt(Date deletedAt) {
 		this.deletedAt = deletedAt;
+	}
+	public RoleEntity getRole() {
+		return role;
+	}
+	public void setRole(RoleEntity role) {
+		this.role = role;
 	}
 
 

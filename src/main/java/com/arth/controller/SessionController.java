@@ -78,6 +78,9 @@ public class SessionController
 		String encoPassword = bcryptPasswordEncoder.encode(user.getPassword());
 		user.setPassword(encoPassword);
 		
+		RoleEntity role = roleRepo.findByRoleName("USER");
+		user.setRole(role);
+		
 		userRepo.save(user);
 		
 		return "Login";
