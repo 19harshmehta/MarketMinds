@@ -26,8 +26,10 @@ public class UserController
 	{
 		List<UserEntity> users = userRepo.findAll();
 		model.addAttribute("users",users);
-		return "ListUser";
+		return "ListUsers";
 	}
+	
+	
 	
 	@GetMapping("/deleteuser/{userId}")
 	public String deleteUser(@PathVariable("userId") Integer userId)
