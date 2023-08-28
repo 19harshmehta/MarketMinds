@@ -29,6 +29,14 @@ public class UserController
 		return "ListUsers";
 	}
 	
+	@GetMapping("/listactiveusers")
+	public String listActiveUsers(Model model) {
+
+		List<UserEntity> users = userRepo.getActiveUsers(); // List<UserEn>
+		model.addAttribute("users",users);
+		return "ListActiveUsers";
+	}
+	
 	
 	
 	@GetMapping("/deleteuser/{userId}")
@@ -39,7 +47,7 @@ public class UserController
 		UserEntity user = userOpt.get();
 		user.setDeletedAt(new Date());
 		userRepo.save(user);
-		return "redirect:/listusers";
+		return "redirect:/listactiveusers";
 		
 	}
 }

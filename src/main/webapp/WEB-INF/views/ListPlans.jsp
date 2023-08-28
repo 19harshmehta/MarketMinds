@@ -24,6 +24,7 @@
 				<th>Duration (in months)</th>
 				<th>Amount</th>
 				<th>Tax</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -36,8 +37,11 @@
 				<td><%=plan.getDuration()%></td>
 				<td><%=plan.getAmount()%></td>
 				<td><%=plan.getTax()%></td>
-				<td><a href="deleteplan/<%=plan.getPlanId()%>">Delete</a></td>
-				
+				<%if(plan.getActiveInd().equals(0)) {%>
+				<td><a class="btn btn-primary" href="deleteplan/<%=plan.getPlanId()%>">Enabled</a></td>
+				<%}else{ %>
+				<td><a class="btn btn-danger" href="activateplan/<%=plan.getPlanId()%>">Disabled</a></td>
+				<%} %>
 			</tr>
 			<%
 			}
