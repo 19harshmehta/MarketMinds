@@ -2,6 +2,7 @@ package com.arth.controller;
 
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,14 @@ public class PlanController
 	@GetMapping("/listplans")
 	public String listPlans(Model model)
 	{
-		List<PlanEntity> plans = planRepo.findAll();
+		List<PlanEntity> plans = planRepo.getAllPlans(); // List<UserEn>
 		model.addAttribute("plans",plans);
 		return "ListPlans";
+		
+//		List<PlanEntity> plans = planRepo.findAll();
+//		model.addAttribute("plans",plans);
+//		return "ListPlans";
+	
 	}
 	
 	@GetMapping("/deleteplan/{planId}")
