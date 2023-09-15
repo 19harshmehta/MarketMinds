@@ -1,33 +1,60 @@
 package com.arth.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+
+
+import com.arth.repository.EquityRepository;
+
 
 @Controller
 public class EquityController 
 {
-//		@Autowired
-//		CsvService csvservice;
+	
+	@Autowired
+	EquityRepository eqRepo;
 	
 	
-		@GetMapping("equity")
-		public String getEquity()
-		{
-//			csvservice.saveCsvData("C:\\Users\\HP\\Downloads");
-//			System.out.println("data imported");
-			return "AddEquity";
-		}
+	
+	@GetMapping("/listequity")
+	public String listEquity(Model model)
+	{
+		model.addAttribute("eqs",eqRepo.findAll());
+		return "ListEquity";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+////		@Autowired
+////		CsvService csvservice;
+//	
+//	
+//		@GetMapping("equity")
+//		public String getEquity()
+//		{
+////			csvservice.saveCsvData("C:\\Users\\HP\\Downloads");
+////			System.out.println("data imported");
+//			return "AddEquity";
+//		}
+//		
+//		@PostMapping("addequity")
+//		public String postEquityByUpload(@RequestParam("file") MultipartFile file)
+//		{
+//			
+//			return "AddEquity";
+//		}
+	
+	
 		
-		@PostMapping("addequity")
-		public String postEquityByUpload(@RequestParam("file") MultipartFile file)
-		{
-			
-			return "AddEquity";
-		}
 	
 	
 

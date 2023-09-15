@@ -2,6 +2,7 @@ package com.arth.controller;
 
 import java.io.InputStreamReader;
 
+
 import java.io.Reader;
 import java.util.Date;
 import java.util.HashSet;
@@ -32,6 +33,8 @@ import com.arth.services.MailerService;
 import com.arth.services.OtpGenerator;
 import com.opencsv.CSVReader;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class SessionController 
 {
@@ -57,7 +60,11 @@ public class SessionController
 	@Autowired
 	MailerService mailerService;
 	
-	
+	@GetMapping("home")
+	public String home()
+	{
+		return "Home";
+	}
 	
 	@GetMapping("signup")
 	public String signUp()
@@ -87,7 +94,7 @@ public class SessionController
 	}
 	
 	@PostMapping("authenticate")
-	public String authenticate(LoginDto loginDto,Model model)
+	public String authenticate(LoginDto loginDto,Model model,HttpSession session)
 	{
 		
 		Optional<UserEntity> opt = userRepo.findByEmail(loginDto.getEmail());
@@ -98,7 +105,9 @@ public class SessionController
 			if(user.getDeletedAt() == null)
 			{
 				if (bcryptPasswordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
-					//
+					
+					session.setAttribute("userId", user.getUserId());
+					session.setMaxInactiveInterval(43200);
 					return "Home";
 				}
 		
@@ -106,6 +115,15 @@ public class SessionController
 		}
 		model.addAttribute("error","Invalid Credentials...");
 		return "Login";
+	}
+	
+	@GetMapping("logout")
+	public String logout(HttpSession session)
+	{
+		session.invalidate();
+		
+		return "redirect:/login";
+		
 	}
 	
 	@GetMapping("forgotpassword")
