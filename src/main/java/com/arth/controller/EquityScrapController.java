@@ -17,10 +17,11 @@ public class EquityScrapController
 	public String scrap()
 	{
 		System.out.println("in scrap");
-		Runnable r = () ->{
-			
+		
+		Runnable r = () ->{	
 			eqScrapService.scrapPriceForDb();
 		};
+		
 		Thread t = new Thread(r);
 		t.start();
 		
