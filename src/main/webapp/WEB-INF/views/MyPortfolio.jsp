@@ -51,10 +51,12 @@
 				<td><%=e.getPurchasedPrice()%></td>
 				<td><%=e.getPurchasedAt() %></td>
 				<td><%=(e.getPurchasedPrice()*e.getQty())%></td>
-				<% if(((e.getPurchasedPrice()*e.getQty()) - (e.getLastTradePrice()*e.getQty())) > 0){ %>
-				<td style="color: green;"><%=((e.getPurchasedPrice()*e.getQty()) - (e.getLastTradePrice()*e.getQty()))%></td>
+				<% if( ( (e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()) ) > 0){ %>
+				<td style="color: green;"><%=((e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()))%></td>
+				<td style="color: green;"><%=((((e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()))/(e.getPurchasedPrice()*e.getQty()))*100)%></td>
 				<%}else{ %>
-				<td style="color: red;"><%=((e.getPurchasedPrice()*e.getQty()) - (e.getLastTradePrice()*e.getQty()))%></td>
+				<td style="color: red;"><%=((e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()))%></td>
+				<td style="color: red;"><%=((((e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()))/(e.getPurchasedPrice()*e.getQty()))*100)%></td>
 				<%} %>
 				
 				
