@@ -32,6 +32,9 @@
 				<th>Quantity</th>
 				<th>Price Purchased</th>
 				<th>Purchase Date</th>
+				<th>Total Investment</th>
+				<th>Current P&L</th>
+				<th>P&L Per</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,9 +49,15 @@
 				<td><%=e.getLastTradePrice() %></td>
 				<td><%=e.getQty()%></td>
 				<td><%=e.getPurchasedPrice()%></td>
-
 				<td><%=e.getPurchasedAt() %></td>
-
+				<td><%=(e.getPurchasedPrice()*e.getQty())%></td>
+				<% if(((e.getPurchasedPrice()*e.getQty()) - (e.getLastTradePrice()*e.getQty())) > 0){ %>
+				<td style="color: green;"><%=((e.getPurchasedPrice()*e.getQty()) - (e.getLastTradePrice()*e.getQty()))%></td>
+				<%}else{ %>
+				<td style="color: red;"><%=((e.getPurchasedPrice()*e.getQty()) - (e.getLastTradePrice()*e.getQty()))%></td>
+				<%} %>
+				
+				
 			</tr>
 			<%
 			}

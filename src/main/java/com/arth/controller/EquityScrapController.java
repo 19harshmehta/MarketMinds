@@ -18,12 +18,14 @@ public class EquityScrapController
 	{
 		System.out.println("in scrap");
 		
-		Runnable r = () ->{	
 			eqScrapService.scrapPriceForDb();
-		};
+//		Runnable r = () ->{	
+//			eqScrapService.scrapPriceForDb();
+
+	//	};
 		
-		Thread t = new Thread(r);
-		t.start();
+		//Thread t = new Thread(r);
+		//t.start()
 		
 		return "redirect:/listequity";
 	}
