@@ -5,6 +5,7 @@
 <%@page import="com.arth.entity.EquityEntity"%>
 <%@page import="com.arth.entity.PlanEntity"%>
 <%@page import="java.util.List"%>
+<%@page import="java.lang.Math" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -33,8 +34,8 @@
 				<th>Price Purchased</th>
 				<th>Purchase Date</th>
 				<th>Total Investment</th>
+				<th>Current Market Value</th>
 				<th>Current P&L</th>
-				<th>P&L Per</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,15 +49,18 @@
 				<td><%=e.getEquityName()%></td>
 				<td><%=e.getLastTradePrice() %></td>
 				<td><%=e.getQty()%></td>
-				<td><%=e.getPurchasedPrice()%></td>
+				<td><%=Math.round(e.getPurchasedPrice())%></td>
 				<td><%=e.getPurchasedAt() %></td>
-				<td><%=(e.getPurchasedPrice()*e.getQty())%></td>
-				<% if( ( (e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()) ) > 0){ %>
-				<td style="color: green;"><%=((e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()))%></td>
-				<td style="color: green;"><%=((((e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()))/(e.getPurchasedPrice()*e.getQty()))*100)%></td>
+				<td><%=e.getTotalInvestment()%></td>
+				<%
+					Double profitinrs = e.getLastTradePrice()*e.getQty().doubleValue() - e.getTotalInvestment();
+					Double plper = profitinrs / e.getTotalInvestment() *100; 
+				%>
+				<td><%=Math.round((e.getLastTradePrice()*e.getQty().doubleValue()))%></td>
+				<% if(profitinrs > 0){ %>
+				<td style="color: green;"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub style="color: grey;"><%=Math.round(plper)%>%</sub></td>
 				<%}else{ %>
-				<td style="color: red;"><%=((e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()))%></td>
-				<td style="color: red;"><%=((((e.getLastTradePrice()*e.getQty())-(e.getPurchasedPrice()*e.getQty()))/(e.getPurchasedPrice()*e.getQty()))*100)%></td>
+				<td style="color: red;"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub style="color: grey;"><%=Math.round(plper)%>%</sub></td>
 				<%} %>
 				
 				

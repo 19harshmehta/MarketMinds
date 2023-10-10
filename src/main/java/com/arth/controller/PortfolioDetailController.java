@@ -1,5 +1,6 @@
 package com.arth.controller;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,15 +73,17 @@ public class PortfolioDetailController {
 			{
 				String equityName = (String) o[0];
 				Double lastTradePrice = (Double) o[1];
-				Integer qty = (Integer) o[3];
-				Float purchasedPrice = (Float) o[2];
-			 	Date purchasedAt = (Date) o[4];
+				Double totalInvestment = (Double) o[3];
+				BigDecimal qty = (BigDecimal) o[4];
+				Double purchasedPrice = (Double) o[2];
+			 	Date purchasedAt = (Date) o[5];
 			 	PortfolioDetailDto pfdDto = new PortfolioDetailDto();
 			 	pfdDto.setEquityName(equityName);
 			 	pfdDto.setLastTradePrice(lastTradePrice);
 			 	pfdDto.setPurchasedAt(purchasedAt);
 			 	pfdDto.setPurchasedPrice(purchasedPrice);
 			 	pfdDto.setQty(qty);
+			 	pfdDto.setTotalInvestment(totalInvestment);
 			 	pfd.add(pfdDto);
 			 	
 			}

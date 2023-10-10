@@ -36,3 +36,4 @@ public class PortfolioEntity
 	    )
 	List<EquityEntity> equities = new ArrayList<>();
 }
+

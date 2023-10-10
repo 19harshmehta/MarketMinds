@@ -1,5 +1,6 @@
 package com.arth.dto;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import lombok.Getter;
@@ -11,8 +12,9 @@ public class PortfolioDetailDto {
 
 	String equityName;
 	Double lastTradePrice;
-	private Integer qty;
- 	private Float purchasedPrice;
+	private BigDecimal qty;
+ 	private Double purchasedPrice;
  	private Date purchasedAt;
+ 	private Double totalInvestment;
 
 }
