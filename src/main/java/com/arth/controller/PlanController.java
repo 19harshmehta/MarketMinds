@@ -78,4 +78,12 @@ public class PlanController
 		
 	}
 	
+	@GetMapping("/upgradetopremium")
+	public String upgradeToPremium(Model model)
+	{
+		List<PlanEntity> plans = planRepo.getAllPlans(); // List<UserEn>
+		model.addAttribute("plans",plans);
+		return "ChoosePlan";
+	}
+	
 }

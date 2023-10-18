@@ -32,7 +32,7 @@ public class EquityPriceDataController
             equityPrice.setClosingPrice(equity.getPrice());
             
             eqPriceRepo.save(equityPrice);
-            System.out.println("in price scrap");
+//            System.out.println("in price scrap");
             
             
         } else {

@@ -29,6 +29,8 @@ public class UserEntity
 	Date otpCreated;
 	Date otpValidity;
 	Date deletedAt;
+	Integer premiumInd;
+	Integer statusInd;
 	
 	@ManyToOne
 	@JoinColumn(name = "roleId",referencedColumnName = "roleId")
@@ -96,6 +98,19 @@ public class UserEntity
 	public void setRole(RoleEntity role) {
 		this.role = role;
 	}
-
+	public Integer getPremiumInd() {
+		return premiumInd;
+	}
+	public void setPremiumInd(Integer premiumInd) {
+		this.premiumInd = premiumInd;
+	}
+	public Integer getStatusInd() {
+		return statusInd;
+	}
+	public void setStatusInd(Integer statusInd) {
+		this.statusInd = statusInd;
+	}
+	
+	
 
 }

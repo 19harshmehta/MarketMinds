@@ -87,6 +87,8 @@ public class SessionController
 		
 		RoleEntity role = roleRepo.findByRoleName("USER");
 		user.setRole(role);
+		user.setStatusInd(0);
+		user.setPremiumInd(0);
 		
 		userRepo.save(user);
 		
@@ -107,6 +109,7 @@ public class SessionController
 				if (bcryptPasswordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
 					
 					session.setAttribute("userId", user.getUserId());
+					session.setAttribute("premiumInd", user.getPremiumInd());
 					session.setMaxInactiveInterval(43200);
 					return "Home";
 				}
