@@ -1,6 +1,7 @@
 package com.arth.controller;
 
 import java.math.BigDecimal;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,6 @@ import com.arth.entity.PortfolioDetailEntity;
 import com.arth.entity.PortfolioEntity;
 import com.arth.repository.PortfolioDetailRepository;
 import com.arth.repository.PortfolioRepository;
-import com.arth.services.PortfolioDetailService;
 import com.arth.services.PortfolioService;
 
 import jakarta.servlet.http.HttpSession;
@@ -36,9 +36,7 @@ public class PortfolioDetailController {
 	@Autowired
 	private PortfolioService portfolioService;
 
-	@Autowired
-	private PortfolioDetailService pfDetailService;
-
+	
 	@GetMapping("addequity/{equityId}")
 	public String addEquity(@PathVariable("equityId") Integer eqId) {
 //		model.addAttribute("eqId",eqId);

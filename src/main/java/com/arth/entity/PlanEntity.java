@@ -14,7 +14,7 @@ public class PlanEntity
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer planId;
 	Integer duration; //In Months
-	Integer amount;
+	Float amount;
 	Float 	tax;
 	String 	title;
 	Integer activeInd;
@@ -35,10 +35,10 @@ public class PlanEntity
 	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
-	public Integer getAmount() {
+	public Float getAmount() {
 		return amount;
 	}
-	public void setAmount(Integer amount) {
+	public void setAmount(Float amount) {
 		this.amount = amount;
 	}
 	public Float getTax() {
