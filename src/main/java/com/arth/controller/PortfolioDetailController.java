@@ -40,7 +40,7 @@ public class PortfolioDetailController {
 	@GetMapping("addequity/{equityId}")
 	public String addEquity(@PathVariable("equityId") Integer eqId) {
 //		model.addAttribute("eqId",eqId);
-		return "AddEquityToPortfolio";
+		return "AddToPortfolio";
 	}
 
 	@PostMapping("addequity/saveequity")

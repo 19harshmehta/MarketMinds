@@ -2,7 +2,6 @@ package com.arth.controller;
 
 import java.io.InputStreamReader;
 
-
 import java.io.Reader;
 import java.util.Date;
 import java.util.HashSet;
@@ -36,269 +35,253 @@ import com.opencsv.CSVReader;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class SessionController 
-{
-	
+public class SessionController {
+
 	@Autowired
 	UserRepository userRepo;
-	
+
 	@Autowired
 	RoleRepository roleRepo;
-	
+
 	@Autowired
 	IndustryRepository industryRepo;
-	
+
 	@Autowired
 	FaqRepository faqRepo;
-	
+
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
-	
+
 	@Autowired
 	OtpGenerator otpGeneratorService;
 
 	@Autowired
 	MailerService mailerService;
-	
+
 	@GetMapping("home")
-	public String home()
-	{
+	public String home() {
 		return "Home";
 	}
-	
+
 	@GetMapping("signup")
-	public String signUp()
-	{
+	public String signUp() {
 		return "SignUp";
 	}
-	
-	
-	@GetMapping(value = { "/","login"})
-	public String login()
-	{
+
+	@GetMapping(value = { "/", "login" })
+	public String login() {
 		return "Login";
 	}
-	
+
 	@PostMapping("saveuser")
-	public String saveUser(UserEntity user)
-	{
+	public String saveUser(UserEntity user) {
 		String encoPassword = bcryptPasswordEncoder.encode(user.getPassword());
 		user.setPassword(encoPassword);
-		
+
 		RoleEntity role = roleRepo.findByRoleName("USER");
 		user.setRole(role);
 		user.setStatusInd(0);
 		user.setPremiumInd(0);
-		
+
 		userRepo.save(user);
-		
+
 		return "Login";
 	}
-	
+
 	@PostMapping("authenticate")
-	public String authenticate(LoginDto loginDto,Model model,HttpSession session)
-	{
-		
+	public String authenticate(LoginDto loginDto, Model model, HttpSession session) {
+
 		Optional<UserEntity> opt = userRepo.findByEmail(loginDto.getEmail());
 
-		if (opt.isPresent()) 
-		{
+		if (opt.isPresent()) {
 			UserEntity user = opt.get();
-			if(user.getDeletedAt() == null)
-			{
+			if (user.getDeletedAt() == null) {
 				if (bcryptPasswordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
-					
+
+					session.setAttribute("user", user);
 					session.setAttribute("userId", user.getUserId());
 					session.setAttribute("premiumInd", user.getPremiumInd());
 					session.setMaxInactiveInterval(43200);
-					return "Home";
+
+					String role = "";
+
+					try {
+						role = user.getRole().getRoleName();
+					} catch (Exception e) {
+
+					}
+					if (role.equalsIgnoreCase("admin")) {
+						return "redirect:/dashboard";
+					} else if (role.equalsIgnoreCase("user")) {
+						return "redirect:/home";
+					}
+					model.addAttribute("error", "Invalid User Please Contact Support Team");
+					return "Login";
 				}
-		
+
 			}
 		}
-		model.addAttribute("error","Invalid Credentials...");
+		model.addAttribute("error", "Invalid Credentials...");
 		return "Login";
 	}
-	
+
 	@GetMapping("logout")
-	public String logout(HttpSession session)
-	{
+	public String logout(HttpSession session) {
 		session.invalidate();
-		
+
 		return "redirect:/login";
-		
+
 	}
-	
+
 	@GetMapping("forgotpassword")
-	public String forgotPwd()
-	{
+	public String forgotPwd() {
 		return "ForgotPassword";
 	}
-	
+
 	@PostMapping("forgotpassword")
-	public String forgotPassword(LoginDto loginDto,Model model)
-	{
+	public String forgotPassword(LoginDto loginDto, Model model) {
 		Optional<UserEntity> opt = userRepo.findByEmail(loginDto.getEmail());
-		UserEntity user = opt.get();
-		
-		if(user.getDeletedAt() == null)
-		{
-			if(opt.isPresent())
+		if (opt.isPresent()) {
+			UserEntity user = opt.get();
+			if (user.getDeletedAt() == null) 
 			{
-				String otp = otpGeneratorService.generateOtp(6);
-				Date createdDate = new Date();
-				long validityTime = createdDate.getTime()+ (180*1000);
-				Date validityDate = new Date(validityTime);
-	//			System.out.println(currentDate);
-	
-				user.setOtp(otp);
 				
-				Runnable r = () ->{
-					
-					mailerService.sendMailForForgetpasswordOTP(user);
-				};
-				Thread t = new Thread(r);
-				t.start();
-				user.setOtpCreated(createdDate);
-				user.setOtpValidity(validityDate);
-				userRepo.save(user);
-				return "ChangePassword";
+					String otp = otpGeneratorService.generateOtp(6);
+					Date createdDate = new Date();
+					long validityTime = createdDate.getTime() + (180 * 1000);
+					Date validityDate = new Date(validityTime);
+					// System.out.println(currentDate);
+	
+					user.setOtp(otp);
+	
+					Runnable r = () -> {
+	
+						mailerService.sendMailForForgetpasswordOTP(user);
+					};
+					Thread t = new Thread(r);
+					t.start();
+					user.setOtpCreated(createdDate);
+					user.setOtpValidity(validityDate);
+					userRepo.save(user);
+					return "ChangePassword";
+			}else 
+			{
+				model.addAttribute("error", "Invalid email please check again or Sign up");
 			}
-		}else 
+		} else 
 		{
-			model.addAttribute("error","Invalid email please check again or Sign up");
+			model.addAttribute("error", "Invalid email please check again or Sign up");
 		}
 		return "ForgotPassword";
 	}
-	
+
 	@PostMapping("changepassword")
-	public String changePassword(ResetPasswordDto rDto, Model model)
-	{
+	public String changePassword(ResetPasswordDto rDto, Model model) {
 		Optional<UserEntity> userOptional = userRepo.findByEmail(rDto.getEmail());
-		if (userOptional.isPresent()) 
-		{
+		if (userOptional.isPresent()) {
 			Date currentDate = new Date();
 			UserEntity user = userOptional.get();
-			
-				if (user.getOtp().equals(rDto.getOtp())) 
-				{
-					if(user.getOtpValidity().after(currentDate))
-					{
+
+			if (user.getOtp().equals(rDto.getOtp())) {
+				if (user.getOtpValidity().after(currentDate)) {
 //						System.out.println("in otp validity");
-						user.setPassword(bcryptPasswordEncoder.encode(rDto.getPassword()));
-						userRepo.save(user);
-						return "Login";
-					}else {
-						model.addAttribute("otp", "OTP expeired | <a href='forgotpassword'>Re-Send OTP ?</a>");
-					}
+					user.setPassword(bcryptPasswordEncoder.encode(rDto.getPassword()));
+					userRepo.save(user);
+					return "Login";
+				} else {
+					model.addAttribute("otp", "OTP expeired | <a href='forgotpassword'>Re-Send OTP ?</a>");
 				}
+			}
 		}
 		model.addAttribute("error", "Invalid Credentials...");
 		return "ChangePassword";
 	}
-	
-	//Role
-	
+
+	// Role
+
 	@GetMapping("role")
-	public String getRole()
-	{
+	public String getRole() {
 		return "AddRole";
 	}
+
 	@PostMapping("addrole")
-	public String addRole(RoleEntity role) 
-	{
+	public String addRole(RoleEntity role) {
 		roleRepo.save(role);
 		return "Home";
 	}
-	
-	//industry
+
+	// industry
 	@GetMapping("industry")
-	public String getIndustry()
-	{
+	public String getIndustry() {
 		return "AddIndustry";
 	}
-	
-	@PostMapping("addindustry")
-    public String uploadCSV(@RequestParam("file") MultipartFile file) 
-	{
-        
-			try {
-	            // Read
-	            Reader reader = new InputStreamReader(file.getInputStream());
-	            CSVReader csvReader = new CSVReader(reader);
-	
-	            HashSet<String> uniqueIndustries = new HashSet<>();
-	
-	            //data of industry column
-	            String[] nextLine;
-	            int industryColumnIndex = 1;
-	
-	            while ((nextLine = csvReader.readNext()) != null) 
-	            {
-	                if (nextLine.length > industryColumnIndex) 
-	                {
-	                    String industryData = nextLine[industryColumnIndex];
-	                    
-	                    uniqueIndustries.add(industryData);
-	                } else 
-	                {
-	                    System.out.println("Invalid row: " + String.join(",", nextLine));
-	                }
-	            }
-	            csvReader.close();
-	            
-	         // Fetch existing "industry" data from the database
-	            List<IndustryEntity> existingIndustries = industryRepo.findAll();
-	            Set<String> existingIndustryNames = new HashSet<>();
-	            for (IndustryEntity industry : existingIndustries) {
-	                existingIndustryNames.add(industry.getIndustryName());
-	            }
-	            
-	            
-	            
-	            
-	         // Adding unique "industry" data
-	            for (String industry : uniqueIndustries) {
-	                if (!existingIndustryNames.contains(industry)) {
-	                    IndustryEntity newIndustry = new IndustryEntity();
-	                    newIndustry.setIndustryName(industry);
-	                    industryRepo.save(newIndustry);
-	                    System.out.println("Unique Industry Inserted: " + industry);
-	                } else {
-	                    System.out.println("Industry Already Exists: " + industry);
-	                }
-	            }
-	        } catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	            
-	        }
 
-        return "Home";
-    }
-	
-	
+	@PostMapping("addindustry")
+	public String uploadCSV(@RequestParam("file") MultipartFile file) {
+
+		try {
+			// Read
+			Reader reader = new InputStreamReader(file.getInputStream());
+			CSVReader csvReader = new CSVReader(reader);
+
+			HashSet<String> uniqueIndustries = new HashSet<>();
+
+			// data of industry column
+			String[] nextLine;
+			int industryColumnIndex = 1;
+
+			while ((nextLine = csvReader.readNext()) != null) {
+				if (nextLine.length > industryColumnIndex) {
+					String industryData = nextLine[industryColumnIndex];
+
+					uniqueIndustries.add(industryData);
+				} else {
+					System.out.println("Invalid row: " + String.join(",", nextLine));
+				}
+			}
+			csvReader.close();
+
+			// Fetch existing "industry" data from the database
+			List<IndustryEntity> existingIndustries = industryRepo.findAll();
+			Set<String> existingIndustryNames = new HashSet<>();
+			for (IndustryEntity industry : existingIndustries) {
+				existingIndustryNames.add(industry.getIndustryName());
+			}
+
+			// Adding unique "industry" data
+			for (String industry : uniqueIndustries) {
+				if (!existingIndustryNames.contains(industry)) {
+					IndustryEntity newIndustry = new IndustryEntity();
+					newIndustry.setIndustryName(industry);
+					industryRepo.save(newIndustry);
+					System.out.println("Unique Industry Inserted: " + industry);
+				} else {
+					System.out.println("Industry Already Exists: " + industry);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		return "Home";
+	}
+
 	@PostMapping("addindustry1")
-	public String uploadCSV(IndustryEntity industries)
-	{
+	public String uploadCSV(IndustryEntity industries) {
 		industryRepo.save(industries);
 		return "Home";
 	}
-	
+
 	@GetMapping("faqs")
-	public String addFaqs()
-	{
+	public String addFaqs() {
 		return "AddFaqs";
 	}
-	
+
 	@PostMapping("addfaqs")
-	public String addFaqs(FaqsEntity faqs)
-	{
+	public String addFaqs(FaqsEntity faqs) {
 		faqRepo.save(faqs);
 		return "Home";
 	}
-	
+
 }
-
-
-

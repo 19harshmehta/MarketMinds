@@ -39,6 +39,10 @@ public class PortfolioController
 		return "redirect:/listequity";
 	}
 	
+	@GetMapping("/test")
+	public String testDemo() {
+		return "AddToPortfolio";
+	}
 	
 	
 	 

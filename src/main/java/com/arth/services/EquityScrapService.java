@@ -52,7 +52,7 @@ public class EquityScrapService
 				while ((inputLine = in.readLine()) != null) {
 					response.append(inputLine);
 				}
-				in.close();
+				in.close(); 
 
 //				System.out.println(response.toString());
 				ObjectMapper mapper = new ObjectMapper();
