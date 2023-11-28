@@ -106,6 +106,16 @@
 			<artifactId>twilio</artifactId>
 			<version>9.14.0</version>
 		</dependency>
+		
+		<!--<dependency>
+	    	<groupId>com.google.code.gson</groupId>
+	    	<artifactId>gson</artifactId> 
+	    	 Use the latest version available
+		</dependency>-->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		</dependency>
 
 
 	</dependencies>
