@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arth.dto.PortfolioDetailDto;
+import com.arth.entity.AlertEntity;
 import com.arth.entity.PortfolioDetailEntity;
 import com.arth.entity.PortfolioEntity;
+import com.arth.repository.AlertRepository;
 import com.arth.repository.PortfolioDetailRepository;
 import com.arth.repository.PortfolioRepository;
 import com.arth.services.PortfolioService;
@@ -35,6 +37,9 @@ public class PortfolioDetailController {
 
 	@Autowired
 	private PortfolioService portfolioService;
+	
+	@Autowired
+	AlertRepository alertRepo;
 
 	
 	@GetMapping("addequity/{equityId}")
@@ -56,10 +61,10 @@ public class PortfolioDetailController {
 		System.out.println(pfDetailEntity.getPurchasedAt());
 		pfDetailRepo.save(pfDetailEntity);
 		System.out.println("Stock Added Sucess");
-		return "redirect:/home";
+		return "redirect:/listequity";
 	}
 
-	@GetMapping("listmypoerfolio")
+	@GetMapping("/listmyportfolio")
 	public String getAllEquityData(Model model, HttpSession session) {
 		List<PortfolioDetailDto> pfd = new ArrayList<>();
 		Optional<PortfolioEntity> portfolio = portfolioService
@@ -75,6 +80,7 @@ public class PortfolioDetailController {
 				BigDecimal qty = (BigDecimal) o[4];
 				Double purchasedPrice = (Double) o[2];
 			 	Date purchasedAt = (Date) o[5];
+			 	Integer eqId = (Integer) o[6];
 			 	PortfolioDetailDto pfdDto = new PortfolioDetailDto();
 			 	pfdDto.setEquityName(equityName);
 			 	pfdDto.setLastTradePrice(lastTradePrice);
@@ -82,6 +88,8 @@ public class PortfolioDetailController {
 			 	pfdDto.setPurchasedPrice(purchasedPrice);
 			 	pfdDto.setQty(qty);
 			 	pfdDto.setTotalInvestment(totalInvestment);
+			 	pfdDto.setEquityId(eqId);
+			 	
 			 	pfd.add(pfdDto);
 			 	
 			}
@@ -98,6 +106,22 @@ public class PortfolioDetailController {
 
 		// Handle cases where data is not present
 
+	}
+	
+	@GetMapping("settarget/{equityId}")
+	public String setTarget(@PathVariable Integer equityId, Model model) {
+	    // Your GET method logic here
+	    return "SetTarget";
+	}
+
+	@PostMapping("settarget/savealert")
+	public String saveTarget(@RequestParam("equityId") Integer equityId, HttpSession session,
+	        AlertEntity alertEntity) {
+	    alertEntity.setUserId((Integer) session.getAttribute("userId"));
+	    alertEntity.setEquityId(equityId);
+	    alertEntity.setActiveInd(1);
+	    alertRepo.save(alertEntity);
+	    return "redirect:/listmyportfolio";
 	}
 
 }

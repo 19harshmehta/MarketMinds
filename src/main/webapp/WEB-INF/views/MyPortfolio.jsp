@@ -28,6 +28,7 @@
 	<table class="table table-borderd table-hover">
 		<thead>
 			<tr>
+				<th>EqID</th>
 				<th>Equity Name</th>
 				<th>Last Trade Price</th>
 				<th>Quantity</th>
@@ -36,6 +37,7 @@
 				<th>Total Investment</th>
 				<th>Current Market Value</th>
 				<th>Current P&L</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -45,7 +47,7 @@
 				//{
 			%>
 			<tr>
-
+				<td><%=e.getEquityId() %></td>
 				<td><%=e.getEquityName()%></td>
 				<td><%=e.getLastTradePrice() %></td>
 				<td><%=e.getQty()%></td>
@@ -62,7 +64,7 @@
 				<%}else{ %>
 				<td style="color: red;"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub style="color: grey;"><%=Math.round(plper)%>%</sub></td>
 				<%} %>
-				
+				<td><a class="btn btn-primary" href="settarget/<%=e.getEquityId()%>">Set Target</a></td>
 				
 			</tr>
 			<%

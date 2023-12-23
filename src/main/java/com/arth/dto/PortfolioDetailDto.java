@@ -16,5 +16,6 @@ public class PortfolioDetailDto {
  	private Double purchasedPrice;
  	private Date purchasedAt;
  	private Double totalInvestment;
+ 	private Integer equityId;
 
 }

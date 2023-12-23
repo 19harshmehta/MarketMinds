@@ -14,7 +14,9 @@ import java.util.List;
 public interface EquityRepository extends JpaRepository<EquityEntity, Integer> 
 {
 	Optional<EquityEntity> findBySymbol(String symbol);
-	List<EquityEntity> findByEquityId(Integer eqId);
+	EquityEntity findByEquityId(Integer eqId);
 	List<EquityEntity> findAll();
+//	Optional<EquityEntity> findById(Integer eqId);
+//	Optional<EquityEntity> findByEqId(Integer eqId);
 //	List<EquityEntity> findByEquityName(String equityName);
 }

@@ -107,7 +107,8 @@
 		$(document).ready(function() {
 			const datatables = document.getElementById("equityTable");
 			new simpleDatatables.DataTable(datatables, {
-				perPageSelect : [ 25, 50, 'All' ]
+				perPageSelect : [ 20, 50,100,200,500, 'All' ],
+				perPage: 20
 			});
 		})
 	</script>

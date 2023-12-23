@@ -19,7 +19,7 @@ public interface PortfolioDetailRepository extends JpaRepository<PortfolioDetail
  //	List<PortfolioDetailEntity> findByPortfolioId(Integer portfolioId);
 	
 //	@Query(value = "select e.equity_name ,e.price as lastTradePrice, pd.price as purchasedPrice ,pd.qty ,pd.purchased_at   from equity e,portfolio p,pfdetail pd where p.portfolio_id = :portfolioId and e.equity_id = pd.equity_id and pd.portfolio_Id = :portfolioId",nativeQuery = true)
-	@Query(value = "select e.equity_name ,e.price as lastTradePrice, sum(pd.price*pd.qty) / sum(pd.qty) as purchasedPrice,sum(pd.price*pd.qty) as totalInvestment,sum(pd.qty) as qty ,pd.purchased_at   from equity e,portfolio p,pfdetail pd where p.portfolio_id = :portfolioId and e.equity_id = pd.equity_id and pd.portfolio_Id = :portfolioId group by e.equity_name;",nativeQuery = true)
+	@Query(value = "select e.equity_name ,e.price as lastTradePrice, sum(pd.price*pd.qty) / sum(pd.qty) as purchasedPrice,sum(pd.price*pd.qty) as totalInvestment,sum(pd.qty) as qty ,pd.purchased_at,e.equity_id as eqId   from equity e,portfolio p,pfdetail pd where p.portfolio_id = :portfolioId and e.equity_id = pd.equity_id and pd.portfolio_Id = :portfolioId group by e.equity_name;",nativeQuery = true)
 	List<Object[]> getData(Integer portfolioId);
 
 }

@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import org.springframework.stereotype.Service;
 import com.arth.dto.ResponseDtoList;
 import com.arth.dto.Root;
 import com.arth.entity.EquityEntity;
+import com.arth.entity.SchedulerEntity;
 import com.arth.repository.EquityRepository;
+import com.arth.repository.SchedulerLogRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -24,6 +27,9 @@ public class EquityScrapService
 {
 	@Autowired
 	EquityRepository eqRepo;
+	
+	@Autowired
+	SchedulerLogRepository scheduleLogRepo;
 
 	public Root scrapEquity(int lrr) {
 		Root root = null;
@@ -77,6 +83,8 @@ public class EquityScrapService
 	public void scrapPriceForDb() {
 		ArrayList<EquityEntity> newEqty = new ArrayList<>();
 		ArrayList<EquityEntity> updateEqty = new ArrayList<>();
+		SchedulerEntity schedulerEntity = new SchedulerEntity();
+		Date datetime = new Date();
 
 		try {
 			for (int i = 50; i <= 1950; i = i + 50) {
@@ -120,9 +128,18 @@ public class EquityScrapService
 				}
 				eqRepo.saveAll(newEqty);
 				eqRepo.saveAll(updateEqty);
+				schedulerEntity.setSchedulerName("Equity Scraapper");
+				schedulerEntity.setStatusInd(0);
+				schedulerEntity.setScheduleLogTime(datetime);
+				scheduleLogRepo.save(schedulerEntity);
 
 			}
 		} catch (Exception e) {
+			schedulerEntity.setSchedulerName("Equity Scraapper");
+			schedulerEntity.setStatusInd(1);
+			schedulerEntity.setScheduleLogTime(datetime);
+			scheduleLogRepo.save(schedulerEntity);
+			System.out.println("Error in scrap");
 			e.printStackTrace();
 		}
 	}

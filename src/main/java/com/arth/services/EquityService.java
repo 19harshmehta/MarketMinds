@@ -15,8 +15,8 @@ public class EquityService
 	@Autowired
     private EquityRepository equityRepository;
 
-    public List<EquityEntity> getEquityByEqId(Integer eqId) 
-    {
-        return equityRepository.findByEquityId(eqId);
-    }
+//    public List<EquityEntity> getEquityByEqId(Integer eqId) 
+//    {
+//        return equityRepository.findByEquityId(eqId);
+//    }
 }

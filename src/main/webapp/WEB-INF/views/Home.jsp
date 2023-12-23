@@ -12,7 +12,7 @@
 <a href="/scrap">List Equity</a> |
 <a href="/createportfolio">Create Portfolio</a> | 
 <a href="/logout">Logout</a> |
-<a href="/listmypoerfolio">My Portfolio</a> |
+<a href="/listmyportfolio">My Portfolio</a> |
 <a href="/upgradetopremium">Upgrade to Premium ?</a> |
 <a href="/viewhistory">View History</a>
 </body>

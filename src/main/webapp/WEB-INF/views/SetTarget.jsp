@@ -43,95 +43,46 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-<!-- 
-<body>
-	<div><button class="btn btn-success"><a href="signup" style="text-decoration:none;color:white" >Sign Up</a></button></div>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-	<h2>Login</h2>
-				<form action="authenticate" method="post">
-					
-					<div class="form-group">
-						Email: <input type="text" name="email" class="form-control"/>
-					</div>
-					
-					
-					<div class="form-group">
-						Password: <input type="password" name="password" class="form-control"/>
-						<br><a align="right" href="forgotpassword">Forgot Password ?</a>
-					</div>
-					
-					
-	 
-	 			<input type="submit" value="Login" class="btn btn-success"/>
-				</form>
-				<span class="error">${error }</span>
-			</div>   
-			<div class="col-md-3"></div>
-
-		</div>
-
-
-	</div>
-</body> -->
 
 <body>
 
   <main>
     <div class="container">
 
-      <section
-				class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div
-							class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-							<div class="d-flex justify-content-center py-4">
-								<a href="index.html"
-									class="logo d-flex align-items-center w-auto"> <img src="../assets/img/logo.png" alt="" height="100px" width="40px">
-									 <span class="d-none d-lg-block">MarketMinds</span>
-								</a>
-							</div>
-							<!-- End Logo -->
+              <div class="d-flex justify-content-center py-4">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <img src="../assets/img/logo.png" alt="">
+                  <span class="d-none d-lg-block">MarketMinds</span>
+                </a>
+              </div><!-- End Logo -->
 
               <div class="card mb-3">
 
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Add Stock To Portfolio</h5>
-                    <p class="text-center small">Fill Stock Details</p>
+                    <h5 class="card-title text-center pb-0 fs-4">Set A Target to Get Notify</h5>
+                    <p class="text-center small">Set a particular Amount</p>
                   </div>
 
-                  <form action="saveequity" method="post" class="row g-3 needs-validation" novalidate="">
+                  <form action="savealert" method="post" class="row g-3 needs-validation" novalidate="">
 
                     <div class="col-12">
-                      <label for="qty" class="form-label">Enter Quantity:</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="qty" class="form-control" id="qty" required="">
-                        <div class="invalid-feedback">Please enter Quantity</div>
-                      </div>
+                      <label for="targetPrice" class="form-label">Enter yout Target Price:</label>
+                      <input type="text" name="targetPrice" class="form-control" id="targetPrice" required="">
+                      <div class="invalid-feedback">Please enter Targeted Price</div>
+                    </div>
+                    <div>
+                    <input type="hidden" name="equityId" value="${equityId}">
                     </div>
 
                     <div class="col-12">
-                      <label for="price" class="form-label">Enter Price:</label>
-                      <input type="text" name="price" class="form-control" id="price" required="">
-                      <div class="invalid-feedback">Please enter Price</div>
-                    </div>
-                    
-                    <div class="col-12">
-                      <label for="purchasedAt" class="form-label">Purchase Date:</label>
-                      <input type="date" name="purchasedAt" class="form-control" id="purchasedAt" required="">
-                      <div class="invalid-feedback">Please Select your date</div>
-                      <input type="hidden" name="equityId" value="${equityId}">
-                    </div>
-
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Add Stock</button>
+                      <button class="btn btn-primary w-100" type="submit">Set Target</button>
                     </div>
                   </form>
 

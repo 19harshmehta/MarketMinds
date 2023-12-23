@@ -2,6 +2,7 @@ package com.arth.controller;
 
 import java.io.InputStreamReader;
 
+
 import java.io.Reader;
 import java.util.Date;
 import java.util.HashSet;
@@ -84,7 +85,7 @@ public class SessionController {
 		user.setPremiumInd(0);
 
 		userRepo.save(user);
-
+		
 		return "Login";
 	}
 
