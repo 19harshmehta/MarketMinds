@@ -18,5 +18,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>
 	//sql    
 	@Query(value = "select * from users where deleted_at is null", nativeQuery = true)
 	List<UserEntity> getActiveUsers();
+	List<UserEntity> findByPremiumInd(Integer premiumInd);
 
 }

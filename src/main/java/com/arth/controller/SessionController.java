@@ -199,17 +199,24 @@ public class SessionController {
 	}
 
 	// Role
+		@GetMapping("role")
+		public String getRole() {
+			return "AddRole";
+		}
 
-	@GetMapping("role")
-	public String getRole() {
-		return "AddRole";
-	}
+		@PostMapping("addrole")
+		public String addRole(RoleEntity role) {
+			roleRepo.save(role);
+			return "redirect:/listrole";
+		}
+		
+		@GetMapping("listrole")
+		public String listRole(Model model) {
 
-	@PostMapping("addrole")
-	public String addRole(RoleEntity role) {
-		roleRepo.save(role);
-		return "Home";
-	}
+			List<RoleEntity> roles = roleRepo.findAll(); // List<UserEn>
+			model.addAttribute("roles",roles);
+			return "ListRole";
+		}
 
 	// industry
 	@GetMapping("industry")
@@ -284,5 +291,9 @@ public class SessionController {
 		faqRepo.save(faqs);
 		return "Home";
 	}
-
+	
+	@GetMapping("adduser")
+	public String AddUser() {
+		return "AddUser";
+	}
 }

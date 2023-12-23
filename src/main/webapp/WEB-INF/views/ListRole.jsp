@@ -1,4 +1,4 @@
-<%@page import="com.arth.entity.UserEntity"%>
+<%@page import="com.arth.entity.RoleEntity"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -46,48 +46,43 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-
 </head>
+
 <body>
 <%@include file="AdminLayout.jsp" %>
+
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Users</h1>
+      <h1>Role</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Active Users</li>
+          <li class="breadcrumb-item active">Role</li>
         </ol>
       </nav>
     </div>
-    <a class="bi bi-plus-lg btn btn-outline-primary" href="adduser"> Add User</a>
-    <a class="bi bi-people-fill btn btn-outline-primary" href="listusers"> All Users</a>
-    <a class="bi bi-people-fill btn btn-outline-primary" href="listactiveusers"> Active Users</a>
-    <a class="bi bi-person-check-fill btn btn-outline-primary" href="listpremiumusers">  Premium Users</a>
+    <a class="bi bi-plus-lg btn btn-outline-primary" href="role"> Add Role</a>
+   
 	<%
-	List<UserEntity> users = (List<UserEntity>) request.getAttribute("users");
+	List<RoleEntity> roles = (List<RoleEntity>) request.getAttribute("roles");
 	%>
-	<table class="table table-borderd table-hover" id="activeUserTable"> 
+	<table class="table table-borderd table-hover" id="roles"> 
 		<thead>
 			<tr>
-				<th>UserId</th>
-				<th>FirstName</th>
-				<th>LastName</th>
-				<th>Email</th>
+				<th>RoleId</th>
+				<th>RoleName</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<%
-			for (UserEntity user : users) {
+			for (RoleEntity role : roles) {
 			%>
 			<tr>
-				<td><%=user.getUserId()%></td>
-				<td><%=user.getFirstName()%></td>
-				<td><%=user.getLastName()%></td>
-				<td><%=user.getEmail()%></td>
-				<td><a class="bi bi-trash btn btn-outline-danger" href="deleteuser/<%=user.getUserId()%>">Delete</a></td>
+				<td><%=role.getRoleId()%></td>
+				<td><%=role.getRoleName()%></td>
+				<td><a class="bi bi-trash btn btn-outline-danger" href="#"> Delete</a></td>
 			</tr>
 			<%
 			}
@@ -113,13 +108,14 @@
 
 	<script>
 		$(document).ready(function() {
-			const datatables = document.getElementById("activeUserTable");
+			const datatables = document.getElementById("roles");
 			new simpleDatatables.DataTable(datatables, {
-				perPageSelect : [20,50,100,200,'All' ],
+				perPageSelect : [5,10,50,'All' ],
 				perPage: 20
 			});
 		})
 	</script>
-	
+
+
 </body>
 </html>

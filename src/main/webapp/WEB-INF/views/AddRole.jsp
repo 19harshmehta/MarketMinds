@@ -12,24 +12,44 @@
 <link rel="stylesheet" href="mystyle.css">
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-	<h2>Add Role</h2>
-				<form action="addrole" method="post">
-					
-					<div class="form-group">
-						Role Type: <input type="text" name="roleName" class="form-control"/>
-					</div>	 
-	 			<input type="submit" value="Add Role" class="btn btn-success"/>
-				</form>
-			</div>   
+<%@include file="AdminLayout.jsp" %>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Add Role</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home / ListRole</a></li>
+          <li class="breadcrumb-item active">AddRole</li>
+        </ol>
+      </nav>
+    </div>
+
+		<div class="container">
+
 			
+								<div class="card-body">
 
-		</div>
 
+									<form class="row g-3 needs-validation" novalidate action="addrole" method="post">
+										<div class="col-12">
+											<label for="roleName" class="form-label">Role Name</label> <input
+												type="text" name="roleName" class="form-control" id="roleName"
+												required>
+											<div class="invalid-feedback">Please, enter role type!</div>
+										</div>
+										<div class="col-12">
+											<button class="btn btn-primary w-100" type="submit">Add Role</button>
+										</div>
+										<div class="col-12">
+											
+										</div>
+									</form>
 
-	</div>
+								</div>
+							</div>
+	</main>
+	
+	
 </body>
 </html>

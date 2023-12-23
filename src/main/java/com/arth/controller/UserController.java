@@ -50,4 +50,11 @@ public class UserController
 		return "redirect:/listactiveusers";
 		
 	}
+	@GetMapping("/listpremiumusers")
+	public String listPremiumUsers(Model model) {
+
+		List<UserEntity> pusers = userRepo.findByPremiumInd(1); // List<UserEn>
+		model.addAttribute("pusers",pusers);
+		return "ListPremiumUsers";
+	}
 }
