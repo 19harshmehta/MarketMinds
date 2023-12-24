@@ -51,7 +51,18 @@
 </head>
 
 <body>
-	<a href="/logout">Logout</a>
+<%@include file="AdminLayout.jsp" %>
+<main id="main" class="main">
+<div class="pagetitle">
+      <h1>ListEquity</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">ListEquity</li>
+        </ol>
+      </nav>
+    </div>
+
 	<%
 	List<EquityEntity> eqs = (List<EquityEntity>) request.getAttribute("eqs");
 	%>
@@ -107,11 +118,12 @@
 		$(document).ready(function() {
 			const datatables = document.getElementById("equityTable");
 			new simpleDatatables.DataTable(datatables, {
-				perPageSelect : [ 20, 50,100,200,500, 'All' ],
+				perPageSelect : [20,50,100,200,'All' ],
 				perPage: 20
 			});
 		})
 	</script>
+</main>
 </body>
 
 </html>
