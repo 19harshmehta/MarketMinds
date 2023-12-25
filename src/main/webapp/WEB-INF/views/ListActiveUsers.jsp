@@ -80,14 +80,14 @@
 		</thead>
 		<tbody>
 			<%
-			for (UserEntity user : users) {
+			for (UserEntity u : users) {
 			%>
 			<tr>
-				<td><%=user.getUserId()%></td>
-				<td><%=user.getFirstName()%></td>
-				<td><%=user.getLastName()%></td>
-				<td><%=user.getEmail()%></td>
-				<td><a class="bi bi-trash btn btn-outline-danger" href="deleteuser/<%=user.getUserId()%>">Delete</a></td>
+				<td><%=u.getUserId()%></td>
+				<td><%=u.getFirstName()%></td>
+				<td><%=u.getLastName()%></td>
+				<td><%=u.getEmail()%></td>
+				<td><a class="bi bi-trash btn btn-outline-danger" href="deleteuser/<%=u.getUserId()%>">Delete</a></td>
 			</tr>
 			<%
 			}
@@ -95,16 +95,7 @@
 		</tbody>
 	</table>
 	</main>
-	<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/vendor/chart.js/chart.umd.js"></script>
-	<script src="assets/vendor/echarts/echarts.min.js"></script>
-	<script src="assets/vendor/quill/quill.min.js"></script>
-	<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-	<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-	<script src="assets/vendor/php-email-form/validate.js"></script>
-	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
+
 
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"

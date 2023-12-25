@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<title></title>
 </head>
 
 <body>
@@ -26,6 +26,7 @@
 	<%
 	List<EquityEntity> eqs = (List<EquityEntity>) request.getAttribute("eqs");
 	%>
+	<a class="bi bi-plus-lg btn btn-outline-primary" href="#"> Add Equity</a>
 	<table class="table table-borderd table-hover" id="equityTable">
 		<thead>
 			<tr>
@@ -49,8 +50,7 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td><a href='/addequity/<%=eq.getEquityId()%>'>Add to
-						portfolio</a></td>
+				<td><a class="bi bi-trash btn btn-outline-danger" href="#"> Delete</a></td>
 			</tr>
 			<%
 			}
@@ -58,7 +58,6 @@
 		</tbody>
 
 	</table>
-
 
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -69,8 +68,8 @@
 		$(document).ready(function() {
 			const datatables = document.getElementById("equityTable");
 			new simpleDatatables.DataTable(datatables, {
-				perPageSelect : [20,50,100,200,'All' ],
-				perPage: 20
+				perPageSelect : [15,50,100,200,'All' ],
+				perPage: 15
 			});
 		})
 	</script>

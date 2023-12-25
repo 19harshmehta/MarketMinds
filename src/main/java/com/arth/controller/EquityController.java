@@ -27,6 +27,13 @@ public class EquityController
 		return "ListEquity";
 	}
 	
+	@GetMapping("/listequityadmin")
+	public String listEquityAdmin(Model model)
+	{
+		model.addAttribute("eqs",eqRepo.findAll());
+		return "ListEquityAdmin";
+	}
+	
 	
 	
 	
