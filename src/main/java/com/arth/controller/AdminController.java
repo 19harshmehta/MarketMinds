@@ -23,6 +23,8 @@ public class AdminController {
 		model.addAttribute("eqs",eqRepo.findAll());
 		
 		return "Dashboard";
+		
+		
 	}
 	
 	@GetMapping("/admin-myprofile")
