@@ -1,3 +1,4 @@
+
 <%@page import="com.arth.entity.UserEntity"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -5,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin Layout</title>
+<title>User Layout</title>
 
  <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -36,9 +37,9 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center"  >
+  <header id="header" class="header fixed-top d-flex align-items-center" >
 
-    <div class="d-flex align-items-center justify-content-between" >
+    <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">MarketMinds</span>
@@ -204,17 +205,20 @@
         </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
-		<%
-		UserEntity user = (UserEntity) session.getAttribute("user");
-		%>
+        <%
+        UserEntity user =(UserEntity) session.getAttribute("user");
+        %>
+		
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><%=user.getFirstName() %> <%=user.getLastName()%></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">
+        <%=user.getFirstName() %><%=user.getLastName() %>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><%=user.getFirstName() %> <%=user.getLastName()%></h6>
+            <h6><%=user.getFirstName() %><%=user.getLastName() %></h6>
+             
 
             </li>
             <li>
@@ -259,10 +263,10 @@
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar" >
 
-    <ul class="sidebar-nav" id="sidebar-nav" >
+    <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="dashboard">
+        <a class="nav-link " href="userdashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -270,21 +274,21 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="listusers">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-person-square"></i>
           <span>Users</span>
         </a>
       </li><!-- End User -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="listrole">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-people"></i>
           <span>Role</span>
         </a>
       </li><!-- End Role-->
         
 	  <li class="nav-item">
-        <a class="nav-link collapsed" href="listequityadmin">
+        <a class="nav-link collapsed" href="listequity">
           <i class="bi bi-currency-rupee"></i>
           <span>Equity</span>
         </a>
@@ -370,9 +374,9 @@
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="logout">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
+          <span>Logout</span>
         </a>
       </li><!-- End Login Page Nav -->
 
