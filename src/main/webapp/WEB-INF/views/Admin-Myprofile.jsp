@@ -8,9 +8,16 @@
 <title>Admin My Profile | Marketminds</title>
 </head>
 <body>
+
 	<%@include file="AdminLayout.jsp" %>
 	<main id="main" class="main">
+	<div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                Your Data Has been updated sucessfully. Please Login Agin to view Updated data
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
 
+<<<<<<< HEAD
 		<div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle me-1"></i>
                 Your Data Has been updated sucessfully. Please Login Again to view Updated data
@@ -32,6 +39,23 @@
 		        }, 5000);
 		    });
 		</script>
+=======
+	<script>
+	    document.addEventListener('DOMContentLoaded', function () {
+	        // Get the alert element
+	        var myAlert = document.getElementById('myAlert');
+	        // Use setTimeout to wait for 3 seconds and then hide the alert with opacity transition
+	        setTimeout(function () {
+	            myAlert.style.transition = 'opacity 0.5s';
+	            myAlert.style.opacity = '0';
+	            // After the transition is complete, hide the alert
+	            myAlert.addEventListener('transitionend', function () {
+	                myAlert.style.display = 'none';
+	            });
+	        }, 5000);
+	    });
+	</script>
+>>>>>>> a2954fb0278a21b48743d03fc1db4f1c25ac1b32
 	    <div class="pagetitle">
 	      <h1>Profile</h1>
 	      <nav>
