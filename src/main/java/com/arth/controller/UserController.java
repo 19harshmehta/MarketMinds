@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.arth.entity.UserEntity;
+import com.arth.repository.EquityRepository;
 import com.arth.repository.UserRepository;
-
-import jakarta.servlet.http.HttpSession;
 
 
 @Controller
 public class UserController 
 {
+	@Autowired
+	EquityRepository eqRepo;
 	
 	@Autowired
 	UserRepository userRepo;
@@ -85,7 +86,12 @@ public class UserController
 //        return "Admin-Myprofile";
     }
 	
-	
+	@GetMapping("/userdashboard")
+	public String userdashboard(Model model)
+	{
+		model.addAttribute("eqs",eqRepo.findAll());
+		return "UserDashboard";
+	}
 	
 	
 	

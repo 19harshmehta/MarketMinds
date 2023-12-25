@@ -21,6 +21,7 @@ public class AlertController
 	SchedulerLogRepository scheduleRepo;
 	
 	
+
 	
 	@GetMapping("/listlog")
 	public String getAllLog(Model model) 
