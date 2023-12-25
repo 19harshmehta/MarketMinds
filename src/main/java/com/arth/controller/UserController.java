@@ -16,8 +16,6 @@ import com.arth.entity.UserEntity;
 import com.arth.repository.EquityRepository;
 import com.arth.repository.UserRepository;
 
-import jakarta.servlet.http.HttpSession;
-
 
 @Controller
 public class UserController 
