@@ -82,7 +82,7 @@
 			<tr>
 				<td><%=role.getRoleId()%></td>
 				<td><%=role.getRoleName()%></td>
-				<td><a class="bi bi-trash btn btn-outline-danger" href="#"> Delete</a></td>
+				<td><a class="bi bi-trash btn btn-outline-danger" href="deleterole/<%=role.getRoleId()%>"> Delete</a></td>
 			</tr>
 			<%
 			}

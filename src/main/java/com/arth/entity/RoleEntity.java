@@ -21,6 +21,14 @@ public class RoleEntity
 	@Column(unique = true,nullable = false)
 	String roleName;
 	
+	Integer statusInd;
+	
+	public Integer getStatusInd() {
+		return statusInd;
+	}
+	public void setStatusInd(Integer statusInd) {
+		this.statusInd = statusInd;
+	}
 	@OneToMany(mappedBy = "role")
 	List<UserEntity> users;
 	

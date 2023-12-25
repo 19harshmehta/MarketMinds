@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,7 @@ import com.arth.dto.LoginDto;
 import com.arth.dto.ResetPasswordDto;
 import com.arth.entity.FaqsEntity;
 import com.arth.entity.IndustryEntity;
+import com.arth.entity.PlanEntity;
 import com.arth.entity.RoleEntity;
 import com.arth.entity.UserEntity;
 import com.arth.repository.FaqRepository;
@@ -206,14 +208,30 @@ public class SessionController {
 
 		@PostMapping("addrole")
 		public String addRole(RoleEntity role) {
+			
+			role.setStatusInd(0);
 			roleRepo.save(role);
 			return "redirect:/listrole";
 		}
 		
+		
+		@GetMapping("/deleterole/{roleId}")
+		public String deletePlan(@PathVariable("roleId") Integer roleId)
+		{
+			
+			Optional<RoleEntity> roleOpt = roleRepo.findById(roleId);
+			RoleEntity role = roleOpt.get();
+			role.setStatusInd(1);
+			roleRepo.save(role);
+			return "redirect:/listrole";
+			
+		}
+
+		
 		@GetMapping("listrole")
 		public String listRole(Model model) {
 
-			List<RoleEntity> roles = roleRepo.findAll(); // List<UserEn>
+			List<RoleEntity> roles = roleRepo.getActiveroles(); // List<UserEn>
 			model.addAttribute("roles",roles);
 			return "ListRole";
 		}
