@@ -281,15 +281,25 @@ public class SessionController {
 		return "Home";
 	}
 
+	
+	@GetMapping("listfaqs")
+	public String ListFaqs(Model model) 
+	{
+		List<FaqsEntity> faqs = faqRepo.findAll();
+		model.addAttribute("faqs",faqs);
+		return "ListFaqs";
+	}
+	
+	
 	@GetMapping("faqs")
 	public String addFaqs() {
 		return "AddFaqs";
 	}
-
+	
 	@PostMapping("addfaqs")
 	public String addFaqs(FaqsEntity faqs) {
 		faqRepo.save(faqs);
-		return "Home";
+		return "redirect:/listfaqs";
 	}
 	
 	@GetMapping("adduser")

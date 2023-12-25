@@ -233,7 +233,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="listfaqs">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -350,7 +350,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="faqs">
+        <a class="nav-link collapsed" href="listfaqs">
           <i class="bi bi-question-circle"></i>
           <span>F.A.Q</span>
         </a>

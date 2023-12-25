@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.arth.entity.UserEntity;
 import com.arth.repository.UserRepository;
 
-import jakarta.servlet.http.HttpSession;
-
 
 @Controller
 public class UserController 
