@@ -19,6 +19,18 @@
 	crossorigin="anonymous">
 </head>
 <body>
+<%@include file="UserLayout.jsp" %>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Myportfolio</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">UserDashboard</a></li>
+          <li class="breadcrumb-item active">MyPortfolio</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
 
 	<%
 	PortfolioEntity portfolios = (PortfolioEntity) request.getAttribute("portfolioData");
@@ -64,14 +76,105 @@
 				<%}else{ %>
 				<td style="color: red;"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub style="color: grey;"><%=Math.round(plper)%>%</sub></td>
 				<%} %>
-				<td><a class="btn btn-primary" href="settarget/<%=e.getEquityId()%>">Set Target</a></td>
+				<td><a class="btn btn-primary" href="settarget/<%=e.getEquityId()%>">Set Target</a>
+				<!--  <button onClick="restructreu(<%//e.getEquityId()%>)">Restructure</button> --> 
+				  <button type="button" onClick="restructreu(<%=e.getEquityId()%>)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                Restructure
+              </button>
+				</td>
 				
 			</tr>
-			<%
+			        <%
 			}
 			//}
 			%>
 		</tbody>
 	</table>
+              <div class="modal fade" id="basicModal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Basic Modal</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    
+                    
+                    	<form method="post" action="" >
+                    		
+                    		Equity Name : <input type="text" name="equityName" id="eqName" value="<%//e.getEquityName()%>"/><br><Br>
+                    		Quantity: <input type="text" name="qty"/><br><Br> 
+                    		
+                    					
+                    	
+                    	</form>
+                     
+            
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button class="btn btn-success">Update</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End Basic Modal-->
+
+            </div>
+          </div>
+
+
+  
+  
+
+
+  
+  
+  
+  
+  
+          
+          
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<!-- 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+ -->	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+	
+	
+		function restructreu(eqId){
+			alert(eqId);
+/* 				alert(eqId);
+				
+				const apiUrl = "http://localhost:9000/getequitybyidforrest/"+eqId;
+
+				// Make a DELETE request
+				fetch(apiUrl, {
+				  method: 'GET',
+				  headers: {
+				    'Content-Type': 'application/json',
+				    // Add any additional headers if needed
+				  },
+				})
+				  .then(response => {
+				    if (!response.ok) {
+				      throw new Error(`HTTP error! Status: ${response.status}`);
+				    }
+				    return response.json(); // or response.text() if the response is not JSON
+				  })
+				  .then(data => {
+				    // Handle the response data
+				    console.log('Success:', data);
+				    
+				    
+				    
+				  })
+				  .catch(error => {
+				    // Handle errors
+				    console.error('Error:', error);
+				  }); */
+			$("#basicModal").modal("show");
+		}
+	</script>
+	</main>
 </body>
 </html>

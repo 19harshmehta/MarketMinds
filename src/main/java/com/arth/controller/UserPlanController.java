@@ -51,6 +51,7 @@ public class UserPlanController
 				System.out.println("in if 1");
 				UserEntity userEntity = opt.get();
 				userEntity.setPremiumInd(1);
+				userEntity.setPremiumDate(currentDate);
 				userPlanEntity.setUserId(userEntity.getUserId());
 				userPlanEntity.setPlanId(planId);
 				userPlanEntity.setStatusInd(1);
