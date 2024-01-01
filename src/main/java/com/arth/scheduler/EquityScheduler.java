@@ -1,5 +1,6 @@
 package com.arth.scheduler;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,12 @@ public class EquityScheduler
 	@Scheduled(cron = "0 */30 * * * *")
 	public void scrapTechnical()
 	{
+		LocalDateTime now = LocalDateTime.now();
+		
+		if(now.getHour() >= 16 ) {
+			System.out.println("Overtime");
+			return;
+		}
 		
 		try 
 		{

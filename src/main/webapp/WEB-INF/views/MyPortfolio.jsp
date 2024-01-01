@@ -19,13 +19,24 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
+<%@include file="UserLayout.jsp" %>
 	<%
 	PortfolioEntity portfolios = (PortfolioEntity) request.getAttribute("portfolioData");
 	List<PortfolioDetailDto> pfd = (List<PortfolioDetailDto>) request.getAttribute("pfd");
 	//List<PortfolioDetailEntity> pfDetails = (List<PortfolioDetailEntity>) request.getAttribute("pfDetails");
 	%>
-	<table class="table table-borderd table-hover">
+	<main id="main" class="main">
+	 <div class="pagetitle">
+      <h1>My Portfolio</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
+          <li class="breadcrumb-item active">My Portfolio</li>
+        </ol>
+      </nav>
+    </div>
+    <a class="bi bi-plus-lg btn btn-outline-primary" href="/listequity?portfolioId=${param.portfolioId}"> Add Equity</a>
+		<table class="table table-borderd table-hover" id="myportfolio"> 
 		<thead>
 			<tr>
 				<th>EqID</th>
@@ -60,11 +71,11 @@
 				%>
 				<td><%=Math.round((e.getLastTradePrice()*e.getQty().doubleValue()))%></td>
 				<% if(profitinrs > 0){ %>
-				<td style="color: green;"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub style="color: grey;"><%=Math.round(plper)%>%</sub></td>
+				<td class="text-success"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub class="text-success"><%=Math.round(plper)%>%</sub></td>
 				<%}else{ %>
-				<td style="color: red;"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub style="color: grey;"><%=Math.round(plper)%>%</sub></td>
+				<td class="text-danger"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub class="text-danger"><%=Math.round(plper)%>%</sub></td>
 				<%} %>
-				<td><a class="btn btn-primary" href="settarget/<%=e.getEquityId()%>">Set Target</a></td>
+				<td><a class="btn btn-outline-primary" href="/settarget/<%=e.getEquityId()%>">Set Target</a></td>
 				
 			</tr>
 			<%
@@ -73,5 +84,19 @@
 			%>
 		</tbody>
 	</table>
+	</main>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+		
+		<script>
+		$(document).ready(function() {
+			const datatables = document.getElementById("myportfolio");
+			new simpleDatatables.DataTable(datatables, {
+				perPageSelect : [5,10,50,'All' ],
+				perPage: 20
+			});
+		})
+	</script>
 </body>
 </html>

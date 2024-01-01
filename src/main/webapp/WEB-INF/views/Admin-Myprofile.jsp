@@ -11,7 +11,7 @@
 
 	<%@include file="AdminLayout.jsp" %>
 	<main id="main" class="main">
-	<div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+	<div id="myAlert" class="alert alert-success alert-dismissible fade hide" role="alert">
                 <i class="bi bi-check-circle me-1"></i>
                 Your Data Has been updated sucessfully. Please Login Agin to view Updated data
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -190,7 +190,7 @@
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="submit" class="btn btn-primary" onClick="profileUpdate()">Save Changes</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
@@ -281,7 +281,12 @@
 	    <%} %>
 	    
 	    
-	    
+	    <script>
+	    	function profileUpdate(){
+	    		myAlert = document.getElementById("myAlert");
+	    		
+	    	}
+	    </script>
 	    
 	    
 	</main>

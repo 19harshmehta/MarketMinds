@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AdminFaq</title>
+<title>UserFaq</title>
 </head>
 
 <body>
-<%@include file="AdminLayout.jsp" %>
+<%@include file="UserLayout.jsp" %>
 
 <main id="main" class="main">
 
@@ -17,16 +17,15 @@
       <h1>Faqs</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
           <li class="breadcrumb-item active">ListFaqs</li>
         </ol>
       </nav>
     </div>
-    <a class="bi bi-plus-lg btn btn-outline-primary" href="faqs"> Add Faqs</a>
-    <br></br>
+    
    
 	<%
-	List<FaqsEntity> faqs = (List<FaqsEntity>) request.getAttribute("faqs");
+	List<FaqsEntity> faqs =(List<FaqsEntity>) request.getAttribute("faqs");
 	%>
 	<!-- F.A.Q Group 2 -->
           <div class="card">
@@ -49,7 +48,6 @@
                     <div class="accordion-body">
                       <%=faq.getAnswer() %>
                     </div>
-                    <a class="bi bi-trash btn btn-outline-danger" href="#"> Delete</a><br></br>
                   </div>
                 </div>
                 <%
@@ -62,5 +60,5 @@
 	
 
 </body>
-  <script src="assets/js/main.js"></script>
+  
 </html>

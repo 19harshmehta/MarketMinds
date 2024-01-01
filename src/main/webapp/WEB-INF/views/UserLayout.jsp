@@ -32,7 +32,7 @@
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -210,7 +210,7 @@
         %>
 		
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="../assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
         <%=user.getFirstName() %><%=user.getLastName() %>
           </a><!-- End Profile Iamge Icon -->
@@ -236,7 +236,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="userfaqs">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -274,127 +274,82 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="listportfolio">
           <i class="bi bi-person-square"></i>
-          <span>Users</span>
+          <span>Portfolio</span>
         </a>
       </li><!-- End User -->
       
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
-          <i class="bi bi-people"></i>
-          <span>Role</span>
+          <i class="bi bi-eye-fill"></i>
+          <span>Watchlist</span>
         </a>
       </li><!-- End Role-->
         
+         <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-newspaper"></i>
+          <span>News</span>
+        </a>
+      </li><!-- End News-->
+      
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-envelope-arrow-down-fill"></i>
+          <span>Alerts</span>
+        </a>
+      </li><!-- End Alert-->
+      
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="class=bi bi-bell-fill"></i>
+          <span>Subscription</span>
+        </a>
+      </li><!-- End Subscription-->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-currency-rupee"></i>
+          <span>Transaction</span>
+        </a>
+      </li><!-- End Transaction-->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-receipt"></i>
+          <span>Ticket</span>
+        </a>
+      </li><!-- End Ticket-->
+      
 	  <li class="nav-item">
-        <a class="nav-link collapsed" href="listequity">
+        <a class="nav-link collapsed" href="listequityuser">
           <i class="bi bi-currency-rupee"></i>
           <span>Equity</span>
         </a>
       </li><!-- End Equity-->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="ri-bank-line"></i><span>Industry</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="charts-chartjs.html">
-              <i class="bi bi-circle"></i><span>Add Industry</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-apexcharts.html">
-              <i class="bi bi-circle"></i><span>Delete Industry</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-echarts.html">
-              <i class="bi bi-circle"></i><span>Update Industry</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Industry Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-newspaper"></i><span>News</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Add News</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Delete News</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Update News</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End News Nav -->
-
-     
-      
-
-      <li class="nav-heading">Pages</li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="admin-myprofile">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="faqs">
+        <a class="nav-link collapsed" href="userfaqs">
           <i class="bi bi-question-circle"></i>
           <span>F.A.Q</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
+        <a class="nav-link collapsed" href="contactuser">
+          <i class="bi bi-telephone-fill"></i>
           <span>Contact</span>
         </a>
       </li><!-- End Contact Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
+	 <li class="nav-item">
         <a class="nav-link collapsed" href="logout">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Logout</span>
         </a>
       </li><!-- End Login Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
-          <i class="bi bi-dash-circle"></i>
-          <span>Error 404</span>
-        </a>
-      </li><!-- End Error 404 Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
-        </a>
-      </li><!-- End Blank Page Nav -->
-
-    </ul>
+</ul>
 
   </aside><!-- End Sidebar-->
   
@@ -402,8 +357,7 @@
   
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

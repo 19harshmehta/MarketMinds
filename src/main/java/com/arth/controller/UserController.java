@@ -1,6 +1,7 @@
 package com.arth.controller;
 
 import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.arth.entity.FaqsEntity;
 import com.arth.entity.UserEntity;
 import com.arth.repository.EquityRepository;
+import com.arth.repository.FaqRepository;
 import com.arth.repository.UserRepository;
 
 
@@ -25,6 +29,9 @@ public class UserController
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	FaqRepository faqRepo;
 
 	@GetMapping("/listusers")
 	public String listUsers(Model model)
@@ -44,8 +51,8 @@ public class UserController
 	
 	
 	
-	@GetMapping("/deleteuser/{userId}")
-	public String deleteUser(@PathVariable("userId") Integer userId)
+	@GetMapping("/deleteuser")
+	public String deleteUser(@RequestParam("userId") Integer userId)
 	{
 		
 		Optional<UserEntity> userOpt = userRepo.findById(userId);
@@ -93,6 +100,19 @@ public class UserController
 		return "UserDashboard";
 	}
 	
+	@GetMapping("userfaqs")
+	public String userfaq(Model model)
+	{
+		List<FaqsEntity> faqs = faqRepo.findAll();
+		model.addAttribute("faqs",faqs);
+		return "UserFaq";
+	}
 	
+	@GetMapping("/contactuser")
+	public String contactuser()
+	{
+		
+		return "ContactUser";
+	}
 	
 }

@@ -12,21 +12,28 @@
 <link rel="stylesheet" href="mystyle.css">
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-	<h2>Create Portfolio</h2>
+<%@include file="UserLayout.jsp" %>
+	<main id="main" class="main">
+	
+	<div class="pagetitle">
+      <h1>Add Portfolio</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+          <li class="breadcrumb-item active">Add Portfolio</li>
+        
+        </ol>
+      </nav>
+    </div>
 				<form action="saveportfolio" method="post">
-					
+					     
 					<div class="form-group">
-					        <label for="title">Portfolio Name:</label>
-					        <input type="text" id="title" name="portfolioName" required><br><br>
-							<br><br>
-					</div>	 
-	 			<input type="submit" value="Create" class="btn btn-success"/>
+						Portfolio Name: <input type="text" id="title" name="portfolioName" required/>
+					</div> 
+	 			<input type="submit" value="Create" class="btn btn-primary"/>
 	 			</form>
-			</div>   
+			</div>  
+			<div class="col-md-3"></div> 
 		</div>
 	</div>
 </body>

@@ -35,7 +35,7 @@
 				<th>Price</th>
 				<th>52H</th>
 				<th>52L</th>
-				<th>Action</th>
+			
 			</tr>
 		</thead>
 		<tbody>
@@ -49,7 +49,7 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td><a href='/addequity?equityId=<%=eq.getEquityId()%>&portfolioId=${param.portfolioId}'    class="bi bi-plus btn btn-outline-primary">Add to portfolio</a></td>
+				
 			</tr>
 			<%
 			}
