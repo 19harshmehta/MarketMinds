@@ -1,15 +1,11 @@
 package com.arth.scheduler;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.arth.entity.AlertEntity;
 import com.arth.entity.SchedulerEntity;
 import com.arth.repository.AlertRepository;
-import com.arth.repository.SchedulerLogRepository;
 import com.arth.services.AlertService;
 import com.arth.services.EquityScrapService;
 import com.arth.services.EquityTechnicalScrapService;

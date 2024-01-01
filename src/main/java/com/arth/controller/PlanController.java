@@ -37,7 +37,7 @@ public class PlanController
 		plan.setActiveInd(0);
 		
 		planRepo.save(plan);
-		return "Home";
+		return "redirect:/listplans";
 		
 	}
 	
@@ -52,6 +52,14 @@ public class PlanController
 //		model.addAttribute("plans",plans);
 //		return "ListPlans";
 	
+	}
+	
+	@GetMapping("/listactiveplans")
+	public String listActivePlans(Model model) 
+	{
+		List<PlanEntity> plans = planRepo.getActiveplans();
+		model.addAttribute("plans",plans);
+		return "ListActivePlans";
 	}
 	
 	@GetMapping("/deleteplan/{planId}")
