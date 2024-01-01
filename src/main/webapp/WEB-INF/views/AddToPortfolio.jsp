@@ -78,7 +78,7 @@
 </body> -->
 
 <body>
-
+<%@include file="UserLayout.jsp" %>
   <main>
     <div class="container">
 
@@ -127,7 +127,9 @@
                       <label for="purchasedAt" class="form-label">Purchase Date:</label>
                       <input type="date" name="purchasedAt" class="form-control" id="purchasedAt" required="">
                       <div class="invalid-feedback">Please Select your date</div>
-                      <input type="hidden" name="equityId" value="${equityId}">
+                      <input type="hidden" name="equityId" value="${param.equityId}">
+                      
+                      <input type="hidden" name="portfolioId" value="${param.portfolioId}">
                     </div>
 
                     <div class="col-12">

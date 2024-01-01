@@ -5,7 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <title>Role</title>
+=======
+<title>List Role</title>
+
+>>>>>>> dcbbee81e85bcdd8a207f623245fe494ba65a259
 </head>
 
 <body>

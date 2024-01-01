@@ -1,7 +1,7 @@
 package com.arth.services;
 
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class PortfolioService
 	@Autowired
     private PortfolioRepository portfolioRepository;
 
-    public Optional<PortfolioEntity> getPortfolioByUserId(Integer userId) {
+    public List<PortfolioEntity> getPortfolioByUserId(Integer userId) {
         return portfolioRepository.findByUserId(userId);
     }
     

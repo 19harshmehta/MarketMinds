@@ -3,8 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <meta charset="ISO-8859-1">
 <title></title>
+=======
+<title>MarketMinds | Add Role </title>
+
+>>>>>>> dcbbee81e85bcdd8a207f623245fe494ba65a259
 </head>
 <body>
 <%@include file="AdminLayout.jsp" %>
@@ -43,8 +48,6 @@
 
 								</div>
 							</div>
-	</main>
-	
-	
+						</main>
 </body>
 </html>

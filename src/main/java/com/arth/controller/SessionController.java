@@ -105,6 +105,7 @@ public class SessionController {
 					session.setAttribute("userId", user.getUserId());
 					session.setAttribute("premiumInd", user.getPremiumInd());
 					session.setMaxInactiveInterval(43200);
+					model.addAttribute("msg","Login Done");
 
 					String role = "";
 
@@ -215,8 +216,8 @@ public class SessionController {
 		}
 		
 		
-		@GetMapping("/deleterole/{roleId}")
-		public String deletePlan(@PathVariable("roleId") Integer roleId)
+		@GetMapping("/deleterole")
+		public String deletePlan(@RequestParam("roleId") Integer roleId)
 		{
 			
 			Optional<RoleEntity> roleOpt = roleRepo.findById(roleId);
