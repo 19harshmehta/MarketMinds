@@ -226,7 +226,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="admin-myprofile">
+              <a class="dropdown-item d-flex align-items-center" href="userprofile">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -281,14 +281,14 @@
       </li><!-- End User -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="wishlist">
           <i class="bi bi-eye-fill"></i>
           <span>Watchlist</span>
         </a>
       </li><!-- End Role-->
         
          <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/newsuser">
           <i class="bi bi-newspaper"></i>
           <span>News</span>
         </a>
@@ -302,7 +302,7 @@
       </li><!-- End Alert-->
       
        <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/userplanlist">
           <i class="class=bi bi-bell-fill"></i>
           <span>Subscription</span>
         </a>

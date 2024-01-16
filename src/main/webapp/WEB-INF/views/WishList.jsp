@@ -14,11 +14,11 @@
 <%@include file="UserLayout.jsp" %>
 <main id="main" class="main">
 <div class="pagetitle">
-      <h1>ListEquity</h1>
+      <h1>Wishlist</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">ListEquity</li>
+          <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
+          <li class="breadcrumb-item active">Wishlist</li>
         </ol>
       </nav>
     </div>
@@ -49,7 +49,7 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td> <a class="bi bi-eye-fill btn btn-outline-primary" href="#"></a></td>
+				<td> <a class="btn btn-outline-danger" href="#">Remove</a></td>
 			</tr>
 			<%
 			}

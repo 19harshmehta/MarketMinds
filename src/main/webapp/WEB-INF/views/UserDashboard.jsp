@@ -139,22 +139,24 @@
 				<th>Price</th>
 				<th>52H</th>
 				<th>52L</th>
-				
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<%
 			for (EquityEntity eq : eqs) {
 			%>
+			 
 			<tr>
 				<td><%=eq.getEquityId()%></td>
-				<td><%=eq.getEquityName()%></td>
+				<td><a href="chart?equityId=<%=eq.getEquityId()%>"><%=eq.getEquityName()%></a></td>
 				<td><%=eq.getSymbol()%></td>
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				
+				<td> <a class="bi bi-eye-fill btn btn-outline-primary" href="#"></a></td>
 			</tr>
+			 
 			<%
 			}
 			%>

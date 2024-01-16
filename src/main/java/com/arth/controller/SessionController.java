@@ -326,5 +326,10 @@ public class SessionController {
 		return "AddUser";
 	}
 	
+	@GetMapping("/newsuser")
+	public String newsUser()
+	{
+		return "NewsUser";
+	}
 	
 }

@@ -115,4 +115,12 @@ public class UserController
 		return "ContactUser";
 	}
 	
+	
+	@GetMapping("/userprofile")
+	public String userProfile()
+	{
+		
+		return "User-MyProfile";
+	}
+	
 }

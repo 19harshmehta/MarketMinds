@@ -33,6 +33,7 @@ public class EquityEntity
 	Integer activeInd;
 	Integer buysellInd;
 	String industryName;
+	Integer wishlistInd;
 	
 	@ManyToMany(mappedBy = "equities")
 	private List<PortfolioEntity> portfolios = new ArrayList<>();
