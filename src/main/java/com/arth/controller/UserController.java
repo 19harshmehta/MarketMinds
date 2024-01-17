@@ -95,7 +95,7 @@ public class UserController
         if(user.getRole().getRoleId() == 1) 
         {
         	
-        	return "redirect:/user-myprofile";
+        	return "redirect:/userprofile";
         }else {
         	
         	return "redirect:/admin-myprofile";
@@ -123,6 +123,14 @@ public class UserController
 	{
 		
 		return "ContactUser";
+	}
+	
+	
+	@GetMapping("/userprofile")
+	public String userProfile()
+	{
+		
+		return "User-MyProfile";
 	}
 	
 }

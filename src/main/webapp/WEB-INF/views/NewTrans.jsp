@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-
+<title>Marketminds | Payment</title>
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 <script src="https://js.stripe.com/v3/stripe.js"></script>
 </head>
 <body>

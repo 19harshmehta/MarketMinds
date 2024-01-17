@@ -10,6 +10,8 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="mystyle.css">
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
 <body>
 <%@include file="UserLayout.jsp" %>

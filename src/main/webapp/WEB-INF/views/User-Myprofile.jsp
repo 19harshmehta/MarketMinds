@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 <title>User My Profile | Marketminds</title>
 </head>
 <body>
@@ -31,9 +33,6 @@
 		                myAlert.style.display = 'none';
 		            });
 		        }, 5000);
-		        
-		        
-		        
 		    });
 		</script>
 	    <div class="pagetitle">
@@ -121,7 +120,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Role</div>
-                    <div class="col-lg-9 col-md-8">Normal User</div>
+                    <div class="col-lg-9 col-md-8">User</div>
                   </div>
 
              
@@ -193,9 +192,7 @@
                     </div>
 
                     <div class="text-center">
-
-                     <!--  <button type="submit" class="btn btn-primary" >Save Changes</button> -->
-                      <button type="submit" class="btn btn-primary" id="showAlertBtn" onClick="profileUpdate()">Save Changes</button>
+                      <button type="submit" class="btn btn-primary" onClick="profileUpdate()">Save Changes</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
@@ -295,9 +292,5 @@
 	    
 	    
 	</main>
-	
-	
-
-	
 </body>
 </html>
