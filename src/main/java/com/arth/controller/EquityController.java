@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arth.repository.EquityRepository;
 
@@ -21,7 +22,7 @@ public class EquityController
 	
 	
 	@GetMapping("/listequity")
-	public String listEquity(Model model)
+	public String listEquity(@RequestParam("portfolioId") Integer portfolioId, Model model)
 	{
 		model.addAttribute("eqs",eqRepo.findAll());
 		return "ListEquity";
@@ -33,6 +34,15 @@ public class EquityController
 		model.addAttribute("eqs",eqRepo.findAll());
 		return "ListEquityAdmin";
 	}
+	
+	@GetMapping("/listequityuser")
+	public String listEquityUser(Model model)
+	{
+		model.addAttribute("eqs",eqRepo.findAll());
+		return "ListEquityUser";
+	}
+	
+	
 	
 	
 	

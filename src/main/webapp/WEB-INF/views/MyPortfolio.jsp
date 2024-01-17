@@ -20,24 +20,23 @@
 </head>
 <body>
 <%@include file="UserLayout.jsp" %>
-<main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>Myportfolio</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">UserDashboard</a></li>
-          <li class="breadcrumb-item active">MyPortfolio</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
 	<%
 	PortfolioEntity portfolios = (PortfolioEntity) request.getAttribute("portfolioData");
 	List<PortfolioDetailDto> pfd = (List<PortfolioDetailDto>) request.getAttribute("pfd");
 	//List<PortfolioDetailEntity> pfDetails = (List<PortfolioDetailEntity>) request.getAttribute("pfDetails");
 	%>
-	<table class="table table-borderd table-hover">
+	<main id="main" class="main">
+	 <div class="pagetitle">
+      <h1>My Portfolio  </h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
+          <li class="breadcrumb-item active">My Portfolio</li>
+        </ol>
+      </nav>
+    </div>
+    <a class="bi bi-plus-lg btn btn-outline-primary" href="/listequity?portfolioId=${param.portfolioId}"> Add Equity</a>
+		<table class="table table-borderd table-hover" id="myportfolio"> 
 		<thead>
 			<tr>
 				<th>EqID</th>
@@ -72,25 +71,26 @@
 				%>
 				<td><%=Math.round((e.getLastTradePrice()*e.getQty().doubleValue()))%></td>
 				<% if(profitinrs > 0){ %>
-				<td style="color: green;"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub style="color: grey;"><%=Math.round(plper)%>%</sub></td>
+				<td class="text-success"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub class="text-success"><%=Math.round(plper)%>%</sub></td>
 				<%}else{ %>
-				<td style="color: red;"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub style="color: grey;"><%=Math.round(plper)%>%</sub></td>
+				<td class="text-danger"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub class="text-danger"><%=Math.round(plper)%>%</sub></td>
 				<%} %>
-				<td><a class="btn btn-primary" href="settarget/<%=e.getEquityId()%>">Set Target</a>
-				<!--  <button onClick="restructreu(<%//e.getEquityId()%>)">Restructure</button> --> 
-				  <button type="button" onClick="restructreu(<%=e.getEquityId()%>)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-                Restructure
-              </button>
-				</td>
-				
+				<td><a class="btn btn-outline-primary" href='/settarget?equityId=<%=e.getEquityId()%>'>Set Target</a>
+				<!-- Basic Modal -->
+              <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+    <a style="text-decoration: none; color: inherit;" href='#' onclick="setEqId(<%=e.getEquityId()%>)">Restructure</a>
+</button>
+</td>
 			</tr>
-			        <%
+			<%
 			}
 			//}
 			%>
 		</tbody>
 	</table>
-              <div class="modal fade" id="basicModal" tabindex="-1">
+	
+	<div class="card-body">
+             	<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -98,83 +98,57 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    
-                    
-                    	<form method="post" action="" >
-                    		
-                    		Equity Name : <input type="text" name="equityName" id="eqName" value="<%//e.getEquityName()%>"/><br><Br>
-                    		Quantity: <input type="text" name="qty"/><br><Br> 
-                    		
-                    					
-                    	
-                    	</form>
-                     
-            
+                    	<form action="saveequity" method="post">
+					
+					<div class="form-group">
+					        <label for="title">Enter Quantity: </label>
+					        <input type="number" id="title" name="qty" required><br><br>
+					</div>	
+					<div class="form-group">
+					        <label for="price">Enter Price: </label>
+					        <input type="number" id="price" name="price" required><br><br>
+					        <input type="hidden" id="equityId" name="equityId" value="${equityId}">
+					        <input type="hidden" id="portfolioId" name="portfolioId" value="${param.portfolioId}">
+
+					</div>	 
+					
+					<div class="form-group">
+					        <label for="pdate">Purchase Date: </label>
+					        <input type="date" id="pdate" name="purchasedAt" required><br><br>
+					</div>	 
+					<div class="form-group">
+					        <input type="radio" name="transcationType" value="buy" required>&nbsp;Bought&nbsp;&nbsp;<input type="radio" name="transcationType" value="sell" required>Sold<br><br>
+					</div>
+	 			<input type="submit" value="Add Equity" class="btn btn-success"/>
+	 			</form>  
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button class="btn btn-success">Update</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                   </div>
                 </div>
               </div><!-- End Basic Modal-->
 
             </div>
-          </div>
-
-
-  
-  
-
-
-  
-  
-  
-  
-  
-          
-          
-	
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<!-- 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
- -->	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script>
-	
-	
-		function restructreu(eqId){
-			alert(eqId);
-/* 				alert(eqId);
-				
-				const apiUrl = "http://localhost:9000/getequitybyidforrest/"+eqId;
-
-				// Make a DELETE request
-				fetch(apiUrl, {
-				  method: 'GET',
-				  headers: {
-				    'Content-Type': 'application/json',
-				    // Add any additional headers if needed
-				  },
-				})
-				  .then(response => {
-				    if (!response.ok) {
-				      throw new Error(`HTTP error! Status: ${response.status}`);
-				    }
-				    return response.json(); // or response.text() if the response is not JSON
-				  })
-				  .then(data => {
-				    // Handle the response data
-				    console.log('Success:', data);
-				    
-				    
-				    
-				  })
-				  .catch(error => {
-				    // Handle errors
-				    console.error('Error:', error);
-				  }); */
-			$("#basicModal").modal("show");
-		}
-	</script>
 	</main>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+		
+		<script>
+		$(document).ready(function() {
+			const datatables = document.getElementById("myportfolio");
+			new simpleDatatables.DataTable(datatables, {
+				perPageSelect : [5,10,50,'All' ],
+				perPage: 20
+			});
+		})
+		
+		
+		function setEqId(eqId){
+			equityId.value = eqId;
+ 		}
+	</script>
 </body>
 </html>

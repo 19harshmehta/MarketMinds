@@ -34,5 +34,11 @@ public class AdminController {
 	public String myProfile() 
 	{
 		return "Admin-Myprofile";
-	}	
+	}
+	
+	@GetMapping("/user-myprofile")
+	public String myUserProfile() 
+	{
+		return "User-Myprofile";
+	}
 }

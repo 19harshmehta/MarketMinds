@@ -7,12 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.arth.entity.AlertEntity;
 import com.arth.entity.SchedulerEntity;
-import com.arth.entity.UserEntity;
-import com.arth.repository.AlertRepository;
 import com.arth.repository.SchedulerLogRepository;
-import com.arth.services.AlertService;
 
 @Controller
 public class AlertController 
@@ -26,9 +22,9 @@ public class AlertController
 	@GetMapping("/listlog")
 	public String getAllLog(Model model) 
 	{
-		List<SchedulerEntity> logs = scheduleRepo.findAll();
+		List<SchedulerEntity> logs = scheduleRepo.getScheduerlogsDesc();
 		model.addAttribute("logs",logs);
-		return "ListLogs";
+		return "ListLogs";	
 	}
 	
 	

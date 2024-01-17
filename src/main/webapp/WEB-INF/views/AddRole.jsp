@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <meta charset="ISO-8859-1">
+<title></title>
+=======
 <title>MarketMinds | Add Role </title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="mystyle.css">
+
+>>>>>>> dcbbee81e85bcdd8a207f623245fe494ba65a259
 </head>
 <body>
 <%@include file="AdminLayout.jsp" %>
@@ -48,8 +48,6 @@
 
 								</div>
 							</div>
-	</main>
-	
-	
+						</main>
 </body>
 </html>

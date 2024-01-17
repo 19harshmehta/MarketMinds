@@ -4,41 +4,44 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>MarketMinds | Plan </title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="mystyle.css">
+<title></title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-	<h2>Add Plan</h2>
-				<form action="addplan" method="post">
-					
-					<div class="form-group">
-					        <label for="title">Plan Title:</label>
-					        <input type="text" id="title" name="title" required><br><br>
-							<label for="duration">Plan Duration <h6>(in months):</h6></label>
-					        <input type="number" id="duration" name="duration" required><br><br>
-					
-					        <label for="amount">Amount:</label>
-					        <input type="number" id="amount" name="amount" required><br><br>
-					
-					        <label for="tax">Tax:</label>
-					        <input type="number" step="0.01" id="tax" name="tax" required><br><br>
-					</div>	 
-	 			<input type="submit" value="Add Role" class="btn btn-success"/>
-	 			</form>
-			</div>   
-			
-
+<%@include file="AdminLayout.jsp" %>
+<main id="main" class="main">
+	
+	<div class="pagetitle">
+      <h1>Plans</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+          <li class="breadcrumb-item active">AddPlans</li>
+        </ol>
+      </nav>
+    </div>
+	<form action="addplan" method="post">
+		<div class="form-group">
+			Plan Title: <input type="text" id="title" name="title" class="form-control"/>
 		</div>
+		
+		<div class="form-group">
+			Plan Duration (in months):</div> <input type="number" id="duration" name="duration" class="form-control"/>
+		</div>
+		
+		<div class="form-group">
+			Amount: <input type="number" id="amount" name="amount" class="form-control"/>
+		</div>
+		
+		<div class="form-group">
+			Tax: <input type="number" step="0.01" id="tax" name="tax" class="form-control"/>
+		</div>
+		<br/>
+		<div>
+			<input type="submit" value="Add" class="btn btn-primary"/>
+		</div>
+	</form>
 
+	</main>
 
-	</div>
 </body>
 </html>

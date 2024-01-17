@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>USER DASHBOARD</title>
+<title>Market Minds | UserDashboard</title>
 </head>
 <body>
 <%@include file="UserLayout.jsp" %>
@@ -98,7 +98,7 @@
             <div class="col-xxl-3 col-md-6">
               <div class="card info-card sales-card">
 				 <div class="card-body">
-                  <h5 class="card-title">Complain</h5>
+                  <h5 class="card-title">IPO</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -139,7 +139,7 @@
 				<th>Price</th>
 				<th>52H</th>
 				<th>52L</th>
-				<th>Action</th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -153,7 +153,7 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td><a href='/addequity/<%=eq.getEquityId()%>'>Add to portfolio</a></td>
+				
 			</tr>
 			<%
 			}

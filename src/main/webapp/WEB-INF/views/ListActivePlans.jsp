@@ -38,7 +38,6 @@
 				<th>Amount</th>
 				<th>Tax</th>
 				<th>Total (inc Tax)</th>
-				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,11 +51,6 @@
 				<td><%=plan.getAmount()%></td>
 				<td><%=plan.getTax()%></td>
 				<td><%=plan.getAmount() + plan.getTax() %></td>
-				<%if(plan.getActiveInd().equals(0)) {%>
-				<td><a class="btn btn-outline-primary" href="deleteplan/<%=plan.getPlanId()%>">Enable</a></td>
-				<%}else{ %>
-				<td><a class="btn btn-outline-danger" href="activateplan/<%=plan.getPlanId()%>">Disable</a></td>
-				<%} %>
 			</tr>
 			<%
 			}

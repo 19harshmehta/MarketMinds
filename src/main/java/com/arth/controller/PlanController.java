@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arth.entity.PlanEntity;
 import com.arth.repository.PlanRepository;
@@ -37,7 +38,7 @@ public class PlanController
 		plan.setActiveInd(0);
 		
 		planRepo.save(plan);
-		return "Home";
+		return "redirect:/listplans";
 		
 	}
 	
@@ -54,8 +55,16 @@ public class PlanController
 	
 	}
 	
-	@GetMapping("/deleteplan/{planId}")
-	public String deletePlan(@PathVariable("planId") Integer planId)
+	@GetMapping("/listactiveplans")
+	public String listActivePlans(Model model) 
+	{
+		List<PlanEntity> plans = planRepo.getActiveplans();
+		model.addAttribute("plans",plans);
+		return "ListActivePlans";
+	}
+	
+	@GetMapping("/deleteplan")
+	public String deletePlan(@RequestParam("planId") Integer planId)
 	{
 		
 		Optional<PlanEntity> planOpt = planRepo.findById(planId);
@@ -66,8 +75,8 @@ public class PlanController
 		
 	}
 	
-	@GetMapping("/activateplan/{planId}")
-	public String activatePlan(@PathVariable("planId") Integer planId)
+	@GetMapping("/activateplan")
+	public String activatePlan(@RequestParam("planId") Integer planId)
 	{
 		
 		Optional<PlanEntity> planOpt = planRepo.findById(planId);

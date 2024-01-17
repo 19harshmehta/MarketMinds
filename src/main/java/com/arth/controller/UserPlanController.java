@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arth.entity.PlanEntity;
 import com.arth.entity.TransactionEntity;
@@ -36,8 +37,8 @@ public class UserPlanController
 	TransactionRepository transactionRepo;
 	
 	
-	@GetMapping("/plan/{planId}")
-	public String saveUserPlan(@PathVariable("planId") Integer planId,TransactionEntity transactionEntity,UserPlanEntity userPlanEntity,HttpSession session)
+	@GetMapping("/plan")
+	public String saveUserPlan(@RequestParam("planId") Integer planId,TransactionEntity transactionEntity,UserPlanEntity userPlanEntity,HttpSession session)
 	{
 		Date startDate = new Date();
 		Date currentDate = new Date(); 
