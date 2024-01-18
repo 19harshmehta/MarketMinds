@@ -35,19 +35,17 @@
             <div class="card-body">
               <h5 class="card-title">Frequently Asked Questions</h5>
 
-              <div class="accordion accordion-flush" id="faq-group-2">
-				<%
-				for (FaqsEntity faq : faqs) {
-				%>
-
-                
+              <div class="accordion accordion-flush" id="faq-group-1">    
+			<%
+			for (FaqsEntity faq : faqs) {
+			%>
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-1" type="button" data-bs-toggle="collapse">
-                      <%=faq.getFaqId() %>  <%=faq.getQuestion() %>
-                    </button>
+                   <button class="accordion-button collapsed" data-bs-target="#faqsTwo-<%=faq.getFaqId() %>" type="button" data-bs-toggle="collapse">
+                      <%=faq.getFaqId() %>) &nbsp; <%=faq.getQuestion() %>
+                   </button>
                   </h2>
-                  <div id="faqsTwo-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                  <div id="faqsTwo-<%=faq.getFaqId() %>" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                     <div class="accordion-body">
                       <%=faq.getAnswer() %>
                     </div>

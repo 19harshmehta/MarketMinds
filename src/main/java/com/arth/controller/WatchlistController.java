@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.arth.repository.EquityRepository;
 
 @Controller
-public class WishlistController
+public class WatchlistController
 {
 	@Autowired
 	EquityRepository eqRepo;
 	
-	@GetMapping("wishlist")
+	@GetMapping("watchlist")
 	public String wishlist(Model model)
 	{
 		model.addAttribute("eqs",eqRepo.findAll());
-		return "WishList";
+		return "WatchList";
 	}
 	
-	@PostMapping("wishlist/equityId")
+	@PostMapping("watchlist/equityId")
 	public String wishlist()
 	{
 		return "";

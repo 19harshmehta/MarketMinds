@@ -42,11 +42,11 @@
                 
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-1" type="button" data-bs-toggle="collapse">
-                      <%=faq.getFaqId() %>  <%=faq.getQuestion() %>
+                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-<%=faq.getFaqId() %>" type="button" data-bs-toggle="collapse">
+                      <%=faq.getFaqId() %>) &nbsp; <%=faq.getQuestion() %>
                     </button>
                   </h2>
-                  <div id="faqsTwo-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                  <div id="faqsTwo-<%=faq.getFaqId() %>" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
                     <div class="accordion-body">
                       <%=faq.getAnswer() %>
                     </div>

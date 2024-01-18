@@ -213,7 +213,9 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="../assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
+
         <%=user.getFirstName() %>&nbsp;&nbsp;<%=user.getLastName() %>
+
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -282,7 +284,7 @@
       </li><!-- End User -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="wishlist">
+        <a class="nav-link collapsed" href="watchlist">
           <i class="bi bi-eye-fill"></i>
           <span>Watchlist</span>
         </a>
@@ -317,7 +319,7 @@
       </li><!-- End Transaction-->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="ticket">
           <i class="bi bi-receipt"></i>
           <span>Ticket</span>
         </a>

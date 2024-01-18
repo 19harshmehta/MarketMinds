@@ -25,11 +25,11 @@
 	<form action="addfaqs" method="post">
 		<div class="form-group">
 			Question: <input type="text" name="question" class="form-control"/>
-		</div>
+		</div><br/>
 		
 		<div class="form-group">
 			Answer: <input type="text" name="answer" class="form-control"/>
-		</div>
+		</div><br/>
 		<input type="submit" value="Add" class="btn btn-primary"/>
 	</form>
 	</main>

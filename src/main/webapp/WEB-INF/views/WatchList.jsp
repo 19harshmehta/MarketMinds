@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Marketminds | WishList</title>
+<title>Marketminds | WatchList</title>
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
@@ -16,11 +16,11 @@
 <%@include file="UserLayout.jsp" %>
 <main id="main" class="main">
 <div class="pagetitle">
-      <h1>Wishlist</h1>
+      <h1>Watchlist</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
-          <li class="breadcrumb-item active">Wishlist</li>
+          <li class="breadcrumb-item active">Watchlist</li>
         </ol>
       </nav>
     </div>
