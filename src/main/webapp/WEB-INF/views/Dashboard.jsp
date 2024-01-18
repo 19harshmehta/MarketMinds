@@ -40,7 +40,7 @@
             <div class="col-xxl-3 col-md-6">
               <div class="card info-card sales-card">
 				<div class="card-body">
-                  <h5 class="card-title">Users</h5>
+                  <a href="/listusers"><h5 class="card-title">Users</h5></a>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -60,7 +60,7 @@
             <div class="col-xxl-3 col-md-6">
               <div class="card info-card revenue-card">
 				<div class="card-body">
-                  <h5 class="card-title">Premium Users</span></h5>
+                  <a href="listpremiumusers"><h5 class="card-title">Premium Users</h5></a>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

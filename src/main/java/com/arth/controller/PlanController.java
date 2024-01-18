@@ -75,10 +75,9 @@ public class PlanController
 		return "redirect:/listplans";	
 	}
 	
-	@GetMapping("/activateplan/{planId}")
-	public String activatePlan(@PathVariable("planId") Integer planId)
+	@GetMapping("/activateplan")
+	public String activatePlan(@RequestParam("planId") Integer planId)
 	{
-		
 		Optional<PlanEntity> planOpt = planRepo.findById(planId);
 		PlanEntity plan = planOpt.get();
 		plan.setActiveInd(0);
