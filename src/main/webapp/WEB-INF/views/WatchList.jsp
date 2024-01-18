@@ -15,6 +15,9 @@
 <body>
 <%@include file="UserLayout.jsp" %>
 <main id="main" class="main">
+<%
+    List<Object[]> watchlist = (List<Object[]>) request.getAttribute("watchlist");
+	%>
 <div class="pagetitle">
       <h1>Watchlist</h1>
       <nav>
@@ -25,39 +28,34 @@
       </nav>
     </div>
 
-	<%
-	List<EquityEntity> eqs = (List<EquityEntity>) request.getAttribute("eqs");
-	%>
-	<table class="table table-borderd table-hover" id="equityTable">
+	<table class="table table-borderd table-hover" id="watchlist"> 
 		<thead>
 			<tr>
-				<th>EquityId</th>
-				<th>Name</th>
-				<th>Symbol</th>
+				<th>EqID</th>
+				<th>Equity Name</th>
+				<th>High 52</th>
+				<th>Low 52</th>
+				<th>Industry Name </th>
 				<th>Price</th>
-				<th>52H</th>
-				<th>52L</th>
+				<th>Symbol</th>
 				<th>Action</th>
+				
 			</tr>
 		</thead>
 		<tbody>
-			<%
-			for (EquityEntity eq : eqs) {
-			%>
-			<tr>
-				<td><%=eq.getEquityId()%></td>
-				<td><%=eq.getEquityName()%></td>
-				<td><%=eq.getSymbol()%></td>
-				<td><%=eq.getPrice()%></td>
-				<td><%=eq.getHigh52()%></td>
-				<td><%=eq.getLow52()%></td>
-				<td> <a class="btn btn-outline-danger" href="#">Remove</a></td>
-			</tr>
-			<%
-			}
-			%>
+			<% for (Object[] dataRow : watchlist) { %>
+            <tr>
+                <td><%= dataRow[0] %></td>
+                <td><%= dataRow[3] %></td>
+                <td><%= dataRow[4] %></td>                
+                <td><%= dataRow[6] %></td>
+                <td><%= dataRow[5] %></td>
+                <td><%= dataRow[7] %></td>
+                <td><%= dataRow[9] %></td>
+                <td><a class="btn btn-outline-danger" href="removefromwatchlist?equityId=<%=dataRow[0]%>">Remove</a></td>
+            </tr>
+        <% } %>
 		</tbody>
-
 	</table>
 
 
@@ -68,7 +66,7 @@
 
 	<script>
 		$(document).ready(function() {
-			const datatables = document.getElementById("equityTable");
+			const datatables = document.getElementById("watchlist");
 			new simpleDatatables.DataTable(datatables, {
 				perPageSelect : [20,50,100,200,'All' ],
 				perPage: 20

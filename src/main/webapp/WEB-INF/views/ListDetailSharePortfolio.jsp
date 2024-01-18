@@ -14,7 +14,7 @@
 <meta charset="ISO-8859-1">
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-<title>MarketMinds | MyPortfolio</title>
+<title>MarketMinds | DetailHistory</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
@@ -23,9 +23,7 @@
 <body>
 <%@include file="UserLayout.jsp" %>
 	<%
-	PortfolioEntity portfolios = (PortfolioEntity) request.getAttribute("portfolioData");
-	List<PortfolioDetailDto> pfd = (List<PortfolioDetailDto>) request.getAttribute("pfd");
-	//List<PortfolioDetailEntity> pfDetails = (List<PortfolioDetailEntity>) request.getAttribute("pfDetails");
+    List<Object[]> eachShareData = (List<Object[]>) request.getAttribute("eachShareData");
 	%>
 	<main id="main" class="main">
 	 <div class="pagetitle">
@@ -33,61 +31,34 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
-          <li class="breadcrumb-item active">My Portfolio</li>
+          <li class="breadcrumb-item active">Each Share Transaction</li>
         </ol>
       </nav>
     </div>
-    <a class="bi bi-plus-lg btn btn-outline-primary" href="/listequity?portfolioId=${param.portfolioId}"> Add Equity</a>
+    <a class="bi btn btn-outline-primary" href="/listmyportfolio?portfolioId=${param.portfolioId}"> Go Back To Portfolio</a>
 		<table class="table table-borderd table-hover" id="myportfolio"> 
 		<thead>
 			<tr>
 				<th>EqID</th>
 				<th>Equity Name</th>
-				<th>Last Trade Price</th>
+				<th>Buy/Sell History</th>
 				<th>Quantity</th>
 				<th>Price Purchased</th>
 				<th>Purchase Date</th>
-				<th>Total Investment</th>
-				<th>Current Market Value</th>
-				<th>Current P&L</th>
-				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
-			<%
-			for (PortfolioDetailDto e : pfd) {
-				//for(PortfolioDetailEntity pfd : pfDetails)
-				//{
-			%>
-			<tr>
-				<td><%=e.getEquityId() %></td>
-				<td><a href="listEachShare?equityId=<%=e.getEquityId()%>&portfolioId=${param.portfolioId}"><%=e.getEquityName()%></a></td>
-				<td><%=e.getLastTradePrice() %></td>
-				<td><%=e.getQty()%></td>
-				<td><%=Math.round(e.getPurchasedPrice())%></td>
-				<td><%=e.getPurchasedAt() %></td>
-				<td><%=e.getTotalInvestment()%></td>
-				<%
-					Double profitinrs = e.getLastTradePrice()*e.getQty().doubleValue() - e.getTotalInvestment();
-					Double plper = profitinrs / e.getTotalInvestment() *100; 
-				%>
-				<td><%=Math.round((e.getLastTradePrice()*e.getQty().doubleValue()))%></td>
-				<% if(profitinrs > 0){ %>
-				<td class="text-success"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub class="text-success"><%=Math.round(plper)%>%</sub></td>
-				<%}else{ %>
-				<td class="text-danger"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub class="text-danger"><%=Math.round(plper)%>%</sub></td>
-				<%} %>
-				<td><a class="btn btn-outline-primary" href='/settarget?equityId=<%=e.getEquityId()%>'>Set Target</a>
-				<!-- Basic Modal -->
-              <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-    <a style="text-decoration: none; color: inherit;" href='#' onclick="setEqId(<%=e.getEquityId()%>)">Restructure</a>
-</button>
-</td>
-			</tr>
-			<%
-			}
-			//}
-			%>
+			<% for (Object[] dataRow : eachShareData) { %>
+            <tr>
+                <td><%= dataRow[1] %></td>
+                <td><%= dataRow[8] %></td>
+                <td><%= dataRow[7] %></td>                
+                <td><%= dataRow[4] %></td>
+                <td><%= dataRow[3] %></td>
+                <td><%= dataRow[5] %></td>
+                <!-- Add more columns as needed -->
+            </tr>
+        <% } %>
 		</tbody>
 	</table>
 	

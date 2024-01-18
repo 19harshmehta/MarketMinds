@@ -59,6 +59,7 @@ public class PortfolioDetailController {
 
 	 
 		pfDetailEntity.setEquityId(equityId);
+		pfDetailEntity.setBsInd("buy");
 		System.out.println(pfDetailEntity.getPurchasedAt());
 		pfDetailRepo.save(pfDetailEntity);
 		System.out.println("Stock Added Sucess");
@@ -156,5 +157,14 @@ public class PortfolioDetailController {
 	    alertRepo.save(alertEntity);
 	    return "redirect:/listportfolio";
 	}
+	
+	
+	
+	@GetMapping("/listEachShare")
+    public String listEachShare(@RequestParam Integer equityId, @RequestParam Integer portfolioId, Model model) {
+        List<Object[]> result = pfDetailRepo.getEachSharePortfolio(equityId, portfolioId);
+        model.addAttribute("eachShareData", result);
+        return "ListDetailSharePortfolio";
+    }
 
 }
