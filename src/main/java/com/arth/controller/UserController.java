@@ -20,6 +20,8 @@ import com.arth.repository.EquityRepository;
 import com.arth.repository.FaqRepository;
 import com.arth.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class UserController 
@@ -72,7 +74,7 @@ public class UserController
 	
 	
 	@PostMapping("/updateuser")
-    public String updateUser(@ModelAttribute("user") UserEntity updatedUser,Model model) {
+    public String updateUser(@ModelAttribute("user") UserEntity updatedUser,Model model,HttpSession session) {
         // Fetch the existing user from the database
         UserEntity existingUser = userRepo.findById(updatedUser.getUserId()).orElse(null);
       
@@ -89,7 +91,15 @@ public class UserController
         }
         // Redirect to the profile page after updating
 //        model.addAttribute("update", flag);
-        return "redirect:/admin-myprofile";
+        UserEntity user =  (UserEntity)session.getAttribute("user");
+        if(user.getRole().getRoleId() == 1) 
+        {
+        	
+        	return "redirect:/userprofile";
+        }else {
+        	
+        	return "redirect:/admin-myprofile";
+        }
 //        return "Admin-Myprofile";
     }
 	
@@ -113,6 +123,14 @@ public class UserController
 	{
 		
 		return "ContactUser";
+	}
+	
+	
+	@GetMapping("/userprofile")
+	public String userProfile()
+	{
+		
+		return "User-MyProfile";
 	}
 	
 }

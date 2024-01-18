@@ -5,27 +5,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<title>Marketminds | Subscription</title>
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-<title>Marketminds</title>
-
 </head>
 <body>
-<%@include file="AdminLayout.jsp" %>
+<%@include file="UserLayout.jsp" %>
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Users</h1>
+      <h1>Subscriptions</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">ListAllPlan</li>
+          <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
+          <li class="breadcrumb-item active">Subscription</li>
         </ol>
       </nav>
     </div>
-    <a class="bi bi-plus-lg btn btn-outline-primary" href="addplan"> Add Plan</a>
-    <a class="bi bi-receipt btn btn-outline-primary" href="listplans"> All Plan</a>
-    <a class="bi bi-receipt btn btn-outline-primary" href="listactiveplans"> Active Plan</a>
 	<%
 	List<PlanEntity> plans = (List<PlanEntity>) request.getAttribute("plans");
 	%>
@@ -34,11 +31,12 @@
 		<thead>
 			<tr>
 				<th>PlanId</th>
-				<th>Plan Title</th>
+				<th>Plans</th>
 				<th>Duration (in months)</th>
 				<th>Amount</th>
 				<th>Tax</th>
 				<th>Total (inc Tax)</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,6 +50,7 @@
 				<td><%=plan.getAmount()%></td>
 				<td><%=plan.getTax()%></td>
 				<td><%=plan.getAmount() + plan.getTax() %></td>
+				<td><a class="btn btn-outline-primary" href=#>Buy</a></td>
 			</tr>
 			<%
 			}

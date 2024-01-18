@@ -4,27 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="ISO-8859-1">
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-<meta charset="ISO-8859-1">
-<title>Admin My Profile | Marketminds</title>
-<!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+<title>User My Profile | Marketminds</title>
 </head>
 <body>
 
-	<%@include file="AdminLayout.jsp" %>
+	<%@include file="UserLayout.jsp" %>
 	<main id="main" class="main">
-	<div id="myAlert" class="alert alert-success alert-dismissible fade hide" role="alert">
+	<div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle me-1"></i>
                 Your Data Has been updated sucessfully. Please Login Agin to view Updated data
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -44,9 +33,6 @@
 		                myAlert.style.display = 'none';
 		            });
 		        }, 5000);
-		        
-		        
-		        
 		    });
 		</script>
 	    <div class="pagetitle">
@@ -134,7 +120,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Role</div>
-                    <div class="col-lg-9 col-md-8">Admin</div>
+                    <div class="col-lg-9 col-md-8">User</div>
                   </div>
 
              
@@ -206,9 +192,7 @@
                     </div>
 
                     <div class="text-center">
-
-                     <!--  <button type="submit" class="btn btn-primary" >Save Changes</button> -->
-                      <button type="submit" class="btn btn-primary" id="showAlertBtn" onClick="profileUpdate()">Save Changes</button>
+                      <button type="submit" class="btn btn-primary" onClick="profileUpdate()">Save Changes</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
@@ -308,20 +292,5 @@
 	    
 	    
 	</main>
-	
-	
-	 <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-	
 </body>
 </html>

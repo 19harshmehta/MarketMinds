@@ -31,12 +31,19 @@ public class UserEntity
 	Date deletedAt;
 	Integer premiumInd;
 	Integer statusInd;
+	Date premiumDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "roleId",referencedColumnName = "roleId")
 	RoleEntity role;
 	
 	
+	public Date getPremiumDate() {
+		return premiumDate;
+	}
+	public void setPremiumDate(Date premiumDate) {
+		this.premiumDate = premiumDate;
+	}
 	
 	public Integer getUserId() {
 		return userId;

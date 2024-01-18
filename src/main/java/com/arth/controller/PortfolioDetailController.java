@@ -33,6 +33,9 @@ public class PortfolioDetailController {
 	PortfolioDetailRepository pfDetailRepo;
 
 	@Autowired
+	PortfolioRepository portfolioRepository;
+
+	@Autowired
 	PortfolioRepository pfRepo;
 
 	@Autowired
@@ -61,9 +64,29 @@ public class PortfolioDetailController {
 		System.out.println("Stock Added Sucess");
 		return "redirect:/listmyportfolio?portfolioId="+portfolioId;
 	}
+
 	
-	@Autowired
-	PortfolioRepository portfolioRepository;
+	
+	@PostMapping("restructure")
+	public String restructureEquity(@RequestParam("equityId") Integer equityId,@RequestParam("portfolioId") Integer portfolioId, HttpSession session,
+			PortfolioDetailEntity pfDetailEntity) {
+
+		if(pfDetailEntity.getBsInd().equals("buy")) {
+			pfDetailEntity.setEquityId(equityId);
+			System.out.println(pfDetailEntity.getPurchasedAt());
+			pfDetailRepo.save(pfDetailEntity);
+			System.out.println("Stock Added Sucess");
+			return "redirect:/listmyportfolio?portfolioId="+portfolioId;
+		}else {
+			pfDetailEntity.setEquityId(equityId);
+			pfDetailEntity.setQty(-pfDetailEntity.getQty());
+			System.out.println(pfDetailEntity.getPurchasedAt());
+			pfDetailRepo.save(pfDetailEntity);
+			System.out.println("Stock Added Sucess");
+			return "redirect:/listmyportfolio?portfolioId="+portfolioId;
+		}
+	}
+
 
 	@GetMapping("/listmyportfolio")
 	public String getAllEquityData(@RequestParam("portfolioId") Integer portfolioId, Model model, HttpSession session) {
@@ -117,19 +140,21 @@ public class PortfolioDetailController {
 	}
 	
 	@GetMapping("settarget")
-	public String setTarget(@RequestParam Integer equityId, Model model) {
+	public String setTarget(@RequestParam("equityId") Integer equityId,Model model) {
 	    // Your GET method logic here
+		System.out.println("settarget---------"+equityId);
+		model.addAttribute("equityId",equityId);
 	    return "SetTarget";
 	}
 
-	@PostMapping("settarget/savealert")
+	@PostMapping("savealert")
 	public String saveTarget(@RequestParam("equityId") Integer equityId, HttpSession session,
 	        AlertEntity alertEntity) {
 	    alertEntity.setUserId((Integer) session.getAttribute("userId"));
 	    alertEntity.setEquityId(equityId);
 	    alertEntity.setActiveInd(1);
 	    alertRepo.save(alertEntity);
-	    return "redirect:/listmyportfolio";
+	    return "redirect:/listportfolio";
 	}
 
 }

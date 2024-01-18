@@ -7,11 +7,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>ADMIN DASHBOARD</title>
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
 <body>
 <%@include file="AdminLayout.jsp" %>
 <%
 	List<EquityEntity> eqs = (List<EquityEntity>) request.getAttribute("eqs");
+	Integer activeUser = (Integer)request.getAttribute("activeUsers");
+	Integer premiumU = (Integer)request.getAttribute("premiumU");
 	%>
   <main id="main" class="main">
 
@@ -43,7 +47,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6><%=activeUser %></h6>
                      
                     </div>
                   </div>
@@ -63,7 +67,7 @@
                       <i class="bi bi-person-check-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
+                      <h6><%=premiumU %></h6>
                      
                     </div>
                   </div>

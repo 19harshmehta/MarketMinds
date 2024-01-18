@@ -20,8 +20,11 @@ public class AdminController {
 	
 	@GetMapping("/dashboard")
 	public String dashboard(Model model) {
+		Integer activeUsers = userRepo.showActiveUsers();
+		Integer premiumU = userRepo.showPremiumUsers();
 		model.addAttribute("eqs",eqRepo.findAll());
-		
+		model.addAttribute("activeUsers",activeUsers);
+		model.addAttribute("premiumU",premiumU);
 		return "Dashboard";
 		
 		
@@ -31,5 +34,11 @@ public class AdminController {
 	public String myProfile() 
 	{
 		return "Admin-Myprofile";
-	}	
+	}
+	
+	@GetMapping("/user-myprofile")
+	public String myUserProfile() 
+	{
+		return "User-Myprofile";
+	}
 }

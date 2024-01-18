@@ -1,4 +1,3 @@
-
 <%@page import="com.arth.entity.UserEntity"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -6,6 +5,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 <title>User Layout</title>
 
  <meta charset="utf-8">
@@ -15,7 +16,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/logo.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -212,12 +213,14 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="../assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-        <%=user.getFirstName() %> <%=user.getLastName() %>
+
+        <%=user.getFirstName() %>&nbsp;&nbsp;<%=user.getLastName() %>
+
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-            <h6><%=user.getFirstName() %> <%=user.getLastName() %></h6>
+            <h6><%=user.getFirstName() %>&nbsp;<%=user.getLastName() %></h6>
              
 
             </li>
@@ -226,7 +229,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="admin-myprofile">
+              <a class="dropdown-item d-flex align-items-center" href="userprofile">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -281,14 +284,14 @@
       </li><!-- End User -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="wishlist">
           <i class="bi bi-eye-fill"></i>
           <span>Watchlist</span>
         </a>
       </li><!-- End Role-->
         
          <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/newsuser">
           <i class="bi bi-newspaper"></i>
           <span>News</span>
         </a>
@@ -302,7 +305,7 @@
       </li><!-- End Alert-->
       
        <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/userplanlist">
           <i class="class=bi bi-bell-fill"></i>
           <span>Subscription</span>
         </a>

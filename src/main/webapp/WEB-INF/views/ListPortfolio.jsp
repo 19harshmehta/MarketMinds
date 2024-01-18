@@ -7,8 +7,9 @@
 <head>
 
 
-<title>List Portfolio</title>
-
+<title>Marketminds | ListPortfolio</title>
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
 
 <body>

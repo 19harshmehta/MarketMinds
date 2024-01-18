@@ -7,7 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<title>Marketminds | List Equity</title>
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
 
 <body>
@@ -35,7 +37,7 @@
 				<th>Price</th>
 				<th>52H</th>
 				<th>52L</th>
-			
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,7 +51,7 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				
+				<td> <a class="bi bi-eye-fill btn btn-outline-primary" href="#"></a></td>
 			</tr>
 			<%
 			}

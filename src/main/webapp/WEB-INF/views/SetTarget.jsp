@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title></title>
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
-
+<%Integer equityId = (Integer)request.getAttribute("equityId"); %>
 <body>
 <%@include file="UserLayout.jsp" %>
  <main id="main" class="main">
@@ -33,7 +35,7 @@
                       <div class="invalid-feedback">Please enter Targeted Price</div>
                     </div>
                     <div>
-                    <input type="hidden" name="equityId" value="${equityId}">
+                    <input type="hidden" name="equityId" value="<%=equityId %>">
                     </div>
 
                     <div class="col-12">

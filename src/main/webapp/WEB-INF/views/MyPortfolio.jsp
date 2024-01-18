@@ -12,6 +12,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 <title>MarketMinds | MyPortfolio</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -27,7 +29,7 @@
 	%>
 	<main id="main" class="main">
 	 <div class="pagetitle">
-      <h1>My Portfolio</h1>
+      <h1>My Portfolio  </h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
@@ -75,8 +77,12 @@
 				<%}else{ %>
 				<td class="text-danger"><%=Math.round(profitinrs)%><br>&nbsp;&nbsp;<sub class="text-danger"><%=Math.round(plper)%>%</sub></td>
 				<%} %>
-				<td><a class="btn btn-outline-primary" href="/settarget/<%=e.getEquityId()%>">Set Target</a></td>
-				
+				<td><a class="btn btn-outline-primary" href='/settarget?equityId=<%=e.getEquityId()%>'>Set Target</a>
+				<!-- Basic Modal -->
+              <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+    <a style="text-decoration: none; color: inherit;" href='#' onclick="setEqId(<%=e.getEquityId()%>)">Restructure</a>
+</button>
+</td>
 			</tr>
 			<%
 			}
@@ -84,6 +90,51 @@
 			%>
 		</tbody>
 	</table>
+	
+	<div class="card-body">
+             	<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Basic Modal</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    	<form action="restructure" method="post">
+					
+					<div class="form-group">
+					        <label for="title">Enter Quantity: </label>
+					        <input type="number" id="title" name="qty" required><br><br>
+					</div>	
+					<div class="form-group">
+					        <label for="price">Enter Price: </label>
+					        <input type="number" id="price" name="price" required><br><br>
+					        <input type="hidden" id="equityId" name="equityId" value="${equityId}">
+					        <input type="hidden" id="portfolioId" name="portfolioId" value="${param.portfolioId}">
+
+					</div>	 
+					
+					<div class="form-group">
+					        <label for="pdate">Purchase Date: </label>
+					        <input type="date" id="pdate" name="purchasedAt" required><br><br>
+					</div>	 
+					<div class="form-group">
+					        <input type="radio" name="bsInd" value="buy" required>&nbsp;Bought&nbsp;&nbsp;<input type="radio" name="bsInd" value="sell" required>Sold<br><br>
+					</div>
+	 			<!-- <input type="submit" value="Add Equity" class="btn btn-success"/> -->
+	 			  
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <input type="submit" value="Save Changes" class="btn btn-success"/>
+                    </div>
+                  </form>
+                  </div>
+                  </div>
+                </div>
+              </div><!-- End Basic Modal-->
+
+            </div>
 	</main>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -97,6 +148,11 @@
 				perPage: 20
 			});
 		})
+		
+		
+		function setEqId(eqId){
+			equityId.value = eqId;
+ 		}
 	</script>
 </body>
 </html>

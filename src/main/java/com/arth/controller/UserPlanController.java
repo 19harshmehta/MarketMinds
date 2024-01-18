@@ -2,10 +2,12 @@ package com.arth.controller;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,6 +54,7 @@ public class UserPlanController
 				System.out.println("in if 1");
 				UserEntity userEntity = opt.get();
 				userEntity.setPremiumInd(1);
+				userEntity.setPremiumDate(currentDate);
 				userPlanEntity.setUserId(userEntity.getUserId());
 				userPlanEntity.setPlanId(planId);
 				userPlanEntity.setStatusInd(1);
@@ -136,5 +139,13 @@ public class UserPlanController
 		
 		
 		return "Home";
+	}
+	
+	@GetMapping("/userplanlist")
+	public String userPlanList(Model model)
+	{
+		List<PlanEntity> plans = planRepo.getAllPlans();
+		model.addAttribute("plans",plans);
+		return "ListPlanUsers";
 	}
 }

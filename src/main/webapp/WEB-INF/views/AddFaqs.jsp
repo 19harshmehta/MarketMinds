@@ -5,6 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title></title>
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
 <body>
 <%@include file="AdminLayout.jsp" %>
