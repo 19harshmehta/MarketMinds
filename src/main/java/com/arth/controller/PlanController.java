@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.arth.entity.PlanEntity;
 import com.arth.repository.PlanRepository;
@@ -55,7 +55,6 @@ public class PlanController
 	
 	}
 	
-<<<<<<< HEAD
 	@GetMapping("/listactiveplans")
 	public String listActivePlans(Model model) 
 	{
@@ -66,11 +65,9 @@ public class PlanController
 	
 	@GetMapping("/deleteplan/{planId}")
 	public String deletePlan(@PathVariable("planId") Integer planId)
-=======
-	@GetMapping("/deleteplan")
-	public String deletePlan(@RequestParam("planId") Integer planId)
->>>>>>> dcbbee81e85bcdd8a207f623245fe494ba65a259
-	{
+//	@GetMapping("/deleteplan")
+//	public String deletePlan(@RequestParam("planId") Integer planId)
+{
 		
 		Optional<PlanEntity> planOpt = planRepo.findById(planId);
 		PlanEntity plan = planOpt.get();
@@ -80,8 +77,8 @@ public class PlanController
 		
 	}
 	
-	@GetMapping("/activateplan")
-	public String activatePlan(@RequestParam("planId") Integer planId)
+	@GetMapping("/activateplan/{planId}")
+	public String activatePlan(@PathVariable("planId") Integer planId)
 	{
 		
 		Optional<PlanEntity> planOpt = planRepo.findById(planId);
