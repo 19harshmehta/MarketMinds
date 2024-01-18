@@ -71,12 +71,20 @@ public class PortfolioDetailController {
 	public String restructureEquity(@RequestParam("equityId") Integer equityId,@RequestParam("portfolioId") Integer portfolioId, HttpSession session,
 			PortfolioDetailEntity pfDetailEntity) {
 
-	 
-		pfDetailEntity.setEquityId(equityId);
-		System.out.println(pfDetailEntity.getPurchasedAt());
-		pfDetailRepo.save(pfDetailEntity);
-		System.out.println("Stock Added Sucess");
-		return "redirect:/listmyportfolio?portfolioId="+portfolioId;
+		if(pfDetailEntity.getBsInd().equals("buy")) {
+			pfDetailEntity.setEquityId(equityId);
+			System.out.println(pfDetailEntity.getPurchasedAt());
+			pfDetailRepo.save(pfDetailEntity);
+			System.out.println("Stock Added Sucess");
+			return "redirect:/listmyportfolio?portfolioId="+portfolioId;
+		}else {
+			pfDetailEntity.setEquityId(equityId);
+			pfDetailEntity.setQty(-pfDetailEntity.getQty());
+			System.out.println(pfDetailEntity.getPurchasedAt());
+			pfDetailRepo.save(pfDetailEntity);
+			System.out.println("Stock Added Sucess");
+			return "redirect:/listmyportfolio?portfolioId="+portfolioId;
+		}
 	}
 
 

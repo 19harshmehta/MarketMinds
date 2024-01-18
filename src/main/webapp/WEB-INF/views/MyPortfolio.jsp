@@ -100,7 +100,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    	<form action="saveequity" method="post">
+                    	<form action="restructure" method="post">
 					
 					<div class="form-group">
 					        <label for="title">Enter Quantity: </label>
@@ -119,15 +119,17 @@
 					        <input type="date" id="pdate" name="purchasedAt" required><br><br>
 					</div>	 
 					<div class="form-group">
-					        <input type="radio" name="transcationType" value="buy" required>&nbsp;Bought&nbsp;&nbsp;<input type="radio" name="transcationType" value="sell" required>Sold<br><br>
+					        <input type="radio" name="bsInd" value="buy" required>&nbsp;Bought&nbsp;&nbsp;<input type="radio" name="bsInd" value="sell" required>Sold<br><br>
 					</div>
-	 			<input type="submit" value="Add Equity" class="btn btn-success"/>
-	 			</form>  
-                    </div>
+	 			<!-- <input type="submit" value="Add Equity" class="btn btn-success"/> -->
+	 			  
+                    
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <input type="submit" value="Save Changes" class="btn btn-success"/>
                     </div>
+                  </form>
+                  </div>
                   </div>
                 </div>
               </div><!-- End Basic Modal-->
