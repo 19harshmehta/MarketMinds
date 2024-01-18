@@ -156,7 +156,7 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td> <a class="bi bi-eye-fill btn btn-outline-primary" href="#"></a></td>
+				<td> <a class="bi bi-eye-fill btn btn-outline-primary" href="addtowatchlist?equityId=<%=eq.getEquityId()%>"></a></td>
 			</tr>
 			 
 			<%

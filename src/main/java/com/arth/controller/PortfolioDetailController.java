@@ -163,11 +163,7 @@ public class PortfolioDetailController {
 	@GetMapping("/listEachShare")
     public String listEachShare(@RequestParam Integer equityId, @RequestParam Integer portfolioId, Model model) {
         List<Object[]> result = pfDetailRepo.getEachSharePortfolio(equityId, portfolioId);
-
-        // Add the result to the model
         model.addAttribute("eachShareData", result);
-
-        // Return the view name (ListEachShare.jsp)
         return "ListDetailSharePortfolio";
     }
 
