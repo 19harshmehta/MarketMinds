@@ -1,7 +1,5 @@
 package com.arth.entity;
 
-import java.util.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +25,7 @@ public class NewsEntity
     public String url;
     public String urlToImage;
     public String publishedAt;
+    @Column(length = 1024)
     public String content;
     
 	

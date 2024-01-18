@@ -4,14 +4,15 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.arth.entity.NewsEntity;
 import com.arth.repository.NewsRepository;
-import com.arth.services.NewsScrapService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -122,6 +123,14 @@ public class NewsController
 	    } catch (Exception e) {
 	        throw new IOException("Error during HTTP request", e);
 	    }
+	}
+	
+	@GetMapping("/newsuser")
+	public String newsUser(Model model)
+	{
+		List<NewsEntity> news = newsRepo.findAll();
+		model.addAttribute("news",news);
+		return "NewsUser";
 	}
 }
 

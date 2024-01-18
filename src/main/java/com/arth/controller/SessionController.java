@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +23,6 @@ import com.arth.dto.LoginDto;
 import com.arth.dto.ResetPasswordDto;
 import com.arth.entity.FaqsEntity;
 import com.arth.entity.IndustryEntity;
-import com.arth.entity.PlanEntity;
 import com.arth.entity.RoleEntity;
 import com.arth.entity.UserEntity;
 import com.arth.repository.FaqRepository;
@@ -325,11 +323,4 @@ public class SessionController {
 	public String AddUser() {
 		return "AddUser";
 	}
-	
-	@GetMapping("/newsuser")
-	public String newsUser()
-	{
-		return "NewsUser";
-	}
-	
 }
