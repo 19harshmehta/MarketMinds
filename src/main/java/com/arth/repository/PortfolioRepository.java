@@ -15,5 +15,9 @@ public interface PortfolioRepository extends JpaRepository<PortfolioEntity,Integ
 	List<PortfolioEntity> findByUserId(Integer userId);//1 -- n 
 	
 	
+	@Query(value = "select count(*) from portfolio where user_id = :userId", nativeQuery = true)
+	Integer countPortfolio(Integer userId);
+	
+	
 	
 }

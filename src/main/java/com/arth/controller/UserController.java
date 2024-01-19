@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arth.entity.FaqsEntity;
 import com.arth.entity.UserEntity;
+import com.arth.repository.AlertRepository;
 import com.arth.repository.EquityRepository;
 import com.arth.repository.FaqRepository;
+import com.arth.repository.PortfolioRepository;
 import com.arth.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +35,12 @@ public class UserController
 	
 	@Autowired
 	FaqRepository faqRepo;
+	
+	@Autowired
+	PortfolioRepository portfolioRepo;
+	
+	@Autowired
+	AlertRepository alertRepo;
 
 	@GetMapping("/listusers")
 	public String listUsers(Model model)
@@ -103,8 +111,14 @@ public class UserController
     }
 	
 	@GetMapping("/userdashboard")
-	public String userdashboard(Model model)
+	public String userdashboard(Model model,HttpSession session)
 	{
+		Integer countPortfolio = portfolioRepo.countPortfolio((Integer)session.getAttribute("userId"));
+		Integer allAlertCount = alertRepo.allAlertsCount((Integer)session.getAttribute("userId"));
+		Integer comletedAlertCount = alertRepo.compleatedAlerts((Integer)session.getAttribute("userId"));
+		model.addAttribute("allAlertCount",allAlertCount);
+		model.addAttribute("comletedAlertCount",comletedAlertCount);
+		model.addAttribute("countPortfolio",countPortfolio);
 		model.addAttribute("eqs",eqRepo.findAll());
 		return "UserDashboard";
 	}

@@ -51,11 +51,11 @@
 			<% for (Object[] dataRow : eachShareData) { %>
             <tr>
                 <td><%= dataRow[1] %></td>
+                <td><%= dataRow[8] %></td>                
                 <td><%= dataRow[7] %></td>
-                <td><%= dataRow[6] %></td>                
-                <td><%= dataRow[5] %></td>
+                <td><%= dataRow[4] %></td>                
                 <td><%= dataRow[3] %></td>
-                <td><%= dataRow[4] %></td>
+                <td><%= dataRow[5] %></td>
                 <!-- Add more columns as needed -->
             </tr>
         <% } %>
