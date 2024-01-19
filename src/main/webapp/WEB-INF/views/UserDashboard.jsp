@@ -45,7 +45,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6>${countPortfolio}</h6>
                      
                     </div>
                   </div>
@@ -58,14 +58,14 @@
             <div class="col-xxl-3 col-md-6">
               <div class="card info-card revenue-card">
 				<div class="card-body">
-                  <h5 class="card-title">Alerts</span></h5>
+                  <h5 class="card-title">Completed Alerts</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-person-check-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
+                      <h6>${comletedAlertCount}/${allAlertCount}</h6>
                      
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                       <i class="bi bi-bell"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
+                      <h6>10</h6>
                      
                     </div>
                   </div>
@@ -107,7 +107,7 @@
                       <i class="bi bi-receipt"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6>5</h6>
                     </div>
                   </div>
                 </div>
