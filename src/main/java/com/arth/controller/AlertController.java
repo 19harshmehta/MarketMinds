@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.arth.entity.SchedulerEntity;
+import com.arth.repository.AlertRepository;
 import com.arth.repository.SchedulerLogRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AlertController 
@@ -16,7 +19,8 @@ public class AlertController
 	@Autowired
 	SchedulerLogRepository scheduleRepo;
 	
-	
+	@Autowired
+	AlertRepository alertRepo;
 
 	
 	@GetMapping("/listlog")
@@ -27,5 +31,13 @@ public class AlertController
 		return "ListLogs";	
 	}
 	
-	
+	@GetMapping("/listalert")
+	public String listAlert(Model model,HttpSession session)
+	{
+		Integer userId = (Integer) session.getAttribute("userId");
+		List<Object[]> result = alertRepo.displayAlert(userId);
+		model.addAttribute("alert",result);
+		
+		return "UserAlerts";
+	}
 }

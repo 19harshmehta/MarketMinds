@@ -144,7 +144,7 @@ public class UserPlanController
 	@GetMapping("/userplanlist")
 	public String userPlanList(Model model)
 	{
-		List<PlanEntity> plans = planRepo.getAllPlans();
+		List<PlanEntity> plans = planRepo.getActiveplans();
 		model.addAttribute("plans",plans);
 		return "ListPlanUsers";
 	}

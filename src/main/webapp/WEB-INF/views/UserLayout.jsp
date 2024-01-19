@@ -298,7 +298,7 @@
       </li><!-- End News-->
       
        <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="listalert">
           <i class="bi bi-envelope-arrow-down-fill"></i>
           <span>Alerts</span>
         </a>
