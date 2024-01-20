@@ -59,6 +59,13 @@ public class SessionController {
 	@Autowired
 	MailerService mailerService;
 
+	@GetMapping( value ={"/" , "landingpage"})
+	public String landingPage()
+	{
+		return "LandingPage";
+	}
+	
+	
 	@GetMapping("home")
 	public String home() {
 		return "Home";
@@ -69,7 +76,7 @@ public class SessionController {
 		return "SignUp";
 	}
 
-	@GetMapping(value = { "/", "login" })
+	@GetMapping("login")
 	public String login() {
 		return "Login";
 	}
