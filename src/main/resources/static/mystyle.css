@@ -1,3 +1,43 @@
 .error{
 	color: red;
 }
+.text{
+	color: #012970;
+	font-size: 5rem;
+	position: absolute;
+	left: 5%;
+	animation-name: text;
+  	animation-duration: 5s;
+}
+.text2{
+	font-size: 2rem;
+}
+.box {
+  width: 750px;
+  height: 800px;
+  position: relative;
+  left: 15%;
+  animation-name: example;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+   
+}
+
+.button{
+	font-size: 1.5rem;
+	padding: 1.5%;
+}
+
+@keyframes example {
+ 
+  0%  {top: 100px;}
+  45%   {top:-30px;}
+  
+}
+
+@keyframes text{
+	
+	0%   {top:0px;}
+  	45%  {top:100px;}
+}
+
