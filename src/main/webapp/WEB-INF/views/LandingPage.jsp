@@ -17,7 +17,7 @@
   <!-- Favicons -->
   <link href="assets/img/logo.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <link href="assets/img/pic3.png" rel="stylesheet">
+  <link href="assets/img/pic3 (1).png" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -42,10 +42,11 @@
  <p class="text2">Smart Way to Invest</p></h1>
  
  <a class="btn btn-primary button" href="login">Get Started</a>
-	<img src="assets/img/pic3 (1).png" class="box">
+	<img src="assets/img/landing.png" class="box box-updown">
 	
 	</main>
 </body>
+
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.umd.js"></script>

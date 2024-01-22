@@ -1,43 +1,62 @@
-.error{
-	color: red;
+.error {
+    color: red;
 }
-.text{
-	color: #012970;
-	font-size: 5rem;
-	position: absolute;
-	left: 5%;
-	animation-name: text;
-  	animation-duration: 5s;
+body{
+	overflow: hidden;
 }
-.text2{
-	font-size: 2rem;
-}
-.box {
-  width: 750px;
-  height: 800px;
-  position: relative;
-  left: 15%;
-  animation-name: example;
-  animation-duration: 5s;
-  animation-timing-function: ease-in-out;
-   
+.text {
+    color: #012970;
+    font-size: 5rem;
+    position: absolute;
+    left: 5%;
+    animation-name: text;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
 }
 
-.button{
-	font-size: 1.5rem;
-	padding: 1.5%;
+.text2 {
+    font-size: 2rem;
+}
+
+.box {
+    width: 60%;
+    height: 70%;
+    position: relative;
+    left: 15%;
+    top:0%; /* Adjust the top position to move the image up */
+    animation: example 4s forwards;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.box-updown{
+	
+	animation: continuousAnimation 5s infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.button {
+    font-size: 1.5rem;
+    padding: 1.5%;
 }
 
 @keyframes example {
- 
-  0%  {top: 100px;}
-  45%   {top:-30px;}
-  
+    0% { top: 100px; }
+    45% { top: -50px; }
+    100% { top: -50px; } /* Set the final position */
 }
 
-@keyframes text{
-	
-	0%   {top:0px;}
-  	45%  {top:100px;}
+@keyframes text {
+    0% { top: 0px; }
+    45% { top: 85px; }
+    100% { top: 85px; } /* Set the final position */
 }
 
+
+@keyframes continuousAnimation {
+    0% { top: 0; } /* Start from the final position of 'example' animation */
+    50% { top: -50px; } /* Middle position, adjust as needed */
+    100% { top: 0; }
+    
+}

@@ -87,7 +87,7 @@ public class EquityScrapService
 		Date datetime = new Date();
 
 		try {
-			for (int i = 50; i <= 1950; i = i + 50) {
+			for (int i = 0; i <= 1950; i = i + 50) {
 				Root root = scrapEquity(i);
 
 				for (ResponseDtoList eqty : root.getResponseDTOList()) {
