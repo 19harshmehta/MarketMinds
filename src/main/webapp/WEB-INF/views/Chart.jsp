@@ -9,6 +9,7 @@
 <body >
 <%@include file="UserLayout.jsp" %>
 <main id="main" class="main">
+
 <!-- Area Chart -->
               <div id="areaChart" ></div>
 
