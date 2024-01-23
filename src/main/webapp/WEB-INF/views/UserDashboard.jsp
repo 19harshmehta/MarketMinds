@@ -76,10 +76,11 @@
 
             <!-- Subscription Card -->
             <div class="col-xxl-3 col-xl-12">
-
+            <a href="/upgradetopremium">
+			
               <div class="card info-card customers-card">
 				 <div class="card-body">
-                  <h5 class="card-title">Subscriptions</h5>
+                  <h5 class="card-title">Become a Pro?</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -94,8 +95,8 @@
                 </div>
               </div>
 
+            </a>
             </div><!-- End Subscription Card -->
-            
              <!-- Complain Card -->
             <div class="col-xxl-3 col-md-6">
               <div class="card info-card sales-card">
