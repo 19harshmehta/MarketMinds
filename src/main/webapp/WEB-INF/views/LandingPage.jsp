@@ -42,7 +42,7 @@
  <p class="text2">Smart Way to Invest</p></h1>
  
  <a class="btn btn-primary button" href="login">Get Started</a>
-	<img src="assets/img/landing.png" class="box box-updown">
+	<img src="assets/img/pic3 (1).png" class="box box-updown">
 	
 	</main>
 </body>
