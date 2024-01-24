@@ -10,14 +10,17 @@
 <title>User My Profile | Marketminds</title>
 </head>
 <body>
-
+<%String flag = (String)request.getAttribute("update");%>
 	<%@include file="UserLayout.jsp" %>
 	<main id="main" class="main">
+	
+	<%if(flag=="updated"){ %>
 	<div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle me-1"></i>
-                Your Data Has been updated sucessfully. Please Login Agin to view Updated data
+                <strong>Your Data Has been updated sucessfully.</strong> Please Login Again to view Updated data
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
+	<%} %>
 		
 
 		<script>
