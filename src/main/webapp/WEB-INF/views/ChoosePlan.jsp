@@ -7,16 +7,23 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>MarketMinds | Choose Plan</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="mystyle.css">
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
 <body>
-<h2>Choose Plan</h2>
+<%@include file="UserLayout.jsp" %>
+<main id="main" class="main">
+
+<div class="pagetitle">
+      <h1>Subscription</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
+          <li class="breadcrumb-item active">Subscription</li>
+        </ol>
+      </nav>
+    </div>
+
 				<%
 	List<PlanEntity> plans = (List<PlanEntity>) request.getAttribute("plans");
 	%>
@@ -26,6 +33,7 @@
 				<th>Plan Title</th>
 				<th>Duration (in months)</th>
 				<th>Amount</th>
+				<th>Action</th>
 				
 			</tr>
 		</thead>
@@ -33,18 +41,32 @@
 			<%
 			for (PlanEntity plan : plans) {
 				
-				if(plan.getActiveInd().equals(0)) {
+				if(plan.getActiveInd().equals(1)) {
 			%>
 			<tr>
 				<td><%=plan.getTitle()%></td>
 				<td><%=plan.getDuration()%></td>
 				<td><%=plan.getAmount()%></td>
-				<td><a href='/plan?planId=<%=plan.getPlanId()%>'>Buy Now</a></td>
+				<td><a class="btn btn-outline-primary" href='/plan?planId=<%=plan.getPlanId()%>'>Buy Now</a></td>
 			</tr>
 				<%}//end if
 			}//end for
 			%> 
 		</tbody>
 	</table>
+	</main>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+		
+		<script>
+		$(document).ready(function() {
+			const datatables = document.getElementById("plans");
+			new simpleDatatables.DataTable(datatables, {
+				perPageSelect : [5,10,50,'All' ],
+				perPage: 5
+			});
+		})
+	</script>
 </body>
 </html>
