@@ -36,6 +36,7 @@
 
             <!-- User Card -->
             <div class="col-xxl-3 col-md-6">
+             <a href="/listportfolio">
               <div class="card info-card sales-card">
 				<div class="card-body">
                   <h5 class="card-title">Portfolio</h5>
@@ -52,10 +53,12 @@
                 </div>
 
               </div>
+              </a>
             </div><!-- End User Card -->
 
             <!-- Premium Card -->
             <div class="col-xxl-3 col-md-6">
+              <a href="/listalert">
               <div class="card info-card revenue-card">
 				<div class="card-body">
                   <h5 class="card-title">Completed Alerts</span></h5>
@@ -72,6 +75,7 @@
                 </div>
 
               </div>
+              </a>
             </div><!-- End Premium Card -->
 
             <!-- Subscription Card -->

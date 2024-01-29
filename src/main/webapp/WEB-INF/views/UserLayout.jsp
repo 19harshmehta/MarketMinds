@@ -305,7 +305,7 @@
       </li><!-- End Alert-->
       
        <li class="nav-item">
-        <a class="nav-link collapsed" href="/userplanlist">
+        <a class="nav-link collapsed" href="/upgradetopremium">
           <i class="class=bi bi-bell-fill"></i>
           <span>Subscription</span>
         </a>

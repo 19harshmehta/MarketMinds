@@ -15,7 +15,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Users</h1>
+      <h1>Plan</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
