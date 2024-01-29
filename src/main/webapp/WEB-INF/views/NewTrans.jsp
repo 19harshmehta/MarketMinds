@@ -1,3 +1,5 @@
+<%@page import="java.util.Optional"%>
+<%@page import="com.arth.entity.PlanEntity"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,8 +12,15 @@
 <script src="https://js.stripe.com/v3/stripe.js"></script>
 </head>
 <body>
+<%
+	PlanEntity plan = (PlanEntity) request.getAttribute("plan");
+%>
 
 	<form id="payment-form">
+	
+	PlanID:<input type="text" value="<%=plan.getPlanId()%>" name="planId" disabled="disabled">
+	PlanNAme:<input type="text" value="<%=plan.getTitle()%>" name="title" disabled="disabled">
+	Duration:<input type="text" value="<%=plan.getDuration()%>" name="duration" disabled="disabled">
 		<div id="card-element"></div>
 		<button type="submit">Submit Payment</button>
 	</form>
@@ -47,14 +56,19 @@ form.addEventListener('submit', async (event) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ paymentMethodId: paymentMethod.id }),
+            body: JSON.stringify({ paymentMethodId: paymentMethod.id,planId:${plan.planId} }),
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            console.log( data); 
+            console.log(data.sucess);
+            console.log(data["sucess"]);
+            window.location.href="subscription";            
+            
+            //
         })
         .catch((error) => {
-            console.error('Error:', error);
+            console.error(error);
         });
     }
 });

@@ -18,7 +18,7 @@ import com.arth.services.AlertService;
 import com.arth.services.EquityScrapService;
 import com.arth.services.EquityTechnicalScrapService;
 
-@Component
+//@Component
 public class EquityScheduler 
 {
 	

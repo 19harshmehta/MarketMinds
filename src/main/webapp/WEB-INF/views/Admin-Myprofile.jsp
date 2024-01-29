@@ -21,15 +21,17 @@
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-
+<%String flag = (String)request.getAttribute("update");%>
 	<%@include file="AdminLayout.jsp" %>
 	<main id="main" class="main">
-	<div id="myAlert" class="alert alert-success alert-dismissible fade hide" role="alert">
+	
+	<%if(flag=="updated"){ %>
+	<div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle me-1"></i>
-                Your Data Has been updated sucessfully. Please Login Agin to view Updated data
+                <strong>Your Data Has been updated sucessfully.</strong> Please Login Again to view Updated data
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
-		
+	<%} %>	
 
 		<script>
 		    document.addEventListener('DOMContentLoaded', function () {
