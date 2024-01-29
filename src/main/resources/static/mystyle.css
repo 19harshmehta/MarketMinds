@@ -2,7 +2,7 @@
     color: red;
 }
 body{
-	overflow: hidden;
+	overflow: auto;
 }
 
 
@@ -64,4 +64,30 @@ body{
     50% { top: -50px; } /* Middle position, adjust as needed */
     100% { top: 0; }
     
+}
+
+
+#eqname {
+	font-size: 2.1rem;
+	
+}
+#secname{
+	font-size: 80%;
+}
+#price{
+	font-size: 2.2rem;
+}
+
+.flex{
+	display: flex;
+
+}
+
+.seperate{
+	margin-top: 2rem;
+}
+
+.detail{
+	color: #052c65;
+	
 }
