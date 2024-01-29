@@ -63,7 +63,7 @@ form.addEventListener('submit', async (event) => {
             console.log( data); 
             console.log(data.sucess);
             console.log(data["sucess"]);
-            window.location.href="subscription";            
+            window.location.href="logout";            
             
             //
         })
