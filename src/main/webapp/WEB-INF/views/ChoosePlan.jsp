@@ -39,7 +39,7 @@
 				<td><%=plan.getTitle()%></td>
 				<td><%=plan.getDuration()%></td>
 				<td><%=plan.getAmount()%></td>
-				<td><a href='/plan/<%=plan.getPlanId()%>'>Buy Now</a></td>
+				<td><a href='/plan?planId=<%=plan.getPlanId()%>'>Buy Now</a></td>
 			</tr>
 				<%}//end if
 			}//end for

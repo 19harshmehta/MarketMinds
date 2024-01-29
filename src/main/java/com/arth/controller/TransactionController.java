@@ -48,7 +48,7 @@ public class TransactionController {
 		Stripe.apiKey = "sk_test_51O4j86SJOPbiqQsfqbd4Z7E8dz3Y4kBMPwuHtspaZW2TMjww2MLm0w71hrgFGA25ixHa7CGnZx0ncYMYWbDG14pR00jEXmpyIk";
 		try {
 
-			PaymentIntentCreateParams params = new PaymentIntentCreateParams.Builder().setAmount(2000L * 100) // Amount in
+			PaymentIntentCreateParams params = new PaymentIntentCreateParams.Builder().setAmount(5000L * 100) // Amount in
 																										// cents
 					.setCurrency("inr").addPaymentMethodType("card").setConfirmationMethod(ConfirmationMethod.MANUAL)
 					.setConfirm(true).setPaymentMethod(data.get("paymentMethodId")).build();
