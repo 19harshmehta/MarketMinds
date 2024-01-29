@@ -9,8 +9,26 @@
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 <title>Market Minds | UserDashboard</title>
+<style>
+#loadingDiv{
+    position: absolute;
+    z-index: 1;
+    left:0;
+    background-color: rgba(0, 101, 203, 0.14);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+</style>
 </head>
 <body>
+<%Integer premiumInd = (Integer)session.getAttribute("premiumInd"); %>
 <%@include file="UserLayout.jsp" %>
 <%
 	List<EquityEntity> eqs = (List<EquityEntity>) request.getAttribute("eqs");
@@ -76,8 +94,7 @@
 
             <!-- Subscription Card -->
             <div class="col-xxl-3 col-xl-12">
-            <a href="/upgradetopremium">
-			
+            	<a href="/upgradetopremium">
               <div class="card info-card customers-card">
 				 <div class="card-body">
                   <h5 class="card-title">Become a Pro?</h5>
@@ -127,7 +144,7 @@
 
             <!-- Recent Sales -->
             <div class="col-12">
-              <div class="card recent-sales overflow-auto">
+              <div class="card recent-sales overflow-hidden">
 
                 <div class="card-body">
                   <h5 class="card-title">Equities<span></span></h5>
@@ -145,11 +162,16 @@
 				<th>Action</th>
 			</tr>
 		</thead>
+		
 		<tbody>
+			 <%if(premiumInd != 1){ %>
+		<div id="loadingDiv">
+				<img alt="not available" src="assets\\img\\lockpng.png" height="10%" width="8%">
+ 		</div>
+		<%} %>
 			<%
 			for (EquityEntity eq : eqs) {
 			%>
-			 
 			<tr>
 				<td><%=eq.getEquityId()%></td>
 				<td><a href="chart?equityId=<%=eq.getEquityId()%>"><%=eq.getEquityName()%></a></td>
