@@ -59,5 +59,33 @@ public class ChartController {
 		model.addAttribute("tech",eqtech.findByEqId(equityId));
 		return "Chart";//jsp 
 	}
+	
+	@GetMapping("/chartanalyst")
+	public String chartAnalyst(@RequestParam("equityId") Integer equityId,Model model) {
+
+		//equityId -> equity detail 
+		//daily record -> date price 
+		List<EquityPriceDataEntity> dailyData = eqDataRepo.findByEquityId(equityId);
+		ArrayList<Double> prices = new ArrayList<>();
+		ArrayList<String> date = new ArrayList<>();
+//		prices.add(0.0);
+		date.add(" ");
+		for(EquityPriceDataEntity eqPriceDataentail : dailyData)
+		{
+			prices.add(eqPriceDataentail.getClosingPrice());
+			LocalDate ld = eqPriceDataentail.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			String x = ld.getDayOfMonth()+" "+ld.getMonth().name().substring(0,3) +" "+ld.getYear();
+			date.add(x);
+			
+			
+		}
+		model.addAttribute("prices",prices);
+		model.addAttribute("dates",date);
+		
+		
+		model.addAttribute("eqs",eqRepo.findByEquityId(equityId));
+		model.addAttribute("tech",eqtech.findByEqId(equityId));
+		return "ChartAnalyst";//jsp 
+	}
 }
 

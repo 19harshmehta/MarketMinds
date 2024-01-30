@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin Layout</title>
+<link href="assets/img/logo.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<title>Analyst Layout</title>
 
  <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -31,14 +33,14 @@
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center"  >
+  <header id="header" class="header fixed-top d-flex align-items-center" >
 
-    <div class="d-flex align-items-center justify-content-between" >
+    <div class="d-flex align-items-center justify-content-between">
       <a href="landingpage" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">MarketMinds</span>
@@ -204,17 +206,22 @@
         </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
-		<%
-		UserEntity user = (UserEntity) session.getAttribute("user");
-		%>
+        <%
+        UserEntity user =(UserEntity) session.getAttribute("user");
+        %>
+		
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><%=user.getFirstName() %>&nbsp;&nbsp;<%=user.getLastName()%></span>
+            <img src="../assets/img/messages-2.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">
+
+        <%=user.getFirstName() %>&nbsp;&nbsp;<%=user.getLastName() %>
+
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><%=user.getFirstName() %>&nbsp;<%=user.getLastName()%></h6>
+            <h6><%=user.getFirstName() %>&nbsp;<%=user.getLastName() %></h6>
+             
 
             </li>
             <li>
@@ -222,7 +229,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="admin-myprofile">
+              <a class="dropdown-item d-flex align-items-center" href="analystprofile">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -232,7 +239,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="listfaqs">
+              <a class="dropdown-item d-flex align-items-center" href="analystfaqs">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -259,115 +266,63 @@
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar" >
 
-    <ul class="sidebar-nav" id="sidebar-nav" >
+    <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="dashboard">
+        <a class="nav-link " href="analystdashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="listusers">
-          <i class="bi bi-person-square"></i>
-          <span>Users</span>
-        </a>
-      </li><!-- End User -->
+     
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="listrole">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-people"></i>
-          <span>Role</span>
+          <span>Community</span>
         </a>
       </li><!-- End Role-->
         
-	  <li class="nav-item">
-        <a class="nav-link collapsed" href="listequityadmin">
-          <i class="bi bi-currency-rupee"></i>
-          <span>Equity</span>
+         <li class="nav-item">
+        <a class="nav-link collapsed" href="/newsanalyst">
+          <i class="bi bi-newspaper"></i>
+          <span>News</span>
         </a>
-      </li><!-- End Equity-->
-
-	  <li class="nav-item">
-        <a class="nav-link collapsed" href="listplans">
-          <i class="bi bi-receipt"></i>
-          <span>Plan</span>
-        </a>
-      </li><!-- End Plan-->
-	
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-newspaper"></i><span>News</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Add News</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Delete News</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Update News</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End News Nav -->
+      </li><!-- End News-->
       
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="listlog">
-          <i class="bi bi-card-list"></i>
-          <span>Scheduler Ations</span>
-        </a>
-      </li><!-- End Role-->
-      
+   
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="admin-myprofile">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="listfaqs">
+        <a class="nav-link collapsed" href="analystfaqs">
           <i class="bi bi-question-circle"></i>
           <span>F.A.Q</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-envelope"></i>
+        <a class="nav-link collapsed" href="contactanalyst">
+          <i class="bi bi-telephone-fill"></i>
           <span>Contact</span>
         </a>
       </li><!-- End Contact Page Nav -->
-      
-      <li class="nav-item">
+
+	 <li class="nav-item">
         <a class="nav-link collapsed" href="logout">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Logout</span>
         </a>
       </li><!-- End Login Page Nav -->
-      
-    </ul>
-	
-	
+</ul>
+
   </aside><!-- End Sidebar-->
   
 <footer id="footer" class="footer">
   
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

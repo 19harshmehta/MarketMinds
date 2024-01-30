@@ -1,27 +1,20 @@
 package com.arth.controller;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.arth.entity.PlanEntity;
-import com.arth.entity.TransactionEntity;
-import com.arth.entity.UserEntity;
-import com.arth.entity.UserPlanEntity;
+
 import com.arth.repository.PlanRepository;
 import com.arth.repository.TransactionRepository;
 import com.arth.repository.UserPlanRepository;
 import com.arth.repository.UserRepository;
 
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserPlanController 
@@ -149,11 +142,5 @@ public class UserPlanController
 //		return "Home";
 //	}
 	
-	@GetMapping("/userplanlist")
-	public String userPlanList(Model model)
-	{
-		List<PlanEntity> plans = planRepo.getActiveplans();
-		model.addAttribute("plans",plans);
-		return "ListPlanUsers";
-	}
+	
 }

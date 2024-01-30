@@ -27,7 +27,7 @@
 				<%
 	List<PlanEntity> plans = (List<PlanEntity>) request.getAttribute("plans");
 	%>
-	<table class="table table-borderd table-hover"> 
+	<table  class="table table-borderd table-hover" id="plans" > 
 		<thead>
 			<tr>
 				<th>Plan Title</th>

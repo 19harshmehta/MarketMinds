@@ -11,7 +11,7 @@
 </head>
 <body>
 <%String flag = (String)request.getAttribute("update");%>
-	<%@include file="UserLayout.jsp" %>
+	<%@include file="AnalystLayout.jsp" %>
 	<main id="main" class="main">
 	
 	<%if(flag=="updated"){ %>
@@ -42,7 +42,7 @@
 	      <h1>Profile</h1>
 	      <nav>
 	        <ol class="breadcrumb">
-	          <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+	          <li class="breadcrumb-item"><a href="analystdashboard">Home</a></li>
 	          <li class="breadcrumb-item active">My Profile</li>
 	        </ol>
 	      </nav>
@@ -58,7 +58,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="assets/img/messages-2.jpg" alt="Profile" class="rounded-circle">
               <h2><%=user.getFirstName() %> <%=user.getLastName()%></h2>
               <!-- <h3>Web Designer</h3> -->
               <div class="social-links mt-2">
@@ -123,7 +123,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Role</div>
-                    <div class="col-lg-9 col-md-8">User</div>
+                    <div class="col-lg-9 col-md-8">Analyst</div>
                   </div>
 
              

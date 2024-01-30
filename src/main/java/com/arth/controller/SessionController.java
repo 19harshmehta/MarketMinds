@@ -123,6 +123,9 @@ public class SessionController {
 						return "redirect:/dashboard";
 					} else if (role.equalsIgnoreCase("user")) {
 						return "redirect:/userdashboard";
+					}else if(role.equalsIgnoreCase("analyst"))
+					{
+						return "redirect:/analystdashboard";
 					}
 					model.addAttribute("error", "Invalid User Please Contact Support Team");
 					return "Login";
