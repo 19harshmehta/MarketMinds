@@ -18,7 +18,7 @@ import com.arth.services.AlertService;
 import com.arth.services.EquityScrapService;
 import com.arth.services.EquityTechnicalScrapService;
 
-//@Component
+@Component
 public class EquityScheduler 
 {
 	
@@ -52,7 +52,7 @@ public class EquityScheduler
 		System.out.println("hello");
 	}
 	
-	@Scheduled(cron = "0 */1 * * * *")
+	@Scheduled(cron = "0 * 9-15 * * *")
 	public void scrapEquityScheduler() 
 	{
 		
@@ -73,7 +73,7 @@ public class EquityScheduler
 	}
 	
 	
-	@Scheduled(cron = "0 */3 * * * *")
+	@Scheduled(cron = "0 * 9-15 * * *")
 	public void sendAlertEmail()
 	{
 		
@@ -92,7 +92,7 @@ public class EquityScheduler
 		}
 	}
 	
-	@Scheduled(cron = "0 */30 * * * *")
+//	@Scheduled(cron = "0 */30 * * * *")
 	public void scrapTechnical()
 	{
 		LocalDateTime now = LocalDateTime.now();
@@ -105,7 +105,7 @@ public class EquityScheduler
 		try 
 		{
 			Runnable r = () ->{
-				eqTechnical.scrapTechnicalIndicators();
+//				eqTechnical.scrapTechnicalIndicators();
 			};
 			Thread t = new Thread(r);
 			t.start();

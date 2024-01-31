@@ -27,7 +27,7 @@
 				<%
 	List<PlanEntity> plans = (List<PlanEntity>) request.getAttribute("plans");
 	%>
-	<table class="table table-borderd table-hover"> 
+	<table  class="table table-borderd table-hover" id="plans" > 
 		<thead>
 			<tr>
 				<th>Plan Title</th>
@@ -41,7 +41,7 @@
 			<%
 			for (PlanEntity plan : plans) {
 				
-				if(plan.getActiveInd().equals(1)) {
+				if(plan.getActiveInd().equals(0)) {
 			%>
 			<tr>
 				<td><%=plan.getTitle()%></td>
