@@ -35,7 +35,7 @@ public class EquityEntity
 	Integer activeInd;
 	Integer buysellInd;
 	String industryName;
-	Integer wishlistInd;
+	Integer sid;
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "equities")

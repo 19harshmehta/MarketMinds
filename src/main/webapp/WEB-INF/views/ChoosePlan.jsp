@@ -41,7 +41,7 @@
 			<%
 			for (PlanEntity plan : plans) {
 				
-				if(plan.getActiveInd().equals(1)) {
+				if(plan.getActiveInd().equals(0)) {
 			%>
 			<tr>
 				<td><%=plan.getTitle()%></td>

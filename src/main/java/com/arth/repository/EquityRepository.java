@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface EquityRepository extends JpaRepository<EquityEntity, Integer> 
 {
+//	EquityEntity findBySymbol1(String symbol);
 	Optional<EquityEntity> findBySymbol(String symbol);
 	EquityEntity findByEquityId(Integer eqId);
 	List<EquityEntity> findAll();

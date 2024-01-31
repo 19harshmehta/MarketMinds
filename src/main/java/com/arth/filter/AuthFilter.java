@@ -34,7 +34,7 @@ public class AuthFilter implements Filter {
 		String url = req.getRequestURL().toString();
 		
 		
-		if (req.getRequestURL().toString().contains("assets") || url.contains("favic") || req.getRequestURL().toString().contains("charge") ) {
+		if (req.getRequestURL().toString().contains("assets") || url.contains("favic") || req.getRequestURL().toString().contains("charge") || url.contains("technicals")) {
 			chain.doFilter(request, response);
 		}
 		else if(req.getRequestURL().toString().contains("login") || url.contains("authenticate")) {

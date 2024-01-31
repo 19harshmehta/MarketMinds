@@ -16,7 +16,8 @@ public class ScapTechnicalEqController
 	@GetMapping("/technicals")
 	public String scapTechnical()
 	{
-		eqTechnical.scrapTechnicalIndicators();
+		eqTechnical.getSids();
+		eqTechnical.scrapTechnical();
 		return "Home";
 	}
 }

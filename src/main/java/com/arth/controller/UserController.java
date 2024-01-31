@@ -144,7 +144,7 @@ public class UserController
 	public String userProfile()
 	{
 		
-		return "User-Myprofile";
+		return "User-MyProfile";
 	}
 	
 }

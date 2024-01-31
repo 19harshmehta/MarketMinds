@@ -92,7 +92,7 @@ public class EquityScheduler
 		}
 	}
 	
-	@Scheduled(cron = "0 */30 * * * *")
+//	@Scheduled(cron = "0 */30 * * * *")
 	public void scrapTechnical()
 	{
 		LocalDateTime now = LocalDateTime.now();
@@ -105,7 +105,7 @@ public class EquityScheduler
 		try 
 		{
 			Runnable r = () ->{
-				eqTechnical.scrapTechnicalIndicators();
+//				eqTechnical.scrapTechnicalIndicators();
 			};
 			Thread t = new Thread(r);
 			t.start();
