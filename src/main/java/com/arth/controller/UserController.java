@@ -103,7 +103,7 @@ public class UserController
         {
         	
 //        	return "redirect:/userprofile";
-        	return "User-Myprofile";
+        	return "User-MyProfile";
         }else {
         	
 //        	return "redirect:/admin-myprofile";

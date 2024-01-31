@@ -132,6 +132,15 @@ public class NewsController
 		model.addAttribute("news",news);
 		return "NewsUser";
 	}
+	
+
+	@GetMapping("/newsanalyst")
+	public String newsAnalyst(Model model)
+	{
+		List<NewsEntity> news = newsRepo.findAll();
+		model.addAttribute("news",news);
+		return "NewsAnalyst";
+	}
 }
 
 

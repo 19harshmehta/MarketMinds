@@ -20,7 +20,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
-          <li class="breadcrumb-item active">Subscription / Buy</li>
+          <li class="breadcrumb-item active"><a href="upgradetopremium">Subscription</a> / Buy</li>
         </ol>
       </nav>
     </div>
@@ -47,11 +47,7 @@
 							</div>
 
 							<form id="payment-form">
-								<div class="col-12">
-									<label for="planId" class="form-label">PlanID</label> <input
-										class="form-control" type="text" value="<%=plan.getPlanId()%>"
-										name="planId" disabled="disabled">
-								</div><br>
+								
 
 								<div class="col-12">
 									<label for="title" class="form-label">Plan</label> <input
@@ -66,7 +62,11 @@
 										disabled="disabled">
 								</div>
 								<br>
-
+								<div class="col-12">
+									<label for="amt" class="form-label">Amount</label> <input
+										class="form-control" type="text" value="<%=plan.getAmount()%>"
+										name="amt" disabled="disabled">
+								</div><br>
 								<div id="card-element"></div>
 								<br>
 								<button class="btn btn-primary w-100" type="submit">Pay</button>
