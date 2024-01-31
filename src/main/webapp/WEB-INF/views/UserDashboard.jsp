@@ -9,23 +9,6 @@
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 <title>Market Minds | UserDashboard</title>
-<style>
-#loadingDiv{
-    position: absolute;
-    z-index: 1;
-    left:0;
-    background-color: rgba(0, 101, 203, 0.14);
-    backdrop-filter: blur(10px);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-
-</style>
 </head>
 <body>
 <%Integer premiumInd = (Integer)session.getAttribute("premiumInd"); %>
@@ -168,11 +151,7 @@
 		</thead>
 		
 		<tbody>
-			 <%if(premiumInd != 1){ %>
-		<div id="loadingDiv">
-				<img alt="not available" src="assets\\img\\lockpng.png" height="10%" width="8%">
- 		</div>
-		<%} %>
+			
 			<%
 			for (EquityEntity eq : eqs) {
 			%>
