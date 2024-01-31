@@ -95,19 +95,20 @@ public class UserController
             // Save the updated user to the database
             userRepo.save(existingUser);
 //            flag = 1;
-        }
+        }String flag = "updated";
         // Redirect to the profile page after updating
-//        model.addAttribute("update", flag);
+        model.addAttribute("update", flag);
         UserEntity user =  (UserEntity)session.getAttribute("user");
         if(user.getRole().getRoleId() == 1) 
         {
         	
-        	return "redirect:/userprofile";
+//        	return "redirect:/userprofile";
+        	return "User-MyProfile";
         }else {
         	
-        	return "redirect:/admin-myprofile";
+//        	return "redirect:/admin-myprofile";
+        	return "Admin-Myprofile";
         }
-//        return "Admin-Myprofile";
     }
 	
 	@GetMapping("/userdashboard")
@@ -143,7 +144,7 @@ public class UserController
 	public String userProfile()
 	{
 		
-		return "User-MyProfile";
+		return "User-Myprofile";
 	}
 	
 }

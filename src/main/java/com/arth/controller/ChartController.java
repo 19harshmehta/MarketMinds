@@ -1,24 +1,36 @@
 package com.arth.controller;
 
 import java.time.LocalDate;
+
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arth.entity.EquityPriceDataEntity;
+import com.arth.repository.EqTechRepository;
 import com.arth.repository.EquityPriceDataRepository;
+import com.arth.repository.EquityRepository;
+
 
 @Controller
 public class ChartController {
 
 	@Autowired
 	EquityPriceDataRepository eqDataRepo;
+	
+	@Autowired
+	EquityRepository eqRepo;
+	
+	@Autowired
+	EqTechRepository eqtech;
+
 	
 	@GetMapping("/chart")
 	public String chart(@RequestParam("equityId") Integer equityId,Model model) {
@@ -43,6 +55,8 @@ public class ChartController {
 		model.addAttribute("dates",date);
 		
 		
+		model.addAttribute("eqs",eqRepo.findByEquityId(equityId));
+		model.addAttribute("tech",eqtech.findByEqId(equityId));
 		return "Chart";//jsp 
 	}
 }

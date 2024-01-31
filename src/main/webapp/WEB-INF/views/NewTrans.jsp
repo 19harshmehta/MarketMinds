@@ -1,3 +1,5 @@
+<%@page import="java.util.Optional"%>
+<%@page import="com.arth.entity.PlanEntity"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,12 +12,73 @@
 <script src="https://js.stripe.com/v3/stripe.js"></script>
 </head>
 <body>
+<%@include file="UserLayout.jsp" %>
+<main id="main" class="main">
 
-	<form id="payment-form">
-		<div id="card-element"></div>
-		<button type="submit">Submit Payment</button>
-	</form>
+<div class="pagetitle">
+      <h1>Subscription</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="userdashboard">Home</a></li>
+          <li class="breadcrumb-item active">Subscription / Buy</li>
+        </ol>
+      </nav>
+    </div>
+<%
+	PlanEntity plan = (PlanEntity) request.getAttribute("plan");
+%>
 
+
+
+		<div class="container" style="padding: 1rem; ">
+			<div class="row justify-content-center">
+				<div
+					class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+
+
+					<div class="card mb-3">
+
+						<div class="card-body">
+
+							<div class="pt-8 pb-4">
+								<h5 class="card-title text-center pb-0 fs-4">Payment</h5>
+								<p class="text-center small">Enter your card number to pay</p>
+							</div>
+
+							<form id="payment-form">
+								<div class="col-12">
+									<label for="planId" class="form-label">PlanID</label> <input
+										class="form-control" type="text" value="<%=plan.getPlanId()%>"
+										name="planId" disabled="disabled">
+								</div><br>
+
+								<div class="col-12">
+									<label for="title" class="form-label">Plan</label> <input
+										class="form-control" type="text" value="<%=plan.getTitle()%>"
+										name="title" disabled="disabled">
+								</div><br>
+
+								<div class="col-12">
+									<label for="duration" class="form-label">Duration (months)</label> <input
+										class="form-control" type="text"
+										value="<%=plan.getDuration()%>" name="duration"
+										disabled="disabled">
+								</div>
+								<br>
+
+								<div id="card-element"></div>
+								<br>
+								<button class="btn btn-primary w-100" type="submit">Pay</button>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
 
 
 <script type="text/javascript">
@@ -47,14 +110,19 @@ form.addEventListener('submit', async (event) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ paymentMethodId: paymentMethod.id }),
+            body: JSON.stringify({ paymentMethodId: paymentMethod.id,planId:${plan.planId} }),
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            console.log( data); 
+            console.log(data.sucess);
+            console.log(data["sucess"]);
+            window.location.href="logout";            
+            
+            //
         })
         .catch((error) => {
-            console.error('Error:', error);
+            console.error(error);
         });
     }
 });
