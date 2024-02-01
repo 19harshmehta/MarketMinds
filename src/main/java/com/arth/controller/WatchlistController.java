@@ -26,13 +26,19 @@ public class WatchlistController
 	
 	
 	@GetMapping("/addtowatchlist")
-	public String addToWatchList(@RequestParam("equityId") Integer equityId,HttpSession session,WatchListEntity watchEntity) 
+	public String addToWatchList(@RequestParam("equityId") Integer equityId,Model model,HttpSession session,WatchListEntity watchEntity) 
 	{
-		Integer userId = (Integer) session.getAttribute("userId");
-		watchEntity.setEquityId(equityId);
-		watchEntity.setUserId(userId);
-		watchRepo.save(watchEntity);
-		return "redirect:/userdashboard";
+		Integer countWatchlist = watchRepo.watchlistCount((Integer) session.getAttribute("userId"));
+		if(countWatchlist < 10) {
+			Integer userId = (Integer) session.getAttribute("userId");
+			watchEntity.setEquityId(equityId);
+			watchEntity.setUserId(userId);
+			watchRepo.save(watchEntity);
+			return "redirect:/userdashboard";
+		}else {
+			return "redirect:/userfaqs";
+			
+		}
 	}
 	
 	@GetMapping("/watchlist")

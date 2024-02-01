@@ -214,7 +214,7 @@
             <img src="../assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
 
-        <%=user.getFirstName() %>&nbsp;&nbsp;<%=user.getLastName() %>
+        <%=user.getFirstName() %>&nbsp;<%=user.getLastName() %>
 
           </a><!-- End Profile Iamge Icon -->
 
