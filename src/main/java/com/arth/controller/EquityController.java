@@ -20,7 +20,6 @@ public class EquityController
 	EquityRepository eqRepo;
 	
 	
-	
 	@GetMapping("/listequity")
 	public String listEquity(@RequestParam("portfolioId") Integer portfolioId, Model model)
 	{
@@ -39,7 +38,7 @@ public class EquityController
 	public String listEquityUser(Model model)
 	{
 		model.addAttribute("eqs",eqRepo.findAll());
-		return "ListEquityUser";
+		return "ListEquityUser";	
 	}
 	
 	
