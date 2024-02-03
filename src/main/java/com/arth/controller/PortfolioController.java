@@ -22,13 +22,24 @@ public class PortfolioController {
 	PortfolioRepository portfolioRepo;
 
 	@GetMapping("/createportfolio")
-	public String createPortfolio() {
-		return "CreatePortfolio";
+	public String createPortfolio(HttpSession session) {
+		
+		Integer portfolioCount = portfolioRepo.countPortfolio((Integer) session.getAttribute("userId"));
+		System.out.println(portfolioCount);
+		if((Integer)session.getAttribute("premiumInd")==0 && portfolioCount < 1 ) {
+			System.out.println("in if");
+			return "CreatePortfolio";
+		}else if ((Integer)session.getAttribute("premiumInd")==1 && portfolioCount < 5 ) {
+			return "CreatePortfolio";
+		}
+		else {
+			return "Premium";
+		}
+		
 	}
 
 	@PostMapping("/saveportfolio")
 	public String savePortfolio(PortfolioEntity portfolio, HttpSession session) {
-     
 		Date date = new Date();
 		portfolio.setUserId((Integer) session.getAttribute("userId"));
 		portfolio.setCreatedAt(date);

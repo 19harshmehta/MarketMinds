@@ -25,7 +25,7 @@ public class AuthFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse)response;
 		
-		System.out.println("AuthFilter...." + req.getRequestURL());
+//		System.out.println("AuthFilter...." + req.getRequestURL());
 
 		HttpSession session = req.getSession();
 		UserEntity user = (UserEntity) session.getAttribute("user");

@@ -141,11 +141,21 @@ public class PortfolioDetailController {
 	}
 	
 	@GetMapping("settarget")
-	public String setTarget(@RequestParam("equityId") Integer equityId,Model model) {
-	    // Your GET method logic here
-		System.out.println("settarget---------"+equityId);
-		model.addAttribute("equityId",equityId);
-	    return "SetTarget";
+	public String setTarget(@RequestParam("equityId") Integer equityId,Model model,HttpSession session) {
+		Integer alertCount = alertRepo.allAlertsCount((Integer) session.getAttribute("userId"));
+		Integer premiumInd = (Integer) session.getAttribute("premiumInd");
+		if(premiumInd == 0 && alertCount < 5) {
+			System.out.println("settarget---------"+equityId);
+			model.addAttribute("equityId",equityId);
+		    return "SetTarget";
+		}
+		else if(premiumInd == 1 && alertCount < 15) {
+			System.out.println("settarget---------"+equityId);
+			model.addAttribute("equityId",equityId);
+			return "SetTarget";
+		}else {
+			return "redirect:/userdashboard";
+		}
 	}
 
 	@PostMapping("savealert")

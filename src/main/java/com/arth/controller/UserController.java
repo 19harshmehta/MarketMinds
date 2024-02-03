@@ -147,4 +147,10 @@ public class UserController
 		return "User-MyProfile";
 	}
 	
+	@GetMapping("/premium")
+	public String premium()
+	{
+		return "Premium";
+	}
+	
 }
