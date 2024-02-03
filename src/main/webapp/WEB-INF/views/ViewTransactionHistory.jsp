@@ -42,7 +42,7 @@
 				<td><%=transaction.getCreatedAt()%></td>
 			</tr>
 			<%
-			}
+			}x
 			%> 
 		</tbody>
 	</table>

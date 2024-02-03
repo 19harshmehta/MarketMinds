@@ -161,7 +161,8 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td> <a class="bi bi-arrow-up-circle btn btn-outline-primary" ></a></td>
+				<td> <a class="btn btn-outline-success" >Buy</a> &nbsp;
+				<a class="btn btn-outline-danger" >Sell</a></td>
 			</tr>
 			 
 			<%

@@ -30,25 +30,17 @@
 
 
 
-		<div class="container" style="padding: 1rem; ">
+		<div class="container" style="padding: 1rem;">
 			<div class="row justify-content-center">
-				<div
-					class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-
-
+				<div class="col-lg-4">
 					<div class="card mb-3">
-
 						<div class="card-body">
-
 							<div class="pt-8 pb-4">
 								<h5 class="card-title text-center pb-0 fs-4">Payment</h5>
 								<p class="text-center small">Enter your card number to pay</p>
 							</div>
-
 							<form id="payment-form">
-								
-
+							
 								<div class="col-12">
 									<label for="title" class="form-label">Plan</label> <input
 										class="form-control" type="text" value="<%=plan.getTitle()%>"
