@@ -10,12 +10,13 @@
 <title>Marketminds | ListPortfolio</title>
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="mystyle.css" rel="stylesheet">
 </head>
 
 <body>
 <%@include file="UserLayout.jsp" %>
-
 <main id="main" class="main">
+
 
     <div class="pagetitle">
       <h1>Portfolio</h1>
@@ -55,8 +56,7 @@
 			%> 
 		</tbody>
 	</table>
-	</main>
-
+</main>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -72,6 +72,28 @@
 		})
 	</script>
 
+<%String m = (String) request.getAttribute("m");System.out.println(m); %>
+<%if(m!=null){ %>
+<!-- Bootstrap Popup Overlay and Content -->
+<div id="popupOverlay" class="overlay">
+    <div class="popup">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <p class="lead"><%=m%></p>
+        <button class="btn btn-secondary" onclick="closePopup()">Close</button>
+    </div>
+</div>
+<script>
+    
+	function openPopup() {
+	    document.getElementById('popupOverlay').style.display = 'flex';
+	}
+    // Function to close the popup
+    function closePopup() {
+        document.getElementById('popupOverlay').style.display = 'none';
+    }
+    setTimeout(openPopup, 3000);
 
+</script>
+<%} %>
 </body>
 </html>

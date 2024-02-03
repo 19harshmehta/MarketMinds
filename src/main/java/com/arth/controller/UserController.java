@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arth.entity.FaqsEntity;
 import com.arth.entity.UserEntity;
+import com.arth.entity.UserPlanEntity;
 import com.arth.repository.AlertRepository;
 import com.arth.repository.EquityRepository;
 import com.arth.repository.FaqRepository;
 import com.arth.repository.PortfolioRepository;
+import com.arth.repository.UserPlanRepository;
 import com.arth.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -35,6 +37,9 @@ public class UserController
 	
 	@Autowired
 	FaqRepository faqRepo;
+	
+	@Autowired
+	UserPlanRepository userPlanRepo;
 	
 	@Autowired
 	PortfolioRepository portfolioRepo;
@@ -114,6 +119,13 @@ public class UserController
 	@GetMapping("/userdashboard")
 	public String userdashboard(Model model,HttpSession session)
 	{
+		Integer premiumInd = (Integer)session.getAttribute("premiumInd");
+		if(premiumInd==1) {
+			Optional<UserPlanEntity> opt = userPlanRepo.currentPlan((Integer)session.getAttribute("userId"));
+			Date endDate = opt.get().getEndDate();
+			String eDate = endDate.toString().substring(0, 11);
+			model.addAttribute("enddate", eDate);
+		}
 		Integer countPortfolio = portfolioRepo.countPortfolio((Integer)session.getAttribute("userId"));
 		Integer allAlertCount = alertRepo.allAlertsCount((Integer)session.getAttribute("userId"));
 		Integer comletedAlertCount = alertRepo.compleatedAlerts((Integer)session.getAttribute("userId"));
@@ -145,6 +157,12 @@ public class UserController
 	{
 		
 		return "User-MyProfile";
+	}
+	
+	@GetMapping("/premium")
+	public String premium()
+	{
+		return "Premium";
 	}
 	
 }

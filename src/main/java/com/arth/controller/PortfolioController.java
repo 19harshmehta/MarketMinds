@@ -1,6 +1,7 @@
 package com.arth.controller;
 
 import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,7 @@ public class PortfolioController {
 	PortfolioRepository portfolioRepo;
 
 	@GetMapping("/createportfolio")
-	public String createPortfolio(HttpSession session) {
-		
+	public String createPortfolio(HttpSession session,Model model) {
 		Integer portfolioCount = portfolioRepo.countPortfolio((Integer) session.getAttribute("userId"));
 		System.out.println(portfolioCount);
 		if((Integer)session.getAttribute("premiumInd")==0 && portfolioCount < 1 ) {
@@ -32,9 +32,15 @@ public class PortfolioController {
 			return "CreatePortfolio";
 		}
 		else {
-			return "Home";
-		}		
+
+			return "Premium";
+		}
 	}
+			
+
+		
+
+
 
 	@PostMapping("/saveportfolio")
 	public String savePortfolio(PortfolioEntity portfolio, HttpSession session) {

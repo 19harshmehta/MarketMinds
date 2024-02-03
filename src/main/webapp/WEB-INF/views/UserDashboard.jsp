@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="com.arth.entity.EquityEntity"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -11,7 +12,9 @@
 <title>Market Minds | UserDashboard</title>
 </head>
 <body>
-<%Integer premiumInd = (Integer)session.getAttribute("premiumInd"); %>
+<%Integer premiumInd = (Integer)session.getAttribute("premiumInd"); 
+	String endDate = (String) request.getAttribute("enddate");
+%>
 <%@include file="UserLayout.jsp" %>
 <%
 	List<EquityEntity> eqs = (List<EquityEntity>) request.getAttribute("eqs");
@@ -78,20 +81,20 @@
               </div>
               </a>
             </div><!-- End Premium Card -->
-
+<%if(premiumInd == 0){ %>
             <!-- Subscription Card -->
             <div class="col-xxl-3 col-xl-12">
             	<a href="/upgradetopremium">
               <div class="card info-card customers-card">
 				 <div class="card-body">
-                  <h5 class="card-title">Become a Pro?</h5>
+                  <h5 class="card-title">Upgrade To Premium?</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-bell"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>10</h6>
+                      <h6>Click Here!</h6>
                      
                     </div>
                   </div>
@@ -101,6 +104,30 @@
 
             </a>
             </div><!-- End Subscription Card -->
+            <%}else{ %>
+            <!-- Subscription Card -->
+            <div class="col-xxl-3 col-xl-12">
+            	<a href="/upgradetopremium">
+              <div class="card info-card customers-card">
+				 <div class="card-body">
+                  <h5 class="card-title">Premium User</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-bell"></i>
+                    </div>
+                    <div class="ps-3">Plan Expires In:
+                      <strong><h7><%=endDate%></h1></strong>
+                     
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </a>
+            </div><!-- End Subscription Card -->
+            <%} %>
              <!-- Complain Card -->
             <div class="col-xxl-3 col-md-6">
               <div class="card info-card sales-card">

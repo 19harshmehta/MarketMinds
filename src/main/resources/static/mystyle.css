@@ -91,3 +91,55 @@ body{
 	color: #052c65;
 	
 }
+
+.main1{
+	padding: 2rem;
+	background-color: rgb(204, 204, 204);
+}
+.mainbox{
+	height: 41rem;
+	width: auto;
+	border-radius: 2rem;	
+}
+
+.upgrade{
+	color: #052c65;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 2.5rem;
+	
+}
+.center{
+	align-items: center;
+}
+.box1{
+	background-color : rgb(196, 226, 255);
+	text-align: left;
+	padding: 1rem;
+	margin-left: 3rem;
+	border-radius: 2rem;
+	height: 32rem;
+	width: 40rem;
+}
+.box1 h1{
+		font-weight: bold;
+	}
+.box2{
+	background-color: rgb(14, 32, 194);
+	color: ghostwhite;
+	padding: 1rem;
+	text-align: left;
+	border-radius: 2rem;
+	margin-left: 3rem;
+	height: 32rem;
+	width: 40rem;
+}
+
+.box2 h1{
+	font-weight: bold;
+}
+.p1{
+	font-size: 1rem;
+}
+

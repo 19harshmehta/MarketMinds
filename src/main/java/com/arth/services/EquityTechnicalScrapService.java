@@ -152,7 +152,7 @@ public class EquityTechnicalScrapService {
     	String apiUrl = "https://ow-static-scanx.dhan.co/staticscanx/snimap";
 //        for(int i=1;i<=50;i++) {
         // Replace with your actual JSON parameters
-        String jsonParams = "{\r\n"
+    	String jsonParams = "{\r\n"
         		+ "    \r\n"
         		+ "    \"Data\": {\r\n"
         		+ "        \"Seg\": 1,\r\n"
@@ -264,13 +264,17 @@ public class EquityTechnicalScrapService {
     public void scrapTechnical() 
     {
     	String apiUrl = "https://ow-static-scanx.dhan.co/staticscanx/indicator";
-        // Replace with your actual JSON parameters
+    	List<EquityEntity> equities = eqRepo.findAll();
+    	
+    	// Replace with your actual JSON parameters
+    	for(EquityEntity eq : equities) {
+            
     	String jsonParams = "{\n" +
                 "    \"exchange\": \"NSE\",\n" +
-                "    \"segment\": \"E\",\n" +
-                "    \"security_id\": \"2885\",\n" +
+                "    \"segment\": \"A\",\n" +
+                "    \"security_id\": \""+eq.getSid()+"\",\n" +
                 "    \"isin\": \"INE002A01018\",\n" +
-                "    \"symbol\": \"RELIANCE\",\n" +
+                "    \"symbol\": \""+eq.getSymbol()+"\",\n" +
                 "    \"minute\": \"D\"\n" +
                 "}";
         try {
@@ -306,43 +310,70 @@ public class EquityTechnicalScrapService {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    System.out.println("Response: " + response.toString());
-                    String stringResponce = response.toString();
-                    
+//                    System.out.println("Response: " + response.toString());
+                    String stringResponse = response.toString();
+
                     try {
                         // Create ObjectMapper instance
                         ObjectMapper objectMapper = new ObjectMapper();
 
                         // Parse the string response into a JsonNode
-                        JsonNode jsonNode = objectMapper.readTree(stringResponce);
+                        JsonNode jsonNode = objectMapper.readTree(stringResponse);
 
-                        System.out.println("Parsed JSON:\n" + jsonNode.toPrettyString());
-                        }catch (Exception e) {
-							// TODO: handle exception
-						}
-                        
-                        
-                        
-                        
-                        
-                        // Now you can work with the JsonNode as needed
-//                        System.out.println("Parsed JSON Sucess:\n");
-                        
+                        // Accessing RSI and MACD values
+                        JsonNode indicatorNode = jsonNode.path("data").get(0).path("Indicator");
 
+                        for (JsonNode indicator : indicatorNode) {
+                            String indicatorName = indicator.path("Indicator").asText();
+                            Float value = (float) indicator.path("Value").asDouble();
+
+                            // Save technical indicators to database
+                            saveTechnicalIndicatorsToDatabase(eq.getEquityId(), indicatorName, value);
+                        }
                     } catch (Exception e) {
-                        e.printStackTrace();
-                    }   
-                
+//                        e.printStackTrace();
+                    }
+
+                    // Close connection
+                    connection.disconnect();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
-                System.out.println("Error: " + responseCode);
+                System.out.println("Response Code Error: " + responseCode);
             }
-
-            // Close connection
-            connection.disconnect();
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    }
     
+    private void saveTechnicalIndicatorsToDatabase(Integer eqId, String indicatorName, Float value) {
+        EqTechnicalEntity existingTechnical = eqTechRepo.findByEqId(eqId);
+
+        if (existingTechnical != null) {
+            // Update existing entry
+            if ("RSI(14)".equals(indicatorName)) {
+                existingTechnical.setRsi(value);
+            } else if ("MACD(12,26)".equals(indicatorName)) {
+                existingTechnical.setMacd(value);
+            }
+        } else {
+            // Create a new entry
+            EqTechnicalEntity newTechnical = new EqTechnicalEntity();
+            newTechnical.setEqId(eqId);
+            newTechnical.setRsi("RSI(14)".equals(indicatorName) ? value : null);
+            newTechnical.setMacd("MACD(12,26)".equals(indicatorName) ? value : null);
+            eqTechRepo.save(newTechnical);
+        }
+        
+    }
+
+
+
 }
+    	
+    
+    
+

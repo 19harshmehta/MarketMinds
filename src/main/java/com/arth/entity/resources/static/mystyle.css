@@ -1,0 +1,93 @@
+.error {
+    color: red;
+}
+body{
+	overflow: auto;
+}
+
+
+
+
+
+.text {
+    color: #012970;
+    font-size: 5rem;
+    position: absolute;
+    left: 5%;
+    animation-name: text;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+.text2 {
+    font-size: 2rem;
+}
+
+.box {
+    width: 60%;
+    height: 70%;
+    position: relative;
+    left: 15%;
+    top:0%; /* Adjust the top position to move the image up */
+    animation: example 4s forwards;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.box-updown{
+	
+	animation: continuousAnimation 5s infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.button {
+    font-size: 1.5rem;
+    padding: 1.5%;
+}
+
+@keyframes example {
+    0% { top: 100px; }
+    45% { top: -50px; }
+    100% { top: -50px; } /* Set the final position */
+}
+
+@keyframes text {
+    0% { top: 0px; }
+    45% { top: 85px; }
+    100% { top: 85px; } /* Set the final position */
+}
+
+
+@keyframes continuousAnimation {
+    0% { top: 0; } /* Start from the final position of 'example' animation */
+    50% { top: -50px; } /* Middle position, adjust as needed */
+    100% { top: 0; }
+    
+}
+
+
+#eqname {
+	font-size: 2.1rem;
+	
+}
+#secname{
+	font-size: 80%;
+}
+#price{
+	font-size: 2.2rem;
+}
+
+.flex{
+	display: flex;
+
+}
+
+.seperate{
+	margin-top: 2rem;
+}
+
+.detail{
+	color: #052c65;
+	
+}

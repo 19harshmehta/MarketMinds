@@ -52,7 +52,7 @@
                 <td><%= dataRow[5] %></td>
                 <td><%= dataRow[7] %></td>
                 <td><%= dataRow[9] %></td>
-                <td><a class="btn btn-outline-danger" href="removefromwatchlist?equityId=<%=dataRow[0]%>">Remove</a></td>
+                <td><a class="btn btn-outline-danger" href="deletewatchlist?equityId=<%=dataRow[0]%>">Remove</a></td>
             </tr>
         <% } %>
 		</tbody>
