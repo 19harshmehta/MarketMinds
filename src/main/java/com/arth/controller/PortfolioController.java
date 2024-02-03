@@ -1,6 +1,7 @@
 package com.arth.controller;
 
 import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,7 @@ public class PortfolioController {
 	PortfolioRepository portfolioRepo;
 
 	@GetMapping("/createportfolio")
-	public String createPortfolio(HttpSession session) {
-		
+	public String createPortfolio(HttpSession session,Model model) {
 		Integer portfolioCount = portfolioRepo.countPortfolio((Integer) session.getAttribute("userId"));
 		System.out.println(portfolioCount);
 		if((Integer)session.getAttribute("premiumInd")==0 && portfolioCount < 1 ) {
@@ -33,7 +33,19 @@ public class PortfolioController {
 			return "CreatePortfolio";
 		}
 		else {
-			return "redirect:/userdashboard";
+			
+			if((Integer)session.getAttribute("premiumInd")==0) {
+				String m1 = "You are not a Premium use <a href='/upgradetopremium'><strong>Click Here !</strong></a> to become a premium User";
+				System.out.println("else => if "+m1);
+				model.addAttribute("m",m1);
+				return "redirect:/listportfolio?m="+m1;
+		
+			}else {
+				String m2 = "You are trying to create more number of Portfolio then specified <a href='/upgradetopremium'><strong>Click Here !</strong></a> to Upgrade Your Plan";
+				System.out.println("else => if "+m2);
+				model.addAttribute("m", m2);
+				return "redirect:/listportfolio";
+			}
 		}
 		
 	}

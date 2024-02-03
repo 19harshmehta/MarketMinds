@@ -16,8 +16,21 @@ public class ScapTechnicalEqController
 	@GetMapping("/technicals")
 	public String scapTechnical()
 	{
-		eqTechnical.getSids();
-		eqTechnical.scrapTechnical();
+		try 
+		{
+			Runnable r = () ->{
+				
+			};
+			Thread t = new Thread(r);
+			t.start();
+			eqTechnical.scrapTechnical();
+			System.out.println("in Tech scrap");
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+//		eqTechnical.getSids();
+//		eqTechnical.scrapTechnical();
 		return "Home";
 	}
 }
