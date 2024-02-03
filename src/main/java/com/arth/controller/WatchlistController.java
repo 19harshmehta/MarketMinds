@@ -1,6 +1,7 @@
 package com.arth.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.arth.entity.EquityEntity;
 import com.arth.entity.WatchListEntity;
 import com.arth.repository.EquityRepository;
 import com.arth.repository.WatchListRepository;
@@ -31,6 +33,7 @@ public class WatchlistController
 		Integer userId = (Integer) session.getAttribute("userId");
 		watchEntity.setEquityId(equityId);
 		watchEntity.setUserId(userId);
+		watchEntity.setStatus(1);
 		watchRepo.save(watchEntity);
 		return "redirect:/userdashboard";
 	}
@@ -45,9 +48,18 @@ public class WatchlistController
 		return "WatchList";
 	}
 	
-	@PostMapping("watchlist/equityId")
+	/*@PostMapping("watchlist/equityId")
 	public String wishlist()
 	{
 		return "";
-	}
+	}*/
+	
+	/*@GetMapping("/deletewatchlist")
+	public String deleteWatchlist(@RequestParam("watchId") Integer equityId)
+	{
+		
+		
+		return "redirect:/watchlist";
+		
+	}*/
 }

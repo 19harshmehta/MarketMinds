@@ -18,4 +18,5 @@ public class WatchListEntity
 	private Integer watchId;
 	private Integer equityId;
 	private Integer userId;
+	private Integer status;
 }
