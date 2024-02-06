@@ -22,8 +22,7 @@ public class CommunityController
 		Integer userId = (Integer)session.getAttribute("userId");
 		Date currentDate = new Date();
 		comment.setPublishDate(currentDate);
-		comment.setUserId(userId);
 		communityRepo.save(comment);
-		return "redirect:/chart";
+		return "redirect:/chart?equityId="+comment.getEquityId();
 	}
 }

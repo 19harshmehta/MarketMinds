@@ -1,3 +1,4 @@
+<%@page import="com.arth.entity.CommunityEntity"%>
 <%@page import="com.arth.entity.EqTechnicalEntity"%>
 <%@page import="com.arth.entity.EquityEntity"%>
 <%@page import="java.util.List"%>
@@ -176,9 +177,58 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
 	</table>
 	<br><h3 class="detail"><b>News</b></h3><br>
 	<br><h3 class="detail"><b>Community</b></h3><br>
-	<div>
-	<textarea class="form-control" placeholder="comment your thoughts on above stock..."></textarea>
-	</div>
+	<%List<CommunityEntity> cmts = (List<CommunityEntity>)request.getAttribute("comments");%>
+	
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card p-4">
+        <h3 class="card-title">Post Your views here</h3>
+          <div class="card-body p-2" style="height: 15rem; overflow-y:auto; overflow-x:hidden;">
+            
+            
+			<%for(CommunityEntity cmt : cmts){ %>
+            <div class="row">
+              <div class="col">
+                <div class="d-flex flex-start mb-3">
+                  <img class="rounded-circle shadow-1-strong me-3"
+                    src="assets/img/usercommunityavtar.jpg" alt="avatar" width="50"
+                    height="50" />
+                  <div class="flex-grow-1 flex-shrink-1">
+                    <div class="card-text">
+                      <div class="d-flex justify-content-between align-items-center">
+                      <%if(cmt.getUser().getRole().getRoleId() == 3) {%>
+                      
+                        <p class="mb-1" style="background-color: yellow;">
+                        <%=cmt.getUser().getFirstName()%> <%=cmt.getUser().getLastName()%> posted on - <span class="small"><%= new java.text.SimpleDateFormat("HH:mm").format(cmt.getPublishDate()) %></span>
+                        </p>
+                        <%}else{ %>
+                        <p class="mb-1">
+                        <%=cmt.getUser().getFirstName()%> <%=cmt.getUser().getLastName()%> posted on - <span class="small"><%= new java.text.SimpleDateFormat("HH:mm").format(cmt.getPublishDate()) %></span>
+                        </p>
+                        <%} %>
+                      </div>
+                      <p class="small mb-0">
+                        <%=cmt.getComment()%>
+                      </p>
+                    </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <%} %>
+              </div>
+              	<!-- Comment Input Form -->
+				<div class="comment-input">
+				    <form action="postcommunity" method="post">
+				        <textarea class="form-control" name="comment" placeholder="Comment your thoughts on the above stock..."></textarea>
+				        <input type="hidden" name="user.userId" value="${userId}">
+				        <input type="hidden" name="equityId" value="<%=eqs.getEquityId()%>"/>
+				        <button type="submit" class="btn btn-primary">Post</button>
+				    </form>
+				</div>
+            </div>
+          </div>
+        </div>
 	
    	 
    </main>
