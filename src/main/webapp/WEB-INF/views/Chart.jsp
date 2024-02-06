@@ -1,3 +1,4 @@
+<%@page import="com.arth.entity.CommunityEntity"%>
 <%@page import="com.arth.entity.EqTechnicalEntity"%>
 <%@page import="com.arth.entity.EquityEntity"%>
 <%@page import="java.util.List"%>
@@ -15,6 +16,30 @@
     filter: blur(5px); /* Adjust blur intensity as needed */
 
   }
+  /* Style for the comments section */
+        .comments-section {
+            margin-top: 20px;
+        }
+
+        .comment {
+            background-color: #f1f1f1;
+            border-radius: 20px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Style for the comment input form */
+        .comment-input {
+            margin-top: 20px;
+        }
+
+        .comment-input textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
 </style>
 </head>
 <body >
@@ -180,11 +205,56 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
 			</tr>
 		</thead>
 	</table>
+	<%List<CommunityEntity> cmts = (List)request.getAttribute("comments");%>
 	<br><h3 class="detail"><b>News</b></h3><br>
 	<br><h3 class="detail"><b>Community</b></h3><br>
-	<div>
-	<textarea class="form-control" placeholder="comment your thoughts on above stock..."></textarea>
-	</div>
+	<div class="container my-5 py-5">
+    <div class="row  justify-content-center">
+      <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="card">
+          <div class="card-body p-4">
+            <h4 class="text-center mb-4 pb-2">Community Post Your views here</h4>
+<%for(CommunityEntity cmt : cmts){ %>
+            <div class="row">
+              <div class="col">
+                <div class="d-flex flex-start">
+                  <img class="rounded-circle shadow-1-strong me-3"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" width="65"
+                    height="65" />
+                  <div class="flex-grow-1 flex-shrink-1">
+                    <div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-1">
+                         <%=cmt.getEquityId() %> <span class="small">- 2 hours ago</span>
+                        </p>
+                        <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
+                      </div>
+                      <p class="small mb-0">
+                        <%=cmt.getComment()%>
+                      </p>
+                    </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <%} %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+<!-- Comment Input Form -->
+<div class="comment-input">
+    <form action="postcommunity" method="post">
+        <textarea class="form-control" name="comment" placeholder="Comment your thoughts on the above stock..."></textarea>
+        <br>
+        <input type="hidden" name="equityId" value="<%=eqs.getEquityId()%>"/>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+</div>
+
 	
    	 
    </main>

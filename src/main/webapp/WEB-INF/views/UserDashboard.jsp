@@ -117,7 +117,7 @@
                       <i class="bi bi-bell"></i>
                     </div>
                     <div class="ps-3">Plan Expires In:
-                      <strong><h7><%=endDate%></h1></strong>
+                      <%=endDate%>
                      
                     </div>
                   </div>
