@@ -13,10 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.arth.entity.CommunityEntity;
 import com.arth.entity.EquityPriceDataEntity;
+import com.arth.repository.CommunityRepository;
 import com.arth.repository.EqTechRepository;
 import com.arth.repository.EquityPriceDataRepository;
 import com.arth.repository.EquityRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -30,14 +34,19 @@ public class ChartController {
 	
 	@Autowired
 	EqTechRepository eqtech;
+	
+	@Autowired
+	CommunityRepository communityRepo;
 
 	
 	@GetMapping("/chart")
-	public String chart(@RequestParam("equityId") Integer equityId,Model model) {
+	public String chart(@RequestParam("equityId") Integer equityId,Model model,HttpSession sessiion) {
 
 		//equityId -> equity detail 
 		//daily record -> date price 
+		Integer userId = (Integer) sessiion.getAttribute("userId");
 		List<EquityPriceDataEntity> dailyData = eqDataRepo.findByEquityId(equityId);
+		List<CommunityEntity> comments = communityRepo.getAllComments(userId, equityId);
 		ArrayList<Double> prices = new ArrayList<>();
 		ArrayList<String> date = new ArrayList<>();
 //		prices.add(0.0);
@@ -54,7 +63,7 @@ public class ChartController {
 		model.addAttribute("prices",prices);
 		model.addAttribute("dates",date);
 		
-		
+		model.addAttribute("comments",comments);
 		model.addAttribute("eqs",eqRepo.findByEquityId(equityId));
 		model.addAttribute("tech",eqtech.findByEqId(equityId));
 		return "Chart";//jsp 

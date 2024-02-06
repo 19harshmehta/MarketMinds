@@ -72,28 +72,6 @@
 		})
 	</script>
 
-<%String m = (String) request.getAttribute("m");System.out.println(m); %>
-<%if(m!=null){ %>
-<!-- Bootstrap Popup Overlay and Content -->
-<div id="popupOverlay" class="overlay">
-    <div class="popup">
-        <span class="close-btn" onclick="closePopup()">&times;</span>
-        <p class="lead"><%=m%></p>
-        <button class="btn btn-secondary" onclick="closePopup()">Close</button>
-    </div>
-</div>
-<script>
-    
-	function openPopup() {
-	    document.getElementById('popupOverlay').style.display = 'flex';
-	}
-    // Function to close the popup
-    function closePopup() {
-        document.getElementById('popupOverlay').style.display = 'none';
-    }
-    setTimeout(openPopup, 3000);
 
-</script>
-<%} %>
 </body>
 </html>
