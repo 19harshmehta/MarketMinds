@@ -3,6 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	.fade-in {
+  animation: fadeIn ease 1.5s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
 <meta charset="ISO-8859-1">
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -43,7 +58,7 @@
 
 	<div class="col-lg-12">
 	
-			<div class="card mainbox" >
+			<div class="card mainbox fade-in">
 			<div class="card-body" >
 			
 	              <h2 class="upgrade">UPGRADE TO PREMIUM</h2>
