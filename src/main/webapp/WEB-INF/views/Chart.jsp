@@ -207,7 +207,6 @@ String fname = (String) request.getAttribute("name");
 		</thead>
 	</table>
 	<%List<CommunityEntity> cmts = (List<CommunityEntity>)request.getAttribute("comments");%>
-	<br><h3 class="detail"><b>News</b></h3><br>
 	<br><h3 class="detail"><b>Community</b></h3><br>
 	
     <div class="row">

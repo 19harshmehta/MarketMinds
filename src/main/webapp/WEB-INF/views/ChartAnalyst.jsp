@@ -175,7 +175,6 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
 			</tr>
 		</thead>
 	</table>
-	<br><h3 class="detail"><b>News</b></h3><br>
 	<br><h3 class="detail"><b>Community</b></h3><br>
 	<%List<CommunityEntity> cmts = (List<CommunityEntity>)request.getAttribute("comments");%>
 	
