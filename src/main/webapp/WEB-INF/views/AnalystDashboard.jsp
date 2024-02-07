@@ -77,8 +77,16 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td> <a class="btn btn-outline-success" >Buy</a> &nbsp;
-				<a class="btn btn-outline-danger" >Sell</a></td>
+				<%if(eq.getBuysellInd().equals(1)){ %> 
+				<td><a class="btn btn-success" href="setbuyind?equityId=<%=eq.getEquityId()%>">Buy</a> &nbsp;
+				<a class="btn btn-outline-danger" href="setsellind?equityId=<%=eq.getEquityId()%>" >Sell</a></td>
+				<%}else if(eq.getBuysellInd().equals(2)) {%>
+				<td><a class="btn btn-outline-success" href="setbuyind?equityId=<%=eq.getEquityId()%>">Buy</a> &nbsp;
+				<a class="btn btn-danger" href="setsellind?equityId=<%=eq.getEquityId()%>" >Sell</a></td>
+				<%}else { %>
+				<td><a class="btn btn-outline-success" href="setbuyind?equityId=<%=eq.getEquityId()%>">Buy</a> &nbsp;
+				<a class="btn btn-outline-danger" href="setsellind?equityId=<%=eq.getEquityId()%>" >Sell</a></td>
+				<%} %>
 			</tr>
 			 
 			<%

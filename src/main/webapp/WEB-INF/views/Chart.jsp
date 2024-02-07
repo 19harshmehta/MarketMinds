@@ -11,6 +11,7 @@
 <meta charset="ISO-8859-1">
 <title>Chart</title>
 <link href="mystyle.css" rel="stylesheet">
+ <link href="assets/img/logo.png" rel="icon">
 <style>
   .blurred-content {
     filter: blur(5px); /* Adjust blur intensity as needed */
@@ -50,6 +51,7 @@ ArrayList<Double> prices = (ArrayList<Double>)request.getAttribute("prices");
 ArrayList<String> date = (ArrayList<String>)request.getAttribute("dates");
 EquityEntity eqs = (EquityEntity)request.getAttribute("eqs");
 EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
+String fname = (String) request.getAttribute("name");
 %>
  <div class="pagetitle">
      
@@ -170,7 +172,13 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
 				<td><%=eqs.getPrice()%></td>
 				
 				<th>Buy/Sell Indicator</th>
-				<td><%=eqs.getBuysellInd()%></td>
+				<%if(eqs.getBuysellInd().equals(1)) { %>
+					<td class="blurred-content">Buy</td>
+				<%}else if(eqs.getBuysellInd().equals(2)){ %>
+					<td class="blurred-content">Sell</td>
+				<%}else { %>
+					<td class="blurred-content">Neutral</td>
+				<%} %>
 			</tr>
 				<tr>
 				<th>Today Open</th>
@@ -205,29 +213,37 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
 			</tr>
 		</thead>
 	</table>
-	<%List<CommunityEntity> cmts = (List)request.getAttribute("comments");%>
+	<%List<CommunityEntity> cmts = (List<CommunityEntity>)request.getAttribute("comments");%>
 	<br><h3 class="detail"><b>News</b></h3><br>
 	<br><h3 class="detail"><b>Community</b></h3><br>
-	<div class="container my-5 py-5">
-    <div class="row  justify-content-center">
-      <div class="col-md-12 col-lg-12 col-xl-12">
-        <div class="card">
-          <div class="card-body p-4">
-            <h4 class="text-center mb-4 pb-2">Community Post Your views here</h4>
-<%for(CommunityEntity cmt : cmts){ %>
+	
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card p-4">
+        <h3 class="card-title">Post Your views here</h3>
+          <div class="card-body p-2" style="height: 15rem; overflow-y:auto; overflow-x:hidden;">
+            
+            
+			<%for(CommunityEntity cmt : cmts){ %>
             <div class="row">
               <div class="col">
-                <div class="d-flex flex-start">
+                <div class="d-flex flex-start mb-3">
                   <img class="rounded-circle shadow-1-strong me-3"
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" width="65"
-                    height="65" />
+                    src="assets/img/usercommunityavtar.jpg" alt="avatar" width="50"
+                    height="50" />
                   <div class="flex-grow-1 flex-shrink-1">
-                    <div>
+                    <div class="card-text">
                       <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-1">
-                         <%=cmt.getEquityId() %> <span class="small">- 2 hours ago</span>
+                      <%if(cmt.getUser().getRole().getRoleId() == 3) {%>
+                      
+                        <p class="mb-1" style="background-color: yellow;">
+                        <%=cmt.getUser().getFirstName()%> <%=cmt.getUser().getLastName()%> posted on - <span class="small"><%= new java.text.SimpleDateFormat("HH:mm").format(cmt.getPublishDate()) %></span>
                         </p>
-                        <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
+                        <%}else{ %>
+                        <p class="mb-1">
+                        <%=cmt.getUser().getFirstName()%> <%=cmt.getUser().getLastName()%> posted on - <span class="small"><%= new java.text.SimpleDateFormat("HH:mm").format(cmt.getPublishDate()) %></span>
+                        </p>
+                        <%} %>
                       </div>
                       <p class="small mb-0">
                         <%=cmt.getComment()%>
@@ -239,24 +255,19 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
                 </div>
                 <%} %>
               </div>
+              	<!-- Comment Input Form -->
+				<div class="comment-input">
+				    <form action="postcommunity" method="post">
+				        <textarea class="form-control" name="comment" placeholder="Comment your thoughts on the above stock..."></textarea>
+				        <input type="hidden" name="user.userId" value="${userId}">
+				        <input type="hidden" name="equityId" value="<%=eqs.getEquityId()%>"/>
+				        <button type="submit" class="btn btn-primary">Post</button>
+				    </form>
+				</div>
             </div>
           </div>
         </div>
-      </div>
-    
-
-<!-- Comment Input Form -->
-<div class="comment-input">
-    <form action="postcommunity" method="post">
-        <textarea class="form-control" name="comment" placeholder="Comment your thoughts on the above stock..."></textarea>
-        <br>
-        <input type="hidden" name="equityId" value="<%=eqs.getEquityId()%>"/>
-        <button type="submit" class="btn btn-primary">Post</button>
-    </form>
-</div>
-
-	
-   	 
+	 
    </main>
 </body>
 </html>
