@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Chart</title>
+<title>MarketMinds | Chart</title>
 <link href="mystyle.css" rel="stylesheet">
  <link href="assets/img/logo.png" rel="icon">
 <style>
@@ -44,6 +44,7 @@
 </style>
 </head>
 <body >
+<%Integer premiumInd  = (Integer)session.getAttribute("premiumInd");%>
 <%@include file="UserLayout.jsp" %>
 <main id="main" class="main">
 <% 
@@ -172,13 +173,18 @@ String fname = (String) request.getAttribute("name");
 				<td><%=eqs.getPrice()%></td>
 				
 				<th>Buy/Sell Indicator</th>
-				<%if(eqs.getBuysellInd().equals(1)) { %>
-					<td class="blurred-content">Buy</td>
+				<%if(premiumInd!=1){ %>
+				
+					<td class="blurred-content">0</td>
+			<% }else{%>
+			<%if(eqs.getBuysellInd().equals(1)) { %>
+					<td>Buy</td>
 				<%}else if(eqs.getBuysellInd().equals(2)){ %>
-					<td class="blurred-content">Sell</td>
+					<td>Sell</td>
 				<%}else { %>
-					<td class="blurred-content">Neutral</td>
+					<td>Neutral</td>
 				<%} %>
+			<%} %>
 			</tr>
 				<tr>
 				<th>Today Open</th>
@@ -202,15 +208,32 @@ String fname = (String) request.getAttribute("name");
 				
 				<th>52W Low</th>
 				<td><%=eqs.getLow52() %></td>
-			</tr>
-			
+			</tr><%if(tech!= null){ %>
+			<%if(premiumInd==1){ %>
 			<tr>
 				<th>RSI</th>
-				<td class="blurred-content"><%=tech.getRsi()%></td>
+				<td><%=tech.getRsi()%></td>
 				
 				<th>MACD</th>
-				<td class="blurred-content"><%=tech.getMacd()%></td>
+				<td><%=tech.getMacd()%></td>
+			</tr><%}else{ %>
+			<tr>
+				<th>RSI</th>
+				<td class="blurred-content">0.0</td>
+				
+				<th>MACD</th>
+				<td class="blurred-content">0.0</td>
 			</tr>
+			<%} %>
+			<%}else{ %>
+				<tr>
+				<th>RSI</th>
+				<td>-</td>
+				
+				<th>MACD</th>
+				<td>-</td>
+			</tr>
+			<%} %>
 		</thead>
 	</table>
 	<%List<CommunityEntity> cmts = (List<CommunityEntity>)request.getAttribute("comments");%>

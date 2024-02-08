@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arth.entity.EquityEntity;
 import com.arth.repository.EquityRepository;
+import com.arth.services.EquityScrapService;
 
 
 @Controller
@@ -22,6 +23,8 @@ public class EquityController
 	
 	@Autowired
 	EquityRepository eqRepo;
+	@Autowired
+	EquityScrapService eqService;
 	
 	
 	@GetMapping("/listequity")
@@ -77,6 +80,19 @@ public class EquityController
 		return "redirect:/analystdashboard";
 	}
 	
+	@GetMapping("/today")
+	public String temp() 
+	{
+		eqService.scrapTodayOpen();
+		return "Home";
+	}
+	
+	@GetMapping("/close")
+	public String temp2() 
+	{
+		eqService.scrapTodayClose();
+		return "Home";
+	}
 	
 	
 	

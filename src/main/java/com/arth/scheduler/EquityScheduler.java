@@ -39,19 +39,7 @@ public class EquityScheduler
 	
 	@Autowired
     EquityRepository equityRepo;
-	
-	
-	
-//	@Scheduled(fixedRate = 1000 )
-//	public void demoSchedule() {
-//		System.out.println("hello world"+new Date());
-//	}
-	
-//	@Scheduled(cron = "0 */1 * * * *")
-	public void  demo(SchedulerEntity schedulerEntity) {
-		System.out.println("hello");
-	}
-	
+		
 	@Scheduled(cron = "0 * 9-15 * * *")
 	public void scrapEquityScheduler() 
 	{
@@ -66,6 +54,45 @@ public class EquityScheduler
 			t.start();
 			
 			System.out.println("in scrap");
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	@Scheduled(cron = "0 30 9 * * *")
+	public void todayOpen() 
+	{
+		
+		
+		try 
+		{
+			Runnable r = () ->{
+			eqScrapService.scrapTodayOpen();
+			};
+			Thread t = new Thread(r);
+			t.start();
+			
+			System.out.println("in Today scrap");
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
+	@Scheduled(cron = "0 0 16 * * *")
+	public void todayClose() 
+	{
+		
+		
+		try 
+		{
+			Runnable r = () ->{
+				eqScrapService.scrapTodayClose();;
+			};
+			Thread t = new Thread(r);
+			t.start();
+			
+			System.out.println("in Today Close scrap");
 		}catch(Exception e) {
 			e.printStackTrace();
 			
@@ -105,7 +132,7 @@ public class EquityScheduler
 		try 
 		{
 			Runnable r = () ->{
-//				eqTechnical.scrapTechnicalIndicators();
+				eqTechnical.scrapTechnical();
 			};
 			Thread t = new Thread(r);
 			t.start();
