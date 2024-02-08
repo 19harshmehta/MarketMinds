@@ -50,7 +50,13 @@ public class EquityController
 	{
 		Optional<EquityEntity> eqOpt = eqRepo.findById(equityId);
 		EquityEntity eqs = eqOpt.get();
-		eqs.setBuysellInd(1);
+		if(eqs.getBuysellInd()==1)
+		{
+			eqs.setBuysellInd(0);
+		}
+		else {
+			eqs.setBuysellInd(1);
+		}
 		eqRepo.save(eqs);
 		return "redirect:/analystdashboard";
 	}
@@ -60,7 +66,13 @@ public class EquityController
 	{
 		Optional<EquityEntity> eqOpt = eqRepo.findById(equityId);
 		EquityEntity eqs = eqOpt.get();
-		eqs.setBuysellInd(2);
+		if(eqs.getBuysellInd()==2)
+		{
+			eqs.setBuysellInd(0);
+		}
+		else {
+			eqs.setBuysellInd(2);
+		}
 		eqRepo.save(eqs);
 		return "redirect:/analystdashboard";
 	}
