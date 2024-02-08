@@ -92,7 +92,7 @@ public class EquityScheduler
 		}
 	}
 	
-//	@Scheduled(cron = "0 */30 * * * *")
+	@Scheduled(cron = "0 */30 * * * *")
 	public void scrapTechnical()
 	{
 		LocalDateTime now = LocalDateTime.now();

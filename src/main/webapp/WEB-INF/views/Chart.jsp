@@ -11,6 +11,7 @@
 <meta charset="ISO-8859-1">
 <title>Chart</title>
 <link href="mystyle.css" rel="stylesheet">
+ <link href="assets/img/logo.png" rel="icon">
 <style>
   .blurred-content {
     filter: blur(5px); /* Adjust blur intensity as needed */
@@ -171,7 +172,13 @@ String fname = (String) request.getAttribute("name");
 				<td><%=eqs.getPrice()%></td>
 				
 				<th>Buy/Sell Indicator</th>
-				<td><%=eqs.getBuysellInd()%></td>
+				<%if(eqs.getBuysellInd().equals(1)) { %>
+					<td class="blurred-content">Buy</td>
+				<%}else if(eqs.getBuysellInd().equals(2)){ %>
+					<td class="blurred-content">Sell</td>
+				<%}else { %>
+					<td class="blurred-content">Neutral</td>
+				<%} %>
 			</tr>
 				<tr>
 				<th>Today Open</th>

@@ -11,6 +11,7 @@
 <meta charset="ISO-8859-1">
 <title>Chart</title>
 <link href="mystyle.css" rel="stylesheet">
+<link href="assets/img/logo.png" rel="icon">
 </head>
 <body >
 <%@include file="AnalystLayout.jsp" %>
@@ -140,7 +141,13 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
 				<td><%=eqs.getPrice()%></td>
 				
 				<th>Buy/Sell Indicator</th>
-				<td><%=eqs.getBuysellInd()%></td>
+				<%if(eqs.getBuysellInd().equals(1)) { %>
+					<td>Buy</td>
+				<%}else if(eqs.getBuysellInd().equals(2)){ %>
+					<td>Sell</td>
+				<%}else { %>
+					<td>Neutral</td>
+				<%} %>
 			</tr>
 				<tr>
 				<th>Today Open</th>

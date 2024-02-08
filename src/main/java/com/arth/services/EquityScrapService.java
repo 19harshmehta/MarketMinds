@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.arth.dto.ResponseDtoList;
@@ -21,16 +23,43 @@ import com.arth.repository.EquityRepository;
 import com.arth.repository.SchedulerLogRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.annotation.PostConstruct;
+
+
 
 @Service
 public class EquityScrapService 
 {
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+
 	@Autowired
 	EquityRepository eqRepo;
 	
 	@Autowired
 	SchedulerLogRepository scheduleLogRepo;
 
+	
+	@PostConstruct
+    public void initializeEquityData() {
+        // Set today_open and today_close values for 'Adani Total Gas Ltd' (replace with your actual equity_name)
+        String equityName = "Adani Total Gas Ltd";
+        double openingValue =  111;
+
+        // Check if today_open is not already set
+        Optional<EquityEntity> existingEquity =  eqRepo.findByEquityName(equityName);
+        if (existingEquity.isPresent() && existingEquity.get().getTodayOpen() == 0.0) {
+            // Update today_open only if it is not already set
+            String updateOpenQuery = "UPDATE equity SET today_open = ? WHERE equity_name = ?";
+            jdbcTemplate.update(updateOpenQuery, openingValue, equityName);
+        }
+
+        // Perform any other initialization logic here
+        scrapPriceForDb();
+    }
+	
+	
+	
 	public Root scrapEquity(int lrr) {
 		Root root = null;
 		String apiUrl = "https://www.etmoney.com/stocks/list-of-stocks";
@@ -78,8 +107,13 @@ public class EquityScrapService
 		}
 		return root;
 	}
+	
 
-	// this is main method wich invoke above scrap method
+
+	
+	
+	
+	
 	public void scrapPriceForDb() {
 		ArrayList<EquityEntity> newEqty = new ArrayList<>();
 		ArrayList<EquityEntity> updateEqty = new ArrayList<>();
@@ -114,7 +148,7 @@ public class EquityScrapService
 						dbEq.setTodayClose(0d);
 						dbEq.setTodayHigh(0d);
 						dbEq.setTodayLow(0.0);
-						dbEq.setTodayOpen(0.0);
+						dbEq.setTodayOpen(eqty.getCp());
 						newEqty.add(dbEq);
 					} else {
 						// update
@@ -122,6 +156,7 @@ public class EquityScrapService
 						dbEqty.setPrice(eqty.getCp());
 						dbEqty.setHigh52(eqty.get_52h());
 						dbEqty.setLow52(eqty.get_52l());
+						dbEqty.setTodayOpen(eqty.getCp());						
 						updateEqty.add(dbEqty);
 					}
 

@@ -17,6 +17,7 @@ public interface EquityRepository extends JpaRepository<EquityEntity, Integer>
 	Optional<EquityEntity> findBySymbol(String symbol);
 	EquityEntity findByEquityId(Integer eqId);
 	List<EquityEntity> findAll();
+	Optional<EquityEntity> findByEquityName(String equityName);
 //	Optional<EquityEntity> findById(Integer eqId);
 //	Optional<EquityEntity> findByEqId(Integer eqId);
 //	List<EquityEntity> findByEquityName(String equityName);
