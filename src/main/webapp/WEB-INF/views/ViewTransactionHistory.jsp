@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>MarketMinds | Transaction History</title>
+<title>MarketMinds | Transaction </title>
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 <link rel="stylesheet"
@@ -16,11 +16,22 @@
 <link rel="stylesheet" href="mystyle.css">
 </head>
 <body>
-<h2 align="center">List Past Transactions</h2>
+<%@include file="UserLayout.jsp" %>
+<main id="main" class="main">
+<div class="pagetitle">
+      <h1>Transaction</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+          <li class="breadcrumb-item active">Transaction</li>
+        </ol>
+      </nav>
+    </div>
+
 <%
 	List<TransactionEntity> transactions = (List<TransactionEntity>) request.getAttribute("transactions");
 %>
-	<table class="table table-borderd table-hover"> 
+	<table class="table table-borderd table-hover" id="trans"> 
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -42,9 +53,22 @@
 				<td><%=transaction.getCreatedAt()%></td>
 			</tr>
 			<%
-			}x
+			}
 			%> 
 		</tbody>
 	</table>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+		<script>
+		$(document).ready(function() {
+			const datatables = document.getElementById("trans");
+			new simpleDatatables.DataTable(datatables, {
+				perPageSelect : [10,50,100,200,'All' ],
+				perPage: 10
+			});
+		})
+	</script>
+</main>
 </body>
 </html>
