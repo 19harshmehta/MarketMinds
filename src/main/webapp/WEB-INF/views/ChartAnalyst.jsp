@@ -190,6 +190,7 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
             <div class="row">
               <div class="col">
                 <div class="d-flex flex-start mb-3">
+                
                   <img class="rounded-circle shadow-1-strong me-3"
                     src="assets/img/usercommunityavtar.jpg" alt="avatar" width="50"
                     height="50" />
