@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-
+<link href="assets/img/logo.png" rel="icon">
 <title>MarketMinds</title>
   
 </head>

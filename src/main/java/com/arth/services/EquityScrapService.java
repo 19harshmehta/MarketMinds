@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.arth.dto.ResponseDtoList;
@@ -21,16 +23,21 @@ import com.arth.repository.EquityRepository;
 import com.arth.repository.SchedulerLogRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.annotation.PostConstruct;
+
+
 
 @Service
 public class EquityScrapService 
 {
+	
 	@Autowired
 	EquityRepository eqRepo;
 	
 	@Autowired
 	SchedulerLogRepository scheduleLogRepo;
 
+	
 	public Root scrapEquity(int lrr) {
 		Root root = null;
 		String apiUrl = "https://www.etmoney.com/stocks/list-of-stocks";
@@ -78,8 +85,13 @@ public class EquityScrapService
 		}
 		return root;
 	}
+	
 
-	// this is main method wich invoke above scrap method
+
+	
+	
+	
+	
 	public void scrapPriceForDb() {
 		ArrayList<EquityEntity> newEqty = new ArrayList<>();
 		ArrayList<EquityEntity> updateEqty = new ArrayList<>();
@@ -111,10 +123,10 @@ public class EquityScrapService
 						dbEq.setPrice(eqty.getCp());
 						dbEq.setSeries("NA");
 						dbEq.setSymbol(eqty.getSc());
-						dbEq.setTodayClose(0d);
-						dbEq.setTodayHigh(0d);
-						dbEq.setTodayLow(0.0);
-						dbEq.setTodayOpen(0.0);
+//						dbEq.setTodayClose(0d);
+//						dbEq.setTodayHigh(0d);
+//						dbEq.setTodayLow(0.0);
+//						dbEq.setTodayOpen(eqty.getCp());
 						newEqty.add(dbEq);
 					} else {
 						// update
@@ -122,6 +134,14 @@ public class EquityScrapService
 						dbEqty.setPrice(eqty.getCp());
 						dbEqty.setHigh52(eqty.get_52h());
 						dbEqty.setLow52(eqty.get_52l());
+//						dbEqty.setTodayOpen(eqty.getCp());
+						double currentPrice = eqty.getCp();
+			            if (currentPrice > dbEqty.getTodayHigh()) {
+			                dbEqty.setTodayHigh(currentPrice);
+			            }
+			            if (currentPrice < dbEqty.getTodayLow() || dbEqty.getTodayLow() == 0.0) {
+			                dbEqty.setTodayLow(currentPrice);
+			            }
 						updateEqty.add(dbEqty);
 					}
 
@@ -145,14 +165,104 @@ public class EquityScrapService
 	}
 	
 	
-	public void scrapForTechnical() 
-	{
+	public void scrapTodayOpen() {
+		ArrayList<EquityEntity> newEqty = new ArrayList<>();
+		ArrayList<EquityEntity> updateEqty = new ArrayList<>();
+		SchedulerEntity schedulerEntity = new SchedulerEntity();
+		Date datetime = new Date();
 
+		try {
+			for (int i = 0; i <= 1950; i = i + 50) {
+				Root root = scrapEquity(i);
+
+				for (ResponseDtoList eqty : root.getResponseDTOList()) {
+					String symbol = eqty.getSc();
+					Optional<EquityEntity> opEq = null;
+					try {
+						opEq = eqRepo.findBySymbol(symbol);
+					} catch (Exception e) {
+						System.out.println(symbol);
+						throw new Exception();
+					}
+					if (opEq.isEmpty()) {
+						// new
+						EquityEntity dbEq = new EquityEntity();
+						dbEq.setTodayOpen(eqty.getCp());
+						newEqty.add(dbEq);
+					} else {
+						// update
+						EquityEntity dbEqty = opEq.get();
+						dbEqty.setTodayOpen(eqty.getCp());						
+						updateEqty.add(dbEqty);
+					}
+
+				}
+				eqRepo.saveAll(newEqty);
+				eqRepo.saveAll(updateEqty);
+				schedulerEntity.setSchedulerName("Today open");
+				schedulerEntity.setStatusInd(0);
+				schedulerEntity.setScheduleLogTime(datetime);
+				scheduleLogRepo.save(schedulerEntity);
+
+			}
+		} catch (Exception e) {
+			schedulerEntity.setSchedulerName("Today Open");
+			schedulerEntity.setStatusInd(1);
+			schedulerEntity.setScheduleLogTime(datetime);
+			scheduleLogRepo.save(schedulerEntity);
+			System.out.println("Error in scrap");
+			e.printStackTrace();
+		}
+	}
+	public void scrapTodayClose() {
+		ArrayList<EquityEntity> newEqty = new ArrayList<>();
+		ArrayList<EquityEntity> updateEqty = new ArrayList<>();
+		SchedulerEntity schedulerEntity = new SchedulerEntity();
+		Date datetime = new Date();
+
+		try {
+			for (int i = 0; i <= 1950; i = i + 50) {
+				Root root = scrapEquity(i);
+
+				for (ResponseDtoList eqty : root.getResponseDTOList()) {
+					String symbol = eqty.getSc();
+					Optional<EquityEntity> opEq = null;
+					try {
+						opEq = eqRepo.findBySymbol(symbol);
+					} catch (Exception e) {
+						System.out.println(symbol);
+						throw new Exception();
+					}
+					if (opEq.isEmpty()) {
+						// new
+						EquityEntity dbEq = new EquityEntity();
+						dbEq.setTodayClose(eqty.getCp());
+						newEqty.add(dbEq);
+					} else {
+						// update
+						EquityEntity dbEqty = opEq.get();
+						dbEqty.setTodayClose(eqty.getCp());						
+						updateEqty.add(dbEqty);
+					}
+
+				}
+				eqRepo.saveAll(newEqty);
+				eqRepo.saveAll(updateEqty);
+				schedulerEntity.setSchedulerName("Today Close");
+				schedulerEntity.setStatusInd(0);
+				schedulerEntity.setScheduleLogTime(datetime);
+				scheduleLogRepo.save(schedulerEntity);
+
+			}
+		} catch (Exception e) {
+			schedulerEntity.setSchedulerName(" Today Close");
+			schedulerEntity.setStatusInd(1);
+			schedulerEntity.setScheduleLogTime(datetime);
+			scheduleLogRepo.save(schedulerEntity);
+			System.out.println("Error in scrap");
+			e.printStackTrace();
+		}
 	}
 	
-	public void scrapDailyEndPrice()
-	{
-		
-	}
 	
 }

@@ -34,91 +34,7 @@
         <div class="col-lg-12">
           <div class="row">
 
-            <!-- User Card -->
-            <div class="col-xxl-3 col-md-6">
-             <a href="/listportfolio">
-              <div class="card info-card sales-card">
-				<div class="card-body">
-                  <h5 class="card-title">My Post</h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>5</h6>
-                     
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              </a>
-            </div><!-- End User Card -->
-
-            <!-- Premium Card -->
-            <div class="col-xxl-3 col-md-6">
-              <a href="/listalert">
-              <div class="card info-card revenue-card">
-				<div class="card-body">
-                  <h5 class="card-title">Posted by others</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-person-check-fill"></i>
-                    </div>
-                    <div class="ps-3">
-                  	<h6>2</h6>
-                     
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              </a>
-            </div><!-- End Premium Card -->
-
-            <!-- Subscription Card -->
-            <div class="col-xxl-3 col-xl-12">
-            <a href="/upgradetopremium">
-			
-              <div class="card info-card customers-card">
-				 <div class="card-body">
-                  <h5 class="card-title">News</h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-bell"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>10</h6>
-                     
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </a>
-            </div><!-- End Subscription Card -->
-             <!-- Complain Card -->
-            <div class="col-xxl-3 col-md-6">
-              <div class="card info-card sales-card">
-				 <div class="card-body">
-                  <h5 class="card-title">Trending</h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-receipt"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>5</h6>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Complain Card -->
+            
 
             <!-- ListEquities -->
 
@@ -161,8 +77,16 @@
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td> <a class="btn btn-outline-success" >Buy</a> &nbsp;
-				<a class="btn btn-outline-danger" >Sell</a></td>
+				<%if(eq.getBuysellInd().equals(1)){ %> 
+				<td><a class="btn btn-success" href="setbuyind?equityId=<%=eq.getEquityId()%>">Buy</a> &nbsp;
+				<a class="btn btn-outline-danger" href="setsellind?equityId=<%=eq.getEquityId()%>" >Sell</a></td>
+				<%}else if(eq.getBuysellInd().equals(2)) {%>
+				<td><a class="btn btn-outline-success" href="setbuyind?equityId=<%=eq.getEquityId()%>">Buy</a> &nbsp;
+				<a class="btn btn-danger" href="setsellind?equityId=<%=eq.getEquityId()%>" >Sell</a></td>
+				<%}else { %>
+				<td><a class="btn btn-outline-success" href="setbuyind?equityId=<%=eq.getEquityId()%>">Buy</a> &nbsp;
+				<a class="btn btn-outline-danger" href="setsellind?equityId=<%=eq.getEquityId()%>" >Sell</a></td>
+				<%} %>
 			</tr>
 			 
 			<%

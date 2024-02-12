@@ -312,7 +312,7 @@
       </li><!-- End Subscription-->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/viewhistory">
           <i class="bi bi-currency-rupee"></i>
           <span>Transaction</span>
         </a>

@@ -28,7 +28,7 @@
 	<%
 	List<EquityEntity> eqs = (List<EquityEntity>) request.getAttribute("eqs");
 	%>
-	<a class="bi bi-plus-lg btn btn-outline-primary" href="#"> Add Equity</a>
+	<!-- <a class="bi bi-plus-lg btn btn-outline-primary" href="#"> Add Equity</a> -->
 	<table class="table table-borderd table-hover" id="equityTable">
 		<thead>
 			<tr>
