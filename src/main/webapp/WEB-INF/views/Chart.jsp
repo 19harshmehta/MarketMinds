@@ -191,7 +191,7 @@ String fname = (String) request.getAttribute("name");
 				<td><%=eqs.getTodayOpen() %></td>
 				
 				<th>Today Close</th>
-				<td><%=eqs.getTodayHigh() %></td>
+				<td><%=eqs.getTodayClose() %></td>
 			</tr>
 			
 			<tr>
