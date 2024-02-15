@@ -146,7 +146,7 @@ public class NewsController
 	@GetMapping("/newsadmin")
 	public String newsAdmin(Model model)
 	{
-		List<NewsEntity> news = newsRepo.findAll();
+		List<NewsEntity> news = newsRepo.findAll(Sort.by(Sort.Direction.DESC, "publishedAt"));
 		model.addAttribute("news",news);
 		return "NewsAdmin";
 	}
