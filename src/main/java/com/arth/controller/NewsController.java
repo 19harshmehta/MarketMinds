@@ -142,6 +142,14 @@ public class NewsController
 		model.addAttribute("news",news);
 		return "NewsAnalyst";
 	}
+	
+	@GetMapping("/newsadmin")
+	public String newsAdmin(Model model)
+	{
+		List<NewsEntity> news = newsRepo.findAll();
+		model.addAttribute("news",news);
+		return "NewsAdmin";
+	}
 }
 
 
