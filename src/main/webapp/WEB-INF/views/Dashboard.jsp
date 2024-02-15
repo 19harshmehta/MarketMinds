@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>ADMIN DASHBOARD</title>
+<title>Market Minds | AdminDashboard</title>
 <link href="assets/img/logo.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
@@ -37,7 +37,7 @@
           <div class="row">
 
             <!-- User Card -->
-            <div class="col-xxl-3 col-md-6">
+            <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 				<div class="card-body">
                   <a href="/listusers"><h5 class="card-title">Users</h5></a>
@@ -57,7 +57,7 @@
             </div><!-- End User Card -->
 
             <!-- Premium Card -->
-            <div class="col-xxl-3 col-md-6">
+            <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 				<div class="card-body">
                   <a href="listpremiumusers"><h5 class="card-title">Premium Users</h5></a>
@@ -77,7 +77,7 @@
             </div><!-- End Premium Card -->
 
             <!-- Subscription Card -->
-            <div class="col-xxl-3 col-xl-12">
+            <div class="col-xxl-4 col-xl-12">
 
               <div class="card info-card customers-card">
 				 <div class="card-body">
@@ -98,24 +98,7 @@
 
             </div><!-- End Subscription Card -->
             
-             <!-- Complain Card -->
-            <div class="col-xxl-3 col-md-6">
-              <div class="card info-card sales-card">
-				 <div class="card-body">
-                  <h5 class="card-title">Complain</h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-receipt"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>145</h6>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Complain Card -->
+            
 
 
 
@@ -220,7 +203,7 @@
 				<th>Price</th>
 				<th>52H</th>
 				<th>52L</th>
-				<th>Action</th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -229,12 +212,12 @@
 			%>
 			<tr>
 				<td><%=eq.getEquityId()%></td>
-				<td><%=eq.getEquityName()%></td>
+				<td><a href="chartadmin?equityId=<%=eq.getEquityId()%>"><%=eq.getEquityName()%></a></td>
 				<td><%=eq.getSymbol()%></td>
 				<td><%=eq.getPrice()%></td>
 				<td><%=eq.getHigh52()%></td>
 				<td><%=eq.getLow52()%></td>
-				<td><a href='/addequity/<%=eq.getEquityId()%>'>Add to portfolio</a></td>
+				
 			</tr>
 			<%
 			}
@@ -256,35 +239,6 @@
         <!-- Right side columns -->
         <div class="col-lg-4">
 
-         <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Basic Modal</h5>
-              <p>Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page</p>
-
-              <!-- Basic Modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-                Basic Modal
-              </button>
-              <div class="modal fade" id="basicModal" tabindex="-1">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Basic Modal</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- End Basic Modal-->
-
-            </div>
-          </div>
          
          
 

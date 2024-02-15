@@ -151,6 +151,13 @@
           <span>Equity</span>
         </a>
       </li><!-- End Equity-->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/newsadmin">
+          <i class="bi bi-newspaper"></i>
+          <span>News</span>
+        </a>
+      </li><!-- End News-->
 
 	  <li class="nav-item">
         <a class="nav-link collapsed" href="listplans">

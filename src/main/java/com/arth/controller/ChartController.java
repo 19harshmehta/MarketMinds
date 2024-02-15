@@ -110,5 +110,38 @@ public class ChartController {
 		model.addAttribute("tech",eqtech.findByEqId(equityId));
 		return "ChartAnalyst";//jsp 
 	}
+	
+	
+	@GetMapping("/chartadmin")
+	public String chartAdmin(@RequestParam("equityId") Integer equityId,Model model,HttpSession session) {
+
+		//equityId -> equity detail 
+		//daily record -> date price 
+		Integer userId = (Integer) session.getAttribute("userId");
+		Optional<UserEntity> opt =  userRepo.findByUserId(userId);
+		String userName = opt.get().getFirstName()+" "+opt.get().getLastName();
+		List<EquityPriceDataEntity> dailyData = eqDataRepo.findByEquityId(equityId);
+		List<CommunityEntity> comments = communityRepo.findByEquityId(equityId);
+		ArrayList<Double> prices = new ArrayList<>();
+		ArrayList<String> date = new ArrayList<>();
+//		prices.add(0.0);
+		date.add(" ");
+		for(EquityPriceDataEntity eqPriceDataentail : dailyData)
+		{
+			prices.add(eqPriceDataentail.getClosingPrice());
+			LocalDate ld = eqPriceDataentail.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			String x = ld.getDayOfMonth()+" "+ld.getMonth().name().substring(0,3) +" "+ld.getYear();
+			date.add(x);
+			
+			
+		}
+		model.addAttribute("prices",prices);
+		model.addAttribute("dates",date);
+		
+		model.addAttribute("comments",comments);
+		model.addAttribute("eqs",eqRepo.findByEquityId(equityId));
+		model.addAttribute("tech",eqtech.findByEqId(equityId));
+		return "ChartAdmin";//jsp 
+	}
 }
 

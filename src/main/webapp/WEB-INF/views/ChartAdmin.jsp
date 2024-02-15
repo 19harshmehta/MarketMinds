@@ -14,7 +14,7 @@
 <link href="assets/img/logo.png" rel="icon">
 </head>
 <body >
-<%@include file="AnalystLayout.jsp" %>
+<%@include file="AdminLayout.jsp" %>
 <main id="main" class="main">
 <% 
 ArrayList<Double> prices = (ArrayList<Double>)request.getAttribute("prices");
@@ -26,7 +26,7 @@ EqTechnicalEntity tech = (EqTechnicalEntity)request.getAttribute("tech");
      
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="analystdashboard">Home</a></li>
+          <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
           <li class="breadcrumb-item active"><%=eqs.getEquityName() %></li>
         </ol>
       </nav>
