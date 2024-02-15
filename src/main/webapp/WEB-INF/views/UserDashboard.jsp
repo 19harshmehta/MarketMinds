@@ -39,7 +39,7 @@
           <div class="row">
 
             <!-- User Card -->
-            <div class="col-xxl-3 col-md-6">
+            <div class="col-xxl-4 col-xl-12">
              <a href="/listportfolio">
               <div class="card info-card sales-card">
 				<div class="card-body">
@@ -61,7 +61,7 @@
             </div><!-- End User Card -->
 
             <!-- Premium Card -->
-            <div class="col-xxl-3 col-md-6">
+            <div class="col-xxl-4 col-xl-12">
               <a href="/listalert">
               <div class="card info-card revenue-card">
 				<div class="card-body">
@@ -83,7 +83,7 @@
             </div><!-- End Premium Card -->
 <%if(premiumInd == 0){ %>
             <!-- Subscription Card -->
-            <div class="col-xxl-3 col-xl-12">
+            <div class="col-xxl-4 col-xl-12">
             	<a href="/upgradetopremium">
               <div class="card info-card customers-card">
 				 <div class="card-body">
@@ -106,7 +106,7 @@
             </div><!-- End Subscription Card -->
             <%}else{ %>
             <!-- Subscription Card -->
-            <div class="col-xxl-3 col-xl-12">
+            <div class="col-xxl-4 col-xl-12">
             	<a href="/upgradetopremium">
               <div class="card info-card customers-card">
 				 <div class="card-body">
@@ -128,35 +128,7 @@
             </a>
             </div><!-- End Subscription Card -->
             <%} %>
-             <!-- Complain Card -->
-            <div class="col-xxl-3 col-md-6">
-              <div class="card info-card sales-card">
-				 <div class="card-body">
-                  <h5 class="card-title">IPO</h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-receipt"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>5</h6>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Complain Card -->
-
-            <!-- ListEquities -->
-
-
-
-
-
-
-
-
-            <!-- Recent Sales -->
+            
             <div class="col-12">
               <div class="card recent-sales overflow-hidden">
 

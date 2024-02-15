@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -128,7 +129,7 @@ public class NewsController
 	@GetMapping("/newsuser")
 	public String newsUser(Model model)
 	{
-		List<NewsEntity> news = newsRepo.findAll();
+		List<NewsEntity> news = newsRepo.findAll(Sort.by(Sort.Direction.DESC, "publishedAt"));
 		model.addAttribute("news",news);
 		return "NewsUser";
 	}
@@ -137,7 +138,7 @@ public class NewsController
 	@GetMapping("/newsanalyst")
 	public String newsAnalyst(Model model)
 	{
-		List<NewsEntity> news = newsRepo.findAll();
+		List<NewsEntity> news = newsRepo.findAll(Sort.by(Sort.Direction.DESC, "publishedAt"));
 		model.addAttribute("news",news);
 		return "NewsAnalyst";
 	}

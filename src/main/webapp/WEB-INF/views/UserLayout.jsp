@@ -179,13 +179,6 @@
         </a>
       </li><!-- End Transaction-->
       
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="ticket">
-          <i class="bi bi-receipt"></i>
-          <span>Ticket</span>
-        </a>
-      </li><!-- End Ticket-->
-      
 	  <li class="nav-item">
         <a class="nav-link collapsed" href="listequityuser">
           <i class="bi bi-currency-rupee"></i>
