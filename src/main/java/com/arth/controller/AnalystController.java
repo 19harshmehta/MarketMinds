@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.arth.entity.CommunityEntity;
 import com.arth.entity.FaqsEntity;
+import com.arth.repository.CommunityRepository;
 import com.arth.repository.EquityRepository;
 import com.arth.repository.FaqRepository;
 
@@ -19,6 +21,9 @@ public class AnalystController
 	
 	@Autowired
 	FaqRepository faqRepo;
+	
+	@Autowired
+	CommunityRepository comRepo;
 	
 	@GetMapping("/analystdashboard")
 	public String analystdashboard(Model model)
@@ -47,6 +52,15 @@ public class AnalystController
 	{
 		
 		return "Analyst-MyProfile";
+	}
+	
+	@GetMapping("/anycom")
+	public String analystCommunity(Model model) {
+		
+		List<CommunityEntity> cmts = comRepo.getAllAnalystCmts();
+		model.addAttribute("cmts",cmts);
+		
+		return "CommunityAnalyst";
 	}
 	
 	
