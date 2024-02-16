@@ -139,7 +139,7 @@
      
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="anycom">
           <i class="bi bi-people"></i>
           <span>Community</span>
         </a>
