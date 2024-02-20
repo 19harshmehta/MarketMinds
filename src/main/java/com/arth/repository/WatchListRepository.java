@@ -9,7 +9,7 @@ import com.arth.entity.WatchListEntity;
 
 public interface WatchListRepository extends JpaRepository<WatchListEntity, Integer> 
 {
-	@Query(value = "SELECT e.* FROM equity e JOIN WatchList w ON e.equity_id = w.equity_id WHERE w.user_id = :userId",nativeQuery = true)
+	@Query(value = "SELECT e.* FROM equity e JOIN watchList w ON e.equity_id = w.equity_id WHERE w.user_id = :userId",nativeQuery = true)
 	List<Object[]> displayWatchList(Integer userId);
 
 	@Query(value = "SELECT count(*) from watchlist WHERE user_id = :userId",nativeQuery = true)
