@@ -16,13 +16,13 @@
 </head>
 
 <body>
-<%@include file="UserLayout.jsp" %>
+<%@include file="AnalystLayout.jsp" %>
 <main id="main" class="main">
 <div class="pagetitle">
       <h1>Community</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="analystdashboard">Home</a></li>
           <li class="breadcrumb-item active">Community Data</li>
         </ol>
       </nav>
