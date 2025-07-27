@@ -5,13 +5,13 @@ This document outlines the key objects, their context, and the information assoc
 
 ---
 
-## 📘 Project Summary
+## Project Summary
 
 **Market Minds** is a user-friendly web application that allows users to create accounts, view, and manage their stock portfolios by adding stocks. It features **real-time stock data updates** achieved through **web scraping and scheduling**. Additionally, a **payment gateway** was integrated for **premium user subscriptions**.
 
 ---
 
-## 🧩 Key Concepts
+## Key Concepts
 
 ### 1. Object: Equity  
 **Context**: User can view live prices and complete details of equities.  
@@ -109,7 +109,7 @@ This document outlines the key objects, their context, and the information assoc
 
 ---
 
-## 🔁 Contextual Flows
+## Contextual Flows
 
 ### Frontend (JSP with Template Integration)
 **Context**: Provides the UI for users to interact with the system.  
@@ -132,13 +132,8 @@ This document outlines the key objects, their context, and the information assoc
 
 ---
 
-## 📄 Location
+## Location
 You can save this file as:
 ```
 /docs/concepts.md
 ```
-
----
-
-## ✅ Done!
-Let me know if you want this converted to PDF or included in GitHub.
