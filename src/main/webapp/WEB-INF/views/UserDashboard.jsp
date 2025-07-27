@@ -136,7 +136,7 @@
                   <h5 class="card-title">Equities<span></span></h5>
 
     
-	<table class="table table-borderd table-hover" id="equityTable">
+	<table class="table table-borderd table-hover" style="overflow: auto;" id="equityTable">
 		<thead>
 			<tr>
 				<th>EquityId</th>

@@ -25,7 +25,7 @@ public class MailerService {
 
 	public boolean sendMailForForgetpasswordOTP(UserEntity user) {
 		final String from = "market.mindss23@gmail.com";// from address
-		final String appPassword = "myhrwiyyyeoetepg"; //
+		final String appPassword = "#########"; //
 
 		Properties prop = System.getProperties();
 
